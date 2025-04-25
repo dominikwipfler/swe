@@ -26,13 +26,13 @@
 -- (2) PowerShell:
 --     cd .extras\compose\backend\postgres
 --     docker compose up db
--- (3) In Windows das Verzeichnis "C:/Zimmermann/volumes/postgres/tablespace/buch" anlegen
+-- (3) In Windows das Verzeichnis "C:/Zimmermann/volumes/postgres/tablespace/auto" anlegen
 --     Siehe .extras\compose\postgres\compose.yml
 -- (4) 2. PowerShell:
 --     cd .extras\compose\backend\postgres
 --     docker compose exec db bash
 --        chown postgres:postgres /var/lib/postgresql/tablespace
---        chown postgres:postgres /var/lib/postgresql/tablespace/buch
+--        chown postgres:postgres /var/lib/postgresql/tablespace/auto
 --        chown postgres:postgres /var/lib/postgresql/key.pem
 --        chown postgres:postgres /var/lib/postgresql/certificate.crt
 --        chmod 400 /var/lib/postgresql/key.pem
@@ -48,8 +48,8 @@
 --     docker compose up db
 -- (7) 2. PowerShell:
 --     docker compose exec db bash
---        psql --dbname=postgres --username=postgres --file=/sql/create-db-buch.sql
---        psql --dbname=buch --username=buch --file=/sql/create-schema-buch.sql
+--        psql --dbname=postgres --username=postgres --file=/sql/create-db-auto.sql
+--        psql --dbname=auto --username=auto --file=/sql/create-schema-auto.sql
 --        exit
 --     ggf. docker compose down
 
@@ -67,12 +67,12 @@
 --     docker compose down
 
 -- https://www.postgresql.org/docs/current/sql-createrole.html
-CREATE ROLE buch LOGIN PASSWORD 'p';
+CREATE ROLE auto LOGIN PASSWORD 'p';
 
 -- https://www.postgresql.org/docs/current/sql-createdatabase.html
-CREATE DATABASE buch;
+CREATE DATABASE auto;
 
-GRANT ALL ON DATABASE buch TO buch;
+GRANT ALL ON DATABASE auto TO auto;
 
 -- https://www.postgresql.org/docs/10/sql-createtablespace.html
-CREATE TABLESPACE buchspace OWNER buch LOCATION '/var/lib/postgresql/tablespace/buch';
+CREATE TABLESPACE autospace OWNER auto LOCATION '/var/lib/postgresql/tablespace/auto';

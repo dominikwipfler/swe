@@ -23,7 +23,7 @@
 [project]
 name = "lasttest"
 version = "2025.4.1"
-description = "Lasttest für buch"
+description = "Lasttest für auto"
 readme = "README.md"
 requires-python = ">=3.13"
 license = "GPLv3"

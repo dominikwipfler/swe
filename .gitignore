@@ -8,7 +8,7 @@ node_modules
 
 # Generierte Dateien
 build
-.extras/doc/projekthandbuch/html/*
+.extras/doc/projekthandauto/html/*
 .extras/doc/folien/*.html
 .extras/doc/api/*
 .extras/doc/ReadMe.html
@@ -59,7 +59,7 @@ Thumbs.db
 coverage
 .nyc_output
 .clinic
-__tests__/buch/__snapshots__
+__tests__/auto/__snapshots__
 
 # SonarQube
 .sonar

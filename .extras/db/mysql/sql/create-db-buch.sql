@@ -55,7 +55,7 @@
 --     docker compose up
 -- (9) 2. PowerShell:
 --     docker compose exec db bash
---         mysql --user=root --password=p < /sql/create-db-buch.sql
+--         mysql --user=root --password=p < /sql/create-db-auto.sql
 --         exit
 --     docker compose down
 -- (10) in extras\compose\mysql\compose.yml
@@ -77,16 +77,16 @@
 
 -- https://dev.mysql.com/doc/refman/9.2/en/create-user.html
 -- https://dev.mysql.com/doc/refman/9.2/en/role-names.html
-CREATE USER IF NOT EXISTS buch IDENTIFIED BY 'p';
-GRANT USAGE ON *.* TO buch;
+CREATE USER IF NOT EXISTS auto IDENTIFIED BY 'p';
+GRANT USAGE ON *.* TO auto;
 
 -- https://dev.mysql.com/doc/refman/9.2/en/create-database.html
 -- https://dev.mysql.com/doc/refman/9.2/en/charset.html
 -- SHOW CHARACTER SET;
-CREATE DATABASE IF NOT EXISTS buch CHARACTER SET utf8;
+CREATE DATABASE IF NOT EXISTS auto CHARACTER SET utf8;
 
-GRANT ALL PRIVILEGES ON buch.* to buch;
+GRANT ALL PRIVILEGES ON auto.* to auto;
 
 -- https://dev.mysql.com/doc/refman/9.2/en/create-tablespace.html
 -- .idb-Datei innerhalb vom "data"-Verzeichnis
-CREATE TABLESPACE `buchspace` ADD DATAFILE 'buchspace.ibd' ENGINE=INNODB;
+CREATE TABLESPACE `autospace` ADD DATAFILE 'autospace.ibd' ENGINE=INNODB;

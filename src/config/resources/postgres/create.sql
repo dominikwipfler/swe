@@ -14,7 +14,7 @@
 -- along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 -- docker compose exec postgres bash
--- psql --dbname=buch --username=buch --file=/scripts/create-table-buch.sql
+-- psql --dbname=auto --username=auto --file=/scripts/create-table-auto.sql
 
 -- text statt varchar(n):
 -- "There is no performance difference among these three types, apart from a few extra CPU cycles
@@ -24,39 +24,39 @@
 -- Indexe mit pgAdmin auflisten: "Query Tool" verwenden mit
 --  SELECT   tablename, indexname, indexdef, tablespace
 --  FROM     pg_indexes
---  WHERE    schemaname = 'buch'
+--  WHERE    schemaname = 'auto'
 --  ORDER BY tablename, indexname;
 
 -- https://www.postgresql.org/docs/devel/app-psql.html
 -- https://www.postgresql.org/docs/current/ddl-schemas.html
 -- https://www.postgresql.org/docs/current/ddl-schemas.html#DDL-SCHEMAS-CREATE
 -- "user-private schema" (Default-Schema: public)
-CREATE SCHEMA IF NOT EXISTS AUTHORIZATION buch;
+CREATE SCHEMA IF NOT EXISTS AUTHORIZATION auto;
 
-ALTER ROLE buch SET search_path = 'buch';
+ALTER ROLE auto SET search_path = 'auto';
 
 -- https://www.postgresql.org/docs/current/sql-createtype.html
 -- https://www.postgresql.org/docs/current/datatype-enum.html
-CREATE TYPE buchart AS ENUM ('EPUB', 'HARDCOVER', 'PAPERBACK');
+CREATE TYPE autoart AS ENUM ('EPUB', 'HARDCOVER', 'PAPERBACK');
 
 -- https://www.postgresql.org/docs/current/sql-createtable.html
 -- https://www.postgresql.org/docs/current/datatype.html
-CREATE TABLE IF NOT EXISTS buch (
+CREATE TABLE IF NOT EXISTS auto (
                   -- https://www.postgresql.org/docs/current/datatype-numeric.html#DATATYPE-INT
                   -- https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-PRIMARY-KEYS
                   -- impliziter Index fuer Primary Key
                   -- "GENERATED ALWAYS AS IDENTITY" gemaess SQL-Standard
-                  -- entspricht SERIAL mit generierter Sequenz buch_id_seq
-    id            integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE buchspace,
+                  -- entspricht SERIAL mit generierter Sequenz auto_id_seq
+    id            integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE autospace,
                   -- https://www.postgresql.org/docs/current/ddl-constraints.html#id-1.5.4.6.6
     version       integer NOT NULL DEFAULT 0,
                   -- impliziter Index als B-Baum durch UNIQUE
                   -- https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-UNIQUE-CONSTRAINTS
-    isbn          text NOT NULL UNIQUE USING INDEX TABLESPACE buchspace,
+    isbn          text NOT NULL UNIQUE USING INDEX TABLESPACE autospace,
                   -- https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-CHECK-CONSTRAINTS
                   -- https://www.postgresql.org/docs/current/functions-matching.html#FUNCTIONS-POSIX-REGEXP
     rating        integer NOT NULL CHECK (rating >= 0 AND rating <= 5),
-    art           buchart,
+    art           autoart,
                   -- https://www.postgresql.org/docs/current/datatype-numeric.html#DATATYPE-NUMERIC-DECIMAL
                   -- 10 Stellen, davon 2 Nachkommastellen
     preis         decimal(8,2) NOT NULL,
@@ -71,29 +71,29 @@ CREATE TABLE IF NOT EXISTS buch (
                   -- https://www.postgresql.org/docs/current/datatype-datetime.html
     erzeugt       timestamp NOT NULL DEFAULT NOW(),
     aktualisiert  timestamp NOT NULL DEFAULT NOW()
-) TABLESPACE buchspace;
+) TABLESPACE autospace;
 
 CREATE TABLE IF NOT EXISTS titel (
-    id          integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE buchspace,
+    id          integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE autospace,
     titel       text NOT NULL,
     untertitel  text,
-    buch_id     integer NOT NULL UNIQUE USING INDEX TABLESPACE buchspace REFERENCES buch
-) TABLESPACE buchspace;
+    auto_id     integer NOT NULL UNIQUE USING INDEX TABLESPACE autospace REFERENCES auto
+) TABLESPACE autospace;
 
 
 CREATE TABLE IF NOT EXISTS abbildung (
-    id              integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE buchspace,
+    id              integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE autospace,
     beschriftung    text NOT NULL,
     content_type    text NOT NULL,
-    buch_id         integer NOT NULL REFERENCES buch
-) TABLESPACE buchspace;
-CREATE INDEX IF NOT EXISTS abbildung_buch_id_idx ON abbildung(buch_id) TABLESPACE buchspace;
+    auto_id         integer NOT NULL REFERENCES auto
+) TABLESPACE autospace;
+CREATE INDEX IF NOT EXISTS abbildung_auto_id_idx ON abbildung(auto_id) TABLESPACE autospace;
 
-CREATE TABLE IF NOT EXISTS buch_file (
-    id              integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE buchspace,
+CREATE TABLE IF NOT EXISTS auto_file (
+    id              integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE autospace,
     data            bytea NOT NULL,
     filename        text NOT NULL,
     mimetype        text,
-    buch_id         integer NOT NULL REFERENCES buch
-) TABLESPACE buchspace;
-CREATE INDEX IF NOT EXISTS buch_file_buch_id_idx ON buch_file(buch_id) TABLESPACE buchspace;
+    auto_id         integer NOT NULL REFERENCES auto
+) TABLESPACE autospace;
+CREATE INDEX IF NOT EXISTS auto_file_auto_id_idx ON auto_file(auto_id) TABLESPACE autospace;

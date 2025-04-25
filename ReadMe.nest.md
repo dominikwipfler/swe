@@ -163,16 +163,16 @@ _TypeORM_ unterstützt nur SQLite 9, aber nicht SQLite 11: https://github.com/ty
 
 ### DB-Server
 
-> ❗ Vor dem 1. Start von PostgreSQL muss man die Skripte `create-db-buch.sql`
-> und `create-schema-buch.sql` aus dem Verzeichnis `.extras\db\postgres\sql`
+> ❗ Vor dem 1. Start von PostgreSQL muss man die Skripte `create-db-auto.sql`
+> und `create-schema-auto.sql` aus dem Verzeichnis `.extras\db\postgres\sql`
 > nach `C:\Zimmermann\volumes\postgres\sql` kopieren und die Anleitung ausführen.
 > Danach kopiert man die CSV-Dateien aus dem Verzeichnis `.extras\postgres\csv`
-> nach `C:\Zimmermann\volumes\postgres\csv\buch`.
+> nach `C:\Zimmermann\volumes\postgres\csv\auto`.
 
-> ❗ Vor dem 1. Start von MySQL muss man das Skript `create-db-buch.sql` aus
+> ❗ Vor dem 1. Start von MySQL muss man das Skript `create-db-auto.sql` aus
 > dem Projektverzeichnis `.extras\db\mysql\sql` nach`C:\Zimmermann\volumes\mysql\sql`
 > kopieren und die Anleitung ausführen. Danach kopiert man die CSV-Dateien aus
-> dem Verzeichnis `.extras\db\mysql\csv` nach `C:\Zimmermann\volumes\mysql\csv\buch`.
+> dem Verzeichnis `.extras\db\mysql\csv` nach `C:\Zimmermann\volumes\mysql\csv\auto`.
 
 Vor dem Start des Appservers muss man den DB-Server und ggf. den DB-Browser starten.
 Falls man _PostgreSQL_ oder _MySQL_ und nicht _SQLite_ als "Embedded Database" nutzt:
@@ -200,7 +200,7 @@ Jetzt läuft der DB-Server mit folgender Konfiguration:
 
 - Rechnername `localhost` aus Windows-Sicht
 - Default-Port `5432` bei _PostgreSQL_ bzw. `3306` bei _MySQL_
-- Datenbankname `buch`
+- Datenbankname `auto`
 - Administrations-User `postgres` bei _PostgreSQL_ bzw. `root` bei _MySQL_
 - Passwort `p` für den jeweiligen Administrations-User
 
@@ -264,8 +264,8 @@ verwendet.
 Beim Starten des Appservers wird außerdem mit _TypeORM_ auf die Datenbank
 zugegriffen. Der Benutzername und das Passwort sind in der Datei
 `src\config\db.ts` auf `admin` und `p` voreingestellt. Durch die Property
-`db.populate` in `src\config\resources\buch.yml` wird festgelegt, ob die
-(Test-) DB `buch` neu geladen wird.
+`db.populate` in `src\config\resources\auto.yml` wird festgelegt, ob die
+(Test-) DB `auto` neu geladen wird.
 
 ## OpenAPI
 
@@ -293,7 +293,7 @@ herunterladen und installieren. Die Installation erfolgt dabei im Verzeichnis
 - Den Menüpunkt _Workspaces_ anklicken
 - Im Drop-Down Menü den Button _Create Workspace_ anklicken
 - Danach den Button _Next_ anklicken
-- Im Eingabefeld _Name_ `buch` und im Eingabefeld _Summary_ z.B.
+- Im Eingabefeld _Name_ `auto` und im Eingabefeld _Summary_ z.B.
   `REST- und GraphQL-Requests für den Appserver.`
 - Abschließend den Button _Create_ anklicken.
 
@@ -301,12 +301,12 @@ herunterladen und installieren. Die Installation erfolgt dabei im Verzeichnis
 
 Zunächst legt man ein _Environment_ mit Variablen an. Dazu wählt man am
 linken Rand den Menüpunkt _Environments_, klickt auf den Button `Import`
-und wählt aus dem Verzeichnis `.extras\postman` die Datei `buch.postman_environment.json`
-aus. Jetzt hat man die Umgebung `buch` mit der Variablen `base_url` und dem
+und wählt aus dem Verzeichnis `.extras\postman` die Datei `auto.postman_environment.json`
+aus. Jetzt hat man die Umgebung `auto` mit der Variablen `base_url` und dem
 Wert `https://localhost:3000` angelegt.
 
-Im Environment `buch` muss man die Variable `client_secret` auf den Wert setzen,
-der in Keycloak beim _Realm acme_ in _Clients > buch-client > Credentials_
+Im Environment `auto` muss man die Variable `client_secret` auf den Wert setzen,
+der in Keycloak beim _Realm acme_ in _Clients > auto-client > Credentials_
 bei _Client Secret_ steht.
 
 ### Collections und Folders
@@ -419,7 +419,7 @@ z.B.:
 
 ```powershell
     npm exec jest --detectOpenHandles --errorOnDeprecated `
-      --forceExit --runTestsByPath '__tests__\buch\buch-GET.controller.test.ts'
+      --forceExit --runTestsByPath '__tests__\auto\auto-GET.controller.test.ts'
 ```
 
 ---
@@ -468,11 +468,11 @@ validieren:
 ```powershell
     # Debian Bookworm (12) slim
     Get-Content Dockerfile | docker run --rm --interactive hadolint/hadolint:2.12.1-beta-debian
-    docker build --tag juergenzimmermann/buch:2025.4.1-bookworm .
+    docker build --tag juergenzimmermann/auto:2025.4.1-bookworm .
 
     # Alpine
     Get-Content Dockerfile.alpine | docker run --rm --interactive hadolint/hadolint:2.12.1-beta-debian
-    docker build --tag juergenzimmermann/buch:2025.4.1-alpine --file Dockerfile.alpine .
+    docker build --tag juergenzimmermann/auto:2025.4.1-alpine --file Dockerfile.alpine .
 ```
 
 Mit Docker_Bake_:
@@ -491,8 +491,8 @@ Mit dem Unterkommando `history` kann man ein Docker-Image und die einzelnen Laye
 inspizieren:
 
 ```powershell
-    docker history juergenzimmermann/buch:2025.4.1-bookworm
-    docker history juergenzimmermann/buch:2025.4.1-alpine
+    docker history juergenzimmermann/auto:2025.4.1-bookworm
+    docker history juergenzimmermann/auto:2025.4.1-alpine
 ```
 
 #### docker inspect
@@ -501,8 +501,8 @@ Mit dem Unterkommando `inspect` kann man die Metadaten, z.B. Labels, zu einem
 Image inspizieren:
 
 ```powershell
-    docker inspect juergenzimmermann/buch:2025.4.1-bookworm
-    docker inspect juergenzimmermann/buch:2025.4.1-alpine
+    docker inspect juergenzimmermann/auto:2025.4.1-bookworm
+    docker inspect juergenzimmermann/auto:2025.4.1-alpine
 ```
 
 #### docker sbom
@@ -512,8 +512,8 @@ inspizieren, welche Bestandteilen in einem Docker-Images enthalten sind, z.B.
 npm-Packages oder Debian-Packages.
 
 ```powershell
-    docker sbom juergenzimmermann/buch:2025.4.1-bookworm
-    docker sbom juergenzimmermann/buch:2025.4.1-alpine
+    docker sbom juergenzimmermann/auto:2025.4.1-bookworm
+    docker sbom juergenzimmermann/auto:2025.4.1-alpine
 ```
 
 ### Docker Compose
@@ -524,14 +524,14 @@ Bookworm (12) Slim_ folgendermaßen starten und später in einer weiteren
 PowerShell herunterfahren.
 
 ```powershell
-    cd .extras\compose\buch
+    cd .extras\compose\auto
 
-    # PowerShell fuer buch-Server mit Bookworm-Image zzgl. DB-Server und Mailserver
+    # PowerShell fuer auto-Server mit Bookworm-Image zzgl. DB-Server und Mailserver
     docker compose up
 
     # Nur zur Fehlersuche: weitere PowerShell für bash
-    cd .extras\compose\buch
-    docker compose exec buch bash
+    cd .extras\compose\auto
+    docker compose exec auto bash
         id
         env
         exit
@@ -542,8 +542,8 @@ PowerShell herunterfahren.
         nslookup postgres
         exit
 
-    # 2. Powershell: buch-Server einschl. DB-Server und Mailserver herunterfahren
-    cd .extras\compose\buch
+    # 2. Powershell: auto-Server einschl. DB-Server und Mailserver herunterfahren
+    cd .extras\compose\auto
     docker compose down
 ```
 
@@ -670,8 +670,8 @@ groben Überblick verschaffen, wieviele Sicherheitslücken in den Bibliotheken i
 Image enthalten sind:
 
 ```powershell
-    docker scout quickview juergenzimmermann/buch:2025.4.1-bookworm
-    docker scout quickview juergenzimmermann/buch:2025.4.1-alpine
+    docker scout quickview juergenzimmermann/auto:2025.4.1-bookworm
+    docker scout quickview juergenzimmermann/auto:2025.4.1-alpine
 ```
 
 Dabei bedeutet:
@@ -688,8 +688,8 @@ Die Details zu den CVE-Records im Image kann man durch das Unterkommando `cves`
 von _Scout_ auflisten:
 
 ```powershell
-    docker scout cves juergenzimmermann/buch:2025.4.1-bookworm
-    docker scout cves --format only-packages juergenzimmermann/buch:2025.4.1-bookworm
+    docker scout cves juergenzimmermann/auto:2025.4.1-bookworm
+    docker scout cves --format only-packages juergenzimmermann/auto:2025.4.1-bookworm
 ````
 
 Statt der Kommandozeile kann man auch den Menüpunkt "Docker Scout" im
@@ -799,7 +799,7 @@ Tipps:
 In Anlehnung an die
 [Guidelines von TypeScript](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines)
 
-- "Feature Filenames", z.B. buch.service.ts
+- "Feature Filenames", z.B. auto.service.ts
 - Klassennamen mit PascalCase
 - Union-Types (mit Strings) statt Enums
 - Attribute und Funktionen mit camelCase

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jürgen Zimmermann">
+<title>Projekthandbuch</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<link rel="stylesheet" href="./asciidoctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Projekthandbuch</h1>
+<div class="details">
+<span id="author" class="author">Jürgen Zimmermann</span><br>
+<span id="email" class="email"><a href="mailto:Juergen.Zimmermann@h-ka.de">Juergen.Zimmermann@h-ka.de</a></span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_der_applikationsserver">1. Der Applikationsserver</a>
+<ul class="sectlevel2">
+<li><a href="#_der_applikationsserver_im_überblick">1.1. Der Applikationsserver im Überblick</a></li>
+<li><a href="#_die_rest_schnittstelle">1.2. Die REST-Schnittstelle</a></li>
+<li><a href="#_die_graphql_schnittstelle">1.3. Die GraphQL-Schnittstelle</a></li>
+<li><a href="#_die_geschäftslogik">1.4. Die Geschäftslogik</a></li>
+<li><a href="#_klasse_für_entities">1.5. Klasse für Entities</a></li>
+<li><a href="#_er_diagramm">1.6. ER-Diagramm</a></li>
+</ul>
+</li>
+<li><a href="#_programmierrichtlinien_für_typescript_und_javascript">2. Programmierrichtlinien für TypeScript und JavaScript</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Copyright &#169; 2020 - present Jürgen Zimmermann, Hochschule Karlsruhe.<br>
+           Free use of this software is granted under the terms of the
+           GNU General Public License (GPL) v3.<br>
+           For the full text of the license, see the <a href="http://www.gnu.org/licenses/gpl-3.0.html">license</a> file.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_der_applikationsserver"><a class="anchor" href="#_der_applikationsserver"></a><a class="link" href="#_der_applikationsserver">1. Der Applikationsserver</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_der_applikationsserver_im_überblick"><a class="anchor" href="#_der_applikationsserver_im_überblick"></a><a class="link" href="#_der_applikationsserver_im_überblick">1.1. Der Applikationsserver im Überblick</a></h3>
+<div class="paragraph">
+<p>Sed porttitor lectus nibh. Nulla porttitor accumsan tincidunt.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqNk89u2kAQxu9-iu8WkAj0z6lphOSgkJCkgIxRRG-LPfautN5Fu2sQqvo2eYaeesuLdezQoqKmrQ_WemfnN9-3Mz7DyG72TpUyoDPq4t2btx9wjo0jTybgriZXksFnVVXkKmFMD7c2kz6TtSbcC6e9qyVFZ9EZUqk8Z9rSiQq8LBwRvC3CTji6wN7WyISBo1z54NS6DgQVIEw-sA6VzVWxZwxv1SYnhyAJgat62KL9uJkucUOGnNCY12utMjyojIwnCK7c7HhJOdYNpkkYNwoWBwUYW-aKoCybIMVxhy05z994_7PEgdeDdczoiNDIdrCbJq3LWvfQIhwz-390fjSYQ5kWLO2G3UgGsr-d0hprQu2pqHWPCXwWj5P0drZMEU9XeIyTJJ6mq498NkjLUdrSC0lVG60YzJ6cMGHP0hnw6ToZ3XJGfDV5mKQr1o_xJJ1eLxYYzxLEmMdJOhktH-IE82Uyny2u-8CCGlHcvr_dbdF2hy8wpyCU9i-eV9xOz8p0Dim2xG3NSG1Zl0DGI_XvnjFDaGvK1iGfPV4hC5sUMDb04FngpQxh4y8Gg91u1y9N3beuHOgXiB8M-xGT5o62inbIa5dJXMY6DPMoEllg7TfCh8MyzitlDuv7ZsqiiHUHYUqe5nXNqV8i8NOk4Px8iM5Vs-n5RabbhlrEf8aE0VS-Fnx-aqb8laB-_uaP3FbqKzVPY7_VPA3-qvk1igprm0HuZF3cPX8_-c2jH5zOVl8=" alt="Use Cases">
+</div>
+<div class="title">Figure 1. Use Cases</div>
+</div>
+<div class="paragraph">
+<p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Nulla porttitor
+accumsan tincidunt.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqNVdtuGjEQfd-vGOUliZRAL09NIyRCcyHh1mVRRCMezO7s2oqxt7YXhKrmy_rWH-vsJdwSkr7hMzPH5_gMcAgtnS6NSLiDo9YxfPrw8QucQmrQonJwm6FJUMEPMZuhmTGlTuBGh9yGPJMId8xIazKO3qF3CAEXliZ1YtgM6GNsEMHq2C2YwTNY6gxCpsBgJKwzYpo5BOGAqaiuDcx0JOIl0RCUqQgNOI7g6FYLOi4O170RXKNCwyQMsqkUIXREiMoiMLo5RyzHCKY5TT5wlSsYVgrgShMvc0KTCRRUNzBHY-kMn5-vqPhOQBviOGIul21Ap_nYMWldgmRuPVl71fnaYARCFcRcp-SGEyH5WwgpYYqQWYwzeUIM1Av37eCmPwqg2RvDfdP3m71g_JV6HddUxTmWTGKWSkHE5Mkw5ZYknQi6l37rhiaaF-1OOxiTfrhqB73L4RCu-j40YdD0g3Zr1Gn6MBj5g_7wsgYwxFwUxffW28ZFOvSAETompC09jylOS8pkBJzNkWINUcxJF4OQVur9zIiDSa2SwiH1rp-QhLVjUNqdgCWB59y51J7V64vFopaorKZNUpclia03ah4xDQzOBS4gykzI4bwpXSPyPImxA6eh3O9IkMY8R89joSNT_uUwaNFbKlcB14al_HunwjylI4SDHlp3AL88gAcff2Z06ugkQdMVUSQx36yJlxcvspC3tHJGS4lm8gz5aLWc58AzMkQzJ_Ul4GOqraDLl-d5rVGiXXrnVdtvz_NCqbOoEEHVYJli3-8Wla2CInGnj7gkkD2ehlopMvxKG_ma0Q25KKrRd4JNGQV98O2CFjHkB6uL2BTJTAFOtiEnHModjE2nQkaZSgra4vUqortK04tCbtSS0UrKOhF4emq88eBbSb3T6-0tlYO7wf1H-0aou-NQqzV2ct4e2dfwfCrrr-zFS6wUtFqH1acK30pvT7HKcU91I9E9Rves3B68ZF9vw2vOt3Z_61ROb27v5qGsbi7U7vQDpyxRTZ726_ZirfOf96PwGG7__tn58_P-ARLhcxA=" alt="Komponentendiagramm">
+</div>
+<div class="title">Figure 2. Komponentendiagramm</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_die_rest_schnittstelle"><a class="anchor" href="#_die_rest_schnittstelle"></a><a class="link" href="#_die_rest_schnittstelle">1.2. Die REST-Schnittstelle</a></h3>
+<div class="paragraph">
+<p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+ligula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit
+amet ligula.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqVVtty2zYQfedX7DgPlqa6NM1TVY0mimrZShxb1WUybqYPELkU0YIADYBSNY3_vQtQNGmFSiZ6IbE4e_Z2AOoSJio7aL5NLLQmbfjl59e_QhcyjQalhfc56i1K-JOnKeqUSdmBGxUmJkxygfCBaWF0nmBwGVzCKuGGPNVWsxToNdaIYFRs90zjAA4qh5BJ0BhxYzXf5BaBW2Ay6isNqYp4fCAaMuUyQg02QbAU1YCK_eL6bg3XKFEzAfN8I3gItzxEaRAYRXYWk2AEG0fjHKYug-UxA5gq4mWWKyoCOe1r2KE2tIY3ZYgjXweUJo4Wsy5tDSpzbm3K9QCC2cqz11h5VWAEXHriRGVUTUKEVN-eCwEbhNxgnIsOMRAWPs1WN_frFYzvHuDTeLEY360efiOsTRTt4g4LJp5mghMx1aSZtAdKnQg-Xi0mN-Qxfje7na0eKH-YzlZ3V8slTO8XMIb5eLGaTda34wXM14v5_fKqB7BElxSN71u9jf10qIERWsaFKWp-oHEaykxEkLAd0lhD5DvKi0FIkvr-zIiDCSW3vkLCVi2kxGYxSGU7YCjBYWJtZgb9_n6_721l3lN62xcFiemPegExzTXuOO4hynWYwHAs7CgKAi5pVDELkfZVyg0OV6MgyFj4D9sivJVo7N-mH6o0JQ38FwCEghkDF28nSlqthEB94aRVLQmT8AhrFgi5DgUGNe9rtN6NniWeXhuAC3z0QHqWQHptBJoj0FRA0wCcM-qfh_q3EuwXDfA_6HwfPNy_lXC_aICvDc5cS0PMrNJFSie2kuLEXJI9Ve3Hf90tY2p9p9pzGkltbTLllEKW8h16n4k_QvlXb1SfS414k5MEHOtzJGk5nZNXU__zW2WIdw47HBaI0SjwW95Yj3NUT_NmlfVTUAtqUO9Io19FWyCLlse94ZDOii8BKPYJATXHwqvf_e_I4vyL2XTzrPtl5A3BSQCSWk2dL0K4VU3brXZpO5lWsVHEBPgJnKLJxsxBhrBFO4tahdLIyKMByDzdoO6AEzSZND4OyraQ8YYqRk96vDQH4K5HufUOxjuYwfOE24Pn01qahq6ujypCAV_8xyHmEiPfsuYEW4WyyfTonoOqc2eS_IFMMKQvx7lknioFvZyD6nZHcPH64isNDEqlnPPsvRT6eVAlxPOI44E6DzmV-gkiz3qF6nwDvosqbpVnWL3u5iP0bVw9uepC8P9emm8FNxAaib-RMM3oEkjRSdUEQayU-463wnbDv5zgf-IG-XU=" alt="&quot;BuchGetController&quot; für Lesezugriffe an der REST-Schnittstelle">
+</div>
+<div class="title">Figure 3. "BuchGetController" für Lesezugriffe an der REST-Schnittstelle</div>
+</div>
+<div class="paragraph">
+<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec
+sollicitudin molestie malesuada.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqFk8Fu2kAQhu_7FP8tIBGokhuNkBwExGkCyBhFtOphbY_tlZZdtLsG-d1664t1DKkSNVV78-7MfPP_M-srTO2hdaqqA3rTPm4-3dziGgdHnkzAY0OuIoOvar8nt5fGDPBg89rndaMJX6TT3jU1iStxhbRWnitt5eQe_Fk6InhbhpN0NEZrG-TSwFGhfHAqawJBBUhTjKzD3haqbBnDV40pyCHUhMBdPWx5PiyWWyzIkJMa6ybTKseTysl4guTO3Y2vqUDWYbqCeadg86oAc8tcGZRlE6Q47nAk5_mM298tXnkDWMeMngydbAd76Mr6rLWFluGtcvhX528GCyhzBtf2wG5qBrK_k9IaGaHxVDZ6wATOxUucPqy2KaLlDi9RkkTLdPeZc0NtOUpHupDU_qAVg9mTkya0LJ0Bz7Nk-sAV0X38FKc71o95nC5nmw3mqwQR1lGSxtPtU5RgvU3Wq81sCGyoE8Xr-9dsy_N2eIAFBam0v3je8To9K9MFankkXmtO6si6JHJ-Uv_fGTOktqY6O-TctxGysLiEsWEAzwLv6hAOfjwanU6nYWWaoXXVSF8gfjQZCiatHR0VnVA0Lq9xF-kwKYSQeWDtC-mDENl5-67FfZPXCwpTa4KzWpMT-eXzHElIFhtyR8YLfiwykzyBjANCdBxcTz4CMMZilmKEisJ9Gxe9vviY81r4jj9GqUzxruBdrEvvuo7xLW0PtEqevwtRWts9vV7ex-PPH3_8mOIXCYZIRA==" alt="&quot;Sequenzdiagramm&quot; mit den Methodenaufrufen">
+</div>
+<div class="title">Figure 4. "Sequenzdiagramm" mit den Methodenaufrufen</div>
+</div>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqdVllv4zYQftevGGQfkqA-uu1TXcNYx5vD2zQxfCBIiz7Q0thiI5FaHnaNIv-9Q0qy5LXitM1LhsNv7uEnn8NIZjvF17GBi9El_PD9x5-gDZlCjcLAF4tqjQJ-42mKKmVCtOBOhrEOY5sg_MJUopWNMTgPzmEec02Wcq1YCiSuFCJouTJbprAHO2khZAIURlwbxZfWIHADTERdqSCVEV_tyA2prIhQgYkRDEXVIFf-cPuwgFsUqFgCE7tMeAj3PEShERhFdhodYwRL58YZ3LgMZkUGcCPJLzNcUhHI6V7BBpWmM_xYhij8tUAq8nHBjEtbgcyc2SXluoOEmcqy01h5VWAEXHjHscyompgcUn1bniSwRLAaVzZpkQfCwtN4fve4mMPw4RmehtPp8GH-_DNhTSzpFjeYe-JplnByTDUpJsyOUicHv15PR3dkMbwa34_nz5Q_3IznD9ezGdw8TmEIk-F0Ph4t7odTmCymk8fZdQdghi4pGt-p3q78dKiBERrGE53X_Ezj1JRZEkHMNkhjDZFvKC8GIa3U-zMjHyyRYu0rJGzVQkpsvAIhTQs0JdiPjcl0r9vdbredtbAdqdbdJHeiu4NOQJ4mCjcctxBZFcbQHyZmEAUBFzSqFQuR7mXKNfbngyDIWPjC1gifBGrzp-6GMk1pB_4OAMKEaQ1nn0ZSGCWTBNWZW63qSJiYR1jTQMhVmGBQs15ovLVMRdob70-l7V7RbDp2SYeYGan2Duq6mpu6usHZRGrjPTihNHNyE9YWUFshbRPwMyZo0GNzsYTnpwaLKX71cPpfYklsBOoCqCtgY2GMtiRP10n7hN2hAX4lo51HO6EEO7kBe4eMuCfPo5BLi-JYM_p2BJ3fCRih-KMzKHt-EmLfQxQdJpQfW_0q72aDWjepyz4dXRQtOdKXtb9W78U9l_YL7sJEspd2KIXA0NSezdCa2C_2wUxlUk7VSfu5ukPZyVoM_Mt9enTNK9Vp0beyPOtMOvogTSlDx3_BaunXXmzN-9ISOTjX-3DCcGLQDzf-z1-Vca4ctt_PEYNB4K-88qCvOa80X1apvwa1oBrVhtjrKNqT4gZnxWW_TzTqawAKfgic0mzewh1EolYa-PDZ_zWHq_HYgSd3qrHgxWWp25PXgaq-wPlFHg3gO_A0RMp8FUhgeidCyJzWP01SucH0fFYtcHxBKoVfe2UHW-C02mt1bz_2y96e10vVoBbWNkW1bwT1D4SUPOqBsOkSFSmLR0Dq4nPfA_dhF-vW_8gnf8vHKUW5vjmD_xLltdrRb2cr2-0BnH08O96zXrmO_862vno9ymt_etO807HZwN8EJzAHL_ZtnM0IWfHMaVxOOCeDVi_0FKYgnFOgkgdqRGCzOhUU5AfHE2hmjHeAFe-8OoLznIppRlyWolsdqnslpfuhehFeNvyMD_4Bi5bmWw==" alt="&quot;BuchWriteController&quot; für Schreibzugriffe an der REST-Schnittstelle">
+</div>
+<div class="title">Figure 5. "BuchWriteController" für Schreibzugriffe an der REST-Schnittstelle</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_die_graphql_schnittstelle"><a class="anchor" href="#_die_graphql_schnittstelle"></a><a class="link" href="#_die_graphql_schnittstelle">1.3. Die GraphQL-Schnittstelle</a></h3>
+<div class="paragraph">
+<p>Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqFVUuT2kYQvutXdJEDUGbBTk7BhLK83vWSrBcioFxrlw-D1EITj2bkmREUife_u2dAIBZMOKlfX_fXj6EJ16rYaL7MLLSu2_Dry1e_wxUUGg1KC3-WqJco4RPPc9Q5k7IDdyrOTJyVAuEvpoXRZYZBM2jCLOOGItVSsxzoM9WIYFRq10xjHzaqhJhJ0JhwYzVflBaBW2Ay6SkNuUp4uiEYUpUyQQ02Q7CU1YBKvfD-YQ7vUaJmAiblQvAY7nmM0iAwyuw0JsMEFg7GBdy6Cqa7CuBWES6zXBEJ5GTXsEJtSIbfqhQ7vA4oTRgtZl3ZGlThwtpU6wYEs4fI7lnmB4IJcOmBM1UQm4wAid-aCwELhNJgWooOIZAvfBzN7sbzGYQPj_AxjKLwYfb4mnxtpsiKK9wi8bwQnICJk2bSbqh0AvhwE13fUUT4dnQ_mj1S_XA7mj3cTKdwO44ghEkYzUbX8_swgsk8moynN12AKbqiaHyXepv66VADE7SMC7Pl_EjjNFSZSCBjK6SxxshXVBeDmFbq_2dGGEwoufQMyffQQipslIJUtgOGChxk1ham3-ut1-vuUpZdpZc9sQUxvWE3IKSJxhXHNSSljjMYhMIOkyDgkkaVshjJrnJucDAbBkHB4q9sifBGorH_mB6lLLJvAv4LAGLBjIHGmwiNEjTjhtusSiB7xhPcyxBzHQsManFzgyOXNMbCKm18-DNdhfJMfQbsb7q-jYfwX1WgF864h3q5Teg-Kmf3XfPdl94VmNrP5JKg_NIdVg0Kng79WZTUSteUSkEvAqd9c6oq61vnMxhsLcMhWZ6CWoRBvaJBnYREyJLpzjYY0MJIq5WAU4BqNr-8878joIbd0E05uHezMfwB45zbgRM70GSLBRdJKenxasJ3kr_aktHzwFFbr0D9L5ZL2_QN22F4bN-1CvTQOIDDMo2SkSzoJLfFeFvSB1nmC78jOwp1vn5k-94fMXbSft1a7UrzbDu2hirhC9juBmmZ2cjYj6rlF4BUrphdie3-fvN3lIY_h8CYnsQ9Cg0URR_cQ0Y3-t2_ySmXmJxifv4yrNM-JayuyuJqCI1XjZPp96sd-Ulol3azPp7zHju6ew83uyryQtj-sC_4VIdxjF27nKMcR5YqtDLWeV_yOzLWHp_LKDXHJ3fGfpExL-hic3SraYIgVcr9ebXi9pm_9uAHJVydjw==" alt="BuchQueryResolver für Lesezugriffe an der GraphQL-Schnittstelle">
+</div>
+<div class="title">Figure 6. BuchQueryResolver für Lesezugriffe an der GraphQL-Schnittstelle</div>
+</div>
+<div class="paragraph">
+<p>Donec sollicitudin molestie malesuada. Praesent sapien massa, convallis a
+pellentesque nec, egestas non nisi.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqtVklzGkcUvs-veCUfgDJLnJxCCGUsC4lEFhRLqZRUDs3Mg-mop3vcCxRO_N_zuocZRjGScsic-m3f275uaMClyg-ab1MLzcsWfP_dux-hA7lGg9LCLw71FiX8xrMMdcakbMONilMTp04g_Mq0MNqlGDWiBixTbihSbTXLgI4bjQhGbeyeaezDQTmImQSNCTdW87WzCNwCk0lPachUwjcHgiGVkwlqsCmCpawG1CYI13cruEaJmgmYubXgMdzyGKVBYJTZa0yKCaw9jA8Y-woWxwpgrAiXWa6oCeRk17BDbUiGH8oUR7w2KE0YTWZ92RpU7sNaVOsBBLOnyO7Zzk8NJsBlAE5VTt2kBEj97bkQsEZwBjdOtAmBfOF-sryZrpYwunuA-9F8PrpbPvxEvjZVZMUdFkg8ywUnYOpJM2kPVDoBfLqaX95QxOjD5HayfKD6YTxZ3l0tFjCezmEEs9F8Oblc3Y7mMFvNZ9PFVRdggb4oWt9Ls92E7dAAE7SMC1P0_EDrNFSZSCBlO6S1xsh3VBeDmCj1-s4Igwklt6FD8j2NkAqbbEAq2wZDBQ5Sa3PT7_X2-313K11X6W1PFCCmN-xGhDTTuOO4h8TpOIXBSNhhEkVc0qo2LEayq4wbHCyHUZSz-JFtEd5LNPZP06OUefpZwF8RQCyYMXDxfo5GCdrxhWdWKZA95QlWMsRcxwKjWtzK4LVjOjEhsJLKyEpxPnTi640xt0pXAHVdDaauPgP2ydnA9IBSCmV4KZ-JG-ltkdkfSn9_Ln2_nubnx9d5xEMsFHvsxEpKjG1tiiNn09BtPcFcCSwyhFM1Ui-cybF2tM43H8MXoEsDvU6cuP9mHL5gKpN88DGDQeExHJLla1SLNKh3RJ5nQ-81t7g4Og0GxGZptRJwQjr2Yg90pX3Ex-UUfoZpxu3Ai21osPWai8RJejsb8DfJj9Yxep04ahsUqL-g29pGmMQRo5xFCXnaDsCJyZNkInNnj2UHW9IH6bJ1IOiTEj1SueyKtE9a8lJF9mar1FQ8faKqc64wFEW8hYpvpC5WTAdmDjKGWCM9mM3ALFKui-b6ZZetfnU3ix6Gr0O6PPm_IRMUWIP0Iz0Ouoa2VhTDZMWDs-NVnUTtZWcIF-8uvuVTv6Tfs_Hd7jAYXrMXhHnW5Vj90cXTqevy_wB97PUll-o5fNYpZDpd_xfdimegXufvdAsSlH98U82_rVUhtI1wczDL6U3I0C-dMDdK-Z_qZtw680cm-gffvfPI" alt="BuchMutationResolver für Schreibzugriffe an der GraphQL-Schnittstelle">
+</div>
+<div class="title">Figure 7. BuchMutationResolver für Schreibzugriffe an der GraphQL-Schnittstelle</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_die_geschäftslogik"><a class="anchor" href="#_die_geschäftslogik"></a><a class="link" href="#_die_geschäftslogik">1.4. Die Geschäftslogik</a></h3>
+<div class="paragraph">
+<p>Donec rutrum congue leo eget malesuada. Donec rutrum congue leo eget malesuada.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqFVcFyIjcQvc9XvHIOhgqGbHIKoSaLHXvNxrHJgGvL2dqDkHoY7c5IE0kDNZX4z3LLj6UH7B2wKcIJtV4_vdfd0pziwpa108ssoHPRxfffvfkRZygdeTIB7ytySzL4QxcFuUIY08O1lZmXWZUTfhUu967KKDqNTjHPtOdMu3SiAP9NHRG8TcNaOBqithWkMHCktA9OL6pA0AHCqIF1KKzSac00HKqMIoeQEQKf6mHTzeLd7T3ekSEnckyrRa4lbrQk4wmCT24iPiOFRUPTJFw1CmZPCnBlmVcEbdkEad53WJHzvMYPz0c88fVgHXN0RGhkO9iySeuy1hq5CG1m_6Dz1qCCNhvizJbsJmNC9rfWeY4FofKUVnmPGRiLD5P59d39HOPbB3wYJ8n4dv7wE2NDZnmXVrRl0kWZayZmT06YULN0JvjtMrm45ozx-eRmMn9g_biazG8vZzNc3SUYYzpO5pOL-5txgul9Mr2bXfaBGTWiuH3HaptuusMFVBSEzv3W8wO307OyXCETK-K2StIr1iUgeaT-v2fMIXJrlhuHjG1LyMImKYwNPXgWOMpCKP1wMFiv1_2lqfrWLQf5lsQP4n7ETFNHK01rqMrJDKNxHmIVRdpwq1IhifdtoT2N5nEUlUJ-EUvCW0M-fPYDaYuCZ-CvCJC58B4nbyfmM8kgFjmdNKPVLhmTaUU7EUjtJG88tsShLsm6YocxodJ6HayrGwWPrzW8TnkW0abuSGmD-4La-AFZi4pL0xzwHOAbrnl-mtDzqeeM4SVntTBPbsXVxje_bH57-N_5gajPK53zhY1e8CQk1OwpdzTiqTDB2RxxzKudCne6HNlyAt-yx9pIpNqo83qiOloNYapiQa47_NrFhh1_b54JBpKKD2R3PIO-OM0ToMn8POQeSOvUqLmZZtlrrnL8gvLjpy3R49bJSw_27CzGyZuTPdND_LlbgqN5bXeGeNVdvkClPXxwvyr78f4QHgftjMcR7JP1wwje38zCZnfXMPofeeAUmU8M2ZvDI7ivY8Wl3YwrFSVPXkFNY30UpdY2j2pHdvH-339efHKi_wAXHjWU" alt="&quot;BuchReadService&quot; von der Geschäftslogik">
+</div>
+<div class="title">Figure 8. "BuchReadService" von der Geschäftslogik</div>
+</div>
+<div class="paragraph">
+<p>Pellentesque in ipsum id orci porta dapibus. Donec rutrum congue leo eget
+malesuada.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqNVsFy2kgQvesrurwHQwXDJntaQlEhXjsm69iUkOPybu1hJDVoktGMamYESwX_2d72x9IjQSQEmHBiel6_ft093aVzuFTZSvN5YqF12YY3v77-HS4g02hQWviYo56jhL94mqJOmZQduFFRYqIkFwh_Mi2MzhP0zr1zCBJuyFPNNUuB_s40Ihg1s0umsQ8rlUPEJGiMubGah7lF4BaYjHtKQ6piPlsRDZlyGaMGmyBYimpAzYrDh7sH-IASNRMwyUPBI7jlEUqDwCiys5gEYwgdjXO4dgqmGwVwrYiXWa4oCeR0r2GB2tAZftuG2PB1QGniaDHrZGtQmXNrk9YVCGYrz-7BzKsEY-CyIE5URtkkREj5LbkQECLkBme56BADYeFxHNzcPwQwunuCx5Hvj-6Cp7eEtYmiW1xgycTTTHAippw0k3ZF0ong05V_eUMeo_fj23HwRPrhehzcXU2ncH3vwwgmIz8YXz7cjnyYPPiT--lVF2CKThS176XazoruUAFjtIwLU-b8RO00pEzEkLAFUlsj5AvSxSCiJ3W6Z8TBhJLzIkPCViUkYeMZSGU7YEjgILE2M_1eb7lcducy7yo974mSxPSGXY-YJhoXHJcQ5zpKYDASdhh7HpfUqhmLkO5Vyg0OgqHnZSz6yuYI7yQa-8X0IpWm9Aa-eQCRYMbA2bux_IKRZaHAM_e0qiNhEh5jzQIR1xFdPFfEdpWh0mmN0cdMGW6VXjkFz_sa9l22IirXmpTKuCuosh-QlVLzagE-0XGKekGFrKPCnAroUFsD7QFOr8yZtq7vCUNH8qpgpqSCX_4ofnv4sVwwweOaNeAWxdW_NCumZh2bUO4ZP5fTts-xubjPLU02xl4j6KOmGJskYTCglymtVgKGQzrVutxqk6VUDPCK6rySEUQaibPlCtIv2Nr9H-_Izbecr2uJrWvprKskhg3SPHNCWzzug8zTEHUHqgCd7VrpQxmgFrFE_0TE9W6x1o0SNQXFKHBHUC1mqJRAJkuX57K4e2VVFxdDOHt9Vtx8diGLHbu57sOiafoJGh9Z_INAV4cTrtXz78Pe-BBPpk4Q1GaiX8zLNu5hv26edYe72-EEqja4L4E3DTgCIcBmAo8SNCfuCKw5gse0787kEdSBIX0ZuTu1NckO9jettRjlP81kG3fNSjWuD_TmIGJnoUK9Li9p2Xvt0K1BG5ynHeob2c0bTVyx2zHNaAGn6KbTeN5MKfcF0ora8PH__xrfZ953mSBNsA==" alt="&quot;BuchWriteService&quot; von der Geschäftslogik">
+</div>
+<div class="title">Figure 9. "BuchWriteService" von der Geschäftslogik</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_klasse_für_entities"><a class="anchor" href="#_klasse_für_entities"></a><a class="link" href="#_klasse_für_entities">1.5. Klasse für Entities</a></h3>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat,
+accumsan id imperdiet et, porttitor at sem.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNq9Vk1z4kYQvfMrunzB3rIhm5xCHBIZYxvbiykQteVULiOpJU3taEY1H1Ak2X-WW_5YegQCAfZy2wPUTE-_1697Wi21YaDKleZZbuF8cAE__vDxZ7iCUqNBaeHRoc5Qwh-8KFAXTMpLeFBxbuLcCYQnpoXRLsdWu9WGMOeGkCrTrABaphoRjErtkmnswUo5iJkEjQk3VvPIWQRugcmkqzQUKuHpimjI5GSCGmyOYCmqAZVWm_vxHO5RomYCJi4SPIZnHqM0CIwie4vJMYHI03jAnVcw2yiAO0W8zHJFSSCncw0L1Ib28FMdYsN3CUoTxzmzXrYGVXrYBWldgWB2h-y8mfkuwQS4rIhzVVI2ORFSfksuBEQIzmDqxCUxkC98HoUPL_MQgvErfA6m02Acvv5CvjZXdIoLXDPxohSciCknzaRdkXQi-DScDh4IEdyMnkfhK-mHu1E4Hs5mcPcyhQAmwTQcDebPwRQm8-nkZTbsAMzQi6Lr-1Zt0-p2qIAJWsaFWef8StdpSJlIIGcLpGuNkS9IF4OYWur0nREHE0pmVYbkuyshCRulIJW9BEMCr3NrS9PrdpfLZSeTrqN01hVrEtPtd1rENNG44LiExOk4h-tA2H7SapUs_sIySnFVotIF_N0CiAUzBs5-H0rL7erMd856SWc5T3Czg5jrWGADMFDCFbICrJc1YL07Bkw0L5heNXB7lhq-ZzxmeZEYqk_UeBXDdlejt4Zj5KPishF8t62xO8sx2FOGitgr7HZXQ7eGN-qkkZ6QW_o1K3Zg3NbuwH5MNy-TY7pDY013aK_pvu56IXJx3sH1HTf6wbcI3NBZoC38Cu2n0fj2ediGf6B9O50PnoL57D64Gbar8Bu_OmoN2wTbkno7XF-vg_X7tNx0Ha19aIBNU51fwH63kIEKkygpVsCTHkhXRKgPIFuPzSw65cZNRD5-MsnsPR9N81Fmp5iYtr1GEd70oVcIN6eINIuYtae8aNylqCOmexApJZDJ9zzp9l3RA98A77nkqsCSGuG3U6Wgd5xg2VKhpnl_6H3Qtk0c6r_QZbap4rAt92r5xTpGLy6Oeof5umuikFsU36OLrA90qihOUjEqz2ZFGnKDKOIicTTWv4PkCOmSNE-t8z37beWxIunShvScH0mvHtQPV1d9OPt4tql4D9ajl_6I5k9ZJb3v--GskW7t7ydjBWD1EcptjE71pdXp7145--b6mSJV1WTBoqQxVaAvgmm1UqX8t8d5fAGP__178GXW-h9wPT8g" alt="Entity">
+</div>
+<div class="title">Figure 10. Entity</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_er_diagramm"><a class="anchor" href="#_er_diagramm"></a><a class="link" href="#_er_diagramm">1.6. ER-Diagramm</a></h3>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqVVE1v4zYQvetXPOwliZHY_TjVDQJog3jjTZoYtoJFeikoaSQSS5ECP-x1N_1ne9s_1qGcxk6xaLEnicOZx_fmDXmES9tvnWplwPHlCX764cdfcIbekScT8D6Sa8ngd9V15DphzCmubSV9JaMm3AinvYuSsqPsCIVUnitt60QH_m0cEbxtwkY4mmJrIyph4KhWPjhVxkBQAcLUE-vQ2Vo1W4bhUDQ1OQRJCHyqh22Gxbu7B7wjQ05oLGKpVYVbVZHxBMEnp4iXVKNMMKlglhisnhlgZhlXBGVZBCned1iT87zGz_8c8Yx3CusY41iERNvB9qnshLluoUXYV46_qXwvsIYyA7C0PauRDMj6NkprlIToqYn6lBE4Fx_mxfX9Q4H87hEf8uUyvysef-XcIC3v0pp2SKrrtWJg1uSECVumzgC_XS0vr7kifzu_nRePzB-zeXF3tVphdr9EjkW-LOaXD7f5EouH5eJ-dTUGVpRIsX3_1dtmcIcbWFMQSvud5ke20zMzXUOKNbGtFak18xKoeKT-3zPGENqadlDIufsWMrF5A2PDKTwTPJch9H46mWw2m3Fr4ti6dqJ3IH5yMc4YaeForWiDOrpK4jzX4aJOcanqQSF8b0M2rCrlKk1pk9ZBj7m01NQROjbmxgmSZJpInuc_mdwR15jMf1SmF8lerQyFLZtpHRuTZXxNFJvw5m2s5Bt8zoARVD1l3wO1PCjn5-0gn2fh4oJ3z86GlOf5ecnb1fmSI4E-hWHJRcq0U5jYlc8ZwoWDBL6myr_ad6IUIbwK8bA05Erhpiit1SQMhwG-CbGbpg8Na2k76kVLB_CjEUsj_YeqR6NDQbObQQnAz4AW7caS4ytxUEjuT4ptYqo68kF0_Y78xxAF31FF7tXeX_suFunA72jjQPDlZPDLwUwOgwfYeVkqXUfTfgd-SazRqSbEZMTLMZXlMhMKnoNX_Sp5CL7dLuaRJgRPT-Px0xMGnfuI_YwXdlnWWJuemOPqBO-_fvnXA5z9DUPw3jY=" alt="ER-Diagramm">
+</div>
+<div class="title">Figure 11. ER-Diagramm</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_programmierrichtlinien_für_typescript_und_javascript"><a class="anchor" href="#_programmierrichtlinien_für_typescript_und_javascript"></a><a class="link" href="#_programmierrichtlinien_für_typescript_und_javascript">2. Programmierrichtlinien für TypeScript und JavaScript</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Für die Programmierung mit <strong>TypeScript</strong> und <strong>JavaScript</strong> sind folgende
+Styleguides empfehlenswert:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<em>E-Book zu TypeScript</em>
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/gibbok/typescript-book" class="bare">https://github.com/gibbok/typescript-book</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<em>Google</em>
+</td>
+<td class="hdlist2">
+<p><a href="https://google.github.io/styleguide/tsguide.html" class="bare">https://google.github.io/styleguide/tsguide.html</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<em>Airbnb</em>
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/airbnb/javascript" class="bare">https://github.com/airbnb/javascript</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<em>Shopify</em>
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/Shopify/javascript" class="bare">https://github.com/Shopify/javascript</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<em>React bei Airbnb</em>
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/airbnb/javascript/tree/master/react" class="bare">https://github.com/airbnb/javascript/tree/master/react</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<em>Angular</em>
+</td>
+<td class="hdlist2">
+<p><a href="https://angular.io/docs/ts/latest/guide/style-guide.html" class="bare">https://angular.io/docs/ts/latest/guide/style-guide.html</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<em>Microsoft</em>
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines" class="bare">https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines</a></p>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Von IBM und Red Hat gibt es bei GitHub <em>Node.js Reference Architecture</em>
+<a href="https://github.com/nodeshift/nodejs-reference-architecture" class="bare">https://github.com/nodeshift/nodejs-reference-architecture</a>, wo alle möglichen
+Aspekte bei der Softwareentwicklung mit Node berücksichtigt sind und
+entsprechende Empfehlungen bzw. Best Practices beschrieben sind.
+Diese Dokumentation muss man einfach gelesen haben. Ebenfalls empfehlenswert
+ist <a href="https://github.com/goldbergyoni/nodebestpractices" class="bare">https://github.com/goldbergyoni/nodebestpractices</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2024-02-16 07:47:54 +0100
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
+</body>
+</html>

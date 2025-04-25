@@ -32,16 +32,16 @@ Inhalt
 
 ## Aufruf
 
-In der Datei `app.yml` im Verzeichnis `.extras\compose\buch` werden bei der
+In der Datei `app.yml` im Verzeichnis `.extras\compose\auto` werden bei der
 Property `log` die untergeordneten Properties `level` und `pretty` auskommentiert,
 damit höchstens der Log-Level INFO verwendet wird, um vor allem die Log-Ausgaben
 in der Konsole zu reduzieren.
 
-Jetzt kann man die Docker-Container mit den Backend-Server und dem Buch-Server
+Jetzt kann man die Docker-Container mit den Backend-Server und dem Auto-Server
 starten:
 
 ```powershell
-    cd .extras\compose\buch
+    cd .extras\compose\auto
     docker compose up
 ```
 

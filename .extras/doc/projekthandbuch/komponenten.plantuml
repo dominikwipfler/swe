@@ -25,12 +25,12 @@ actor GraphQLClient
 node "Nest" {
   [RequestLoggerMiddleware]
 
-  [BuchController]
-  [BuchResolver]
+  [AutoController]
+  [AutoResolver]
 
-  [BuchService]
+  [AutoService]
 
-  [Repository<Buch>]
+  [Repository<Auto>]
 
   [MailService]
 }
@@ -48,8 +48,8 @@ cloud {
     [nodemailer]
 }
 
-database "DB buch" {
-    [Tabelle buch]
+database "DB auto" {
+    [Tabelle auto]
     [Tabelle titel]
     [Tabelle abbildung]
 }
@@ -65,22 +65,22 @@ node {
 RESTClient ~~> [RequestLoggerMiddleware]
 GraphQLClient ~~> [RequestLoggerMiddleware]
 
-[RequestLoggerMiddleware] ~~> [BuchController]
-[RequestLoggerMiddleware] ~~> [BuchResolver]
+[RequestLoggerMiddleware] ~~> [AutoController]
+[RequestLoggerMiddleware] ~~> [AutoResolver]
 
-[BuchController] ..> [BuchService]
-[BuchResolver] ..> [BuchService]
-[BuchService] ..> [Repository<Buch>]
+[AutoController] ..> [AutoService]
+[AutoResolver] ..> [AutoService]
+[AutoService] ..> [Repository<Auto>]
 
-[Repository<Buch>] ~~> [TypeORM]
-[TypeORM] ~~> [Tabelle buch]
+[Repository<Auto>] ~~> [TypeORM]
+[TypeORM] ~~> [Tabelle auto]
 [TypeORM] ~~> [Tabelle titel]
 [TypeORM] ~~> [Tabelle abbildung]
 
-[BuchController] ..> [nest-keycloak-connect]
+[AutoController] ..> [nest-keycloak-connect]
 [nest-keycloak-connect] ~~> [Keycloak]
 
-[BuchService] ..> [MailService]
+[AutoService] ..> [MailService]
 [MailService] ~~> [nodemailer]
 [nodemailer] ~~> [Mailserver]
 

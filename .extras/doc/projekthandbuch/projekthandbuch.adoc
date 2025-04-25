@@ -15,7 +15,7 @@
 
 // Preview durch <Strg><Shift>v
 
-= Projekthandbuch
+= Projekthandauto
 Jürgen Zimmermann <Juergen.Zimmermann@h-ka.de>
 :doctype: book
 :toc: left
@@ -66,10 +66,10 @@ ligula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
 cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit
 amet ligula.
 
-."BuchGetController" für Lesezugriffe an der REST-Schnittstelle
-[plantuml,BuchGetController,svg]
+."AutoGetController" für Lesezugriffe an der REST-Schnittstelle
+[plantuml,AutoGetController,svg]
 ----
-include::BuchGetController.plantuml[]
+include::AutoGetController.plantuml[]
 ----
 
 Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec
@@ -84,48 +84,48 @@ include::sequenzdiagramm.plantuml[]
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
 tempor invidunt ut.
 
-."BuchWriteController" für Schreibzugriffe an der REST-Schnittstelle
-[plantuml,BuchGetController,svg]
+."AutoWriteController" für Schreibzugriffe an der REST-Schnittstelle
+[plantuml,AutoGetController,svg]
 ----
-include::BuchWriteController.plantuml[]
+include::AutoWriteController.plantuml[]
 ----
 
 === Die GraphQL-Schnittstelle
 
 Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.
 
-.BuchQueryResolver für Lesezugriffe an der GraphQL-Schnittstelle
-[plantuml,BuchQueryResolver,svg]
+.AutoQueryResolver für Lesezugriffe an der GraphQL-Schnittstelle
+[plantuml,AutoQueryResolver,svg]
 ----
-include::BuchQueryResolver.plantuml[]
+include::AutoQueryResolver.plantuml[]
 ----
 
 Donec sollicitudin molestie malesuada. Praesent sapien massa, convallis a
 pellentesque nec, egestas non nisi.
 
-.BuchMutationResolver für Schreibzugriffe an der GraphQL-Schnittstelle
-[plantuml,BuchMutationResolver,svg]
+.AutoMutationResolver für Schreibzugriffe an der GraphQL-Schnittstelle
+[plantuml,AutoMutationResolver,svg]
 ----
-include::BuchMutationResolver.plantuml[]
+include::AutoMutationResolver.plantuml[]
 ----
 
 === Die Geschäftslogik
 
 Donec rutrum congue leo eget malesuada. Donec rutrum congue leo eget malesuada.
 
-."BuchReadService" von der Geschäftslogik
-[plantuml,BuchReadService,svg]
+."AutoReadService" von der Geschäftslogik
+[plantuml,AutoReadService,svg]
 ----
-include::BuchReadService.plantuml[]
+include::AutoReadService.plantuml[]
 ----
 
 Pellentesque in ipsum id orci porta dapibus. Donec rutrum congue leo eget
 malesuada.
 
-."BuchWriteService" von der Geschäftslogik
-[plantuml,BuchWriteService,svg]
+."AutoWriteService" von der Geschäftslogik
+[plantuml,AutoWriteService,svg]
 ----
-include::BuchWriteService.plantuml[]
+include::AutoWriteService.plantuml[]
 ----
 
 === Klasse für Entities
@@ -134,9 +134,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat,
 accumsan id imperdiet et, porttitor at sem.
 
 .Entity
-[plantuml,Buch,svg]
+[plantuml,Auto,svg]
 ----
-include::Buch.plantuml[]
+include::Auto.plantuml[]
 ----
 
 === ER-Diagramm
