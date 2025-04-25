@@ -14,7 +14,7 @@
 -- along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 -- https://docs.python.org/dev/library/sqlite3.html#sqlite3-cli
--- sqlite3 buch.sqlite
+-- sqlite3 auto.sqlite
 
 -- https://sqlite.org/lang_createtable.html
 -- https://sqlite.org/stricttables.html ab 3.37.0
@@ -24,7 +24,7 @@
 -- https://sqlite.org/lang_createindex.html
 -- https://stackoverflow.com/questions/37619526/how-can-i-change-the-default-sqlite-timezone
 
-CREATE TABLE IF NOT EXISTS buch (
+CREATE TABLE IF NOT EXISTS auto (
     id             INTEGER PRIMARY KEY AUTOINCREMENT,
     version        INTEGER NOT NULL DEFAULT 0,
     isbn           TEXT NOT NULL UNIQUE,
@@ -39,13 +39,13 @@ CREATE TABLE IF NOT EXISTS buch (
     erzeugt        TEXT NOT NULL,
     aktualisiert   TEXT NOT NULL
 );
-CREATE INDEX IF NOT EXISTS buch_isbn_idx ON buch(isbn);
+CREATE INDEX IF NOT EXISTS auto_isbn_idx ON auto(isbn);
 
 CREATE TABLE IF NOT EXISTS titel (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
     titel       TEXT NOT NULL,
     untertitel  TEXT,
-    buch_id     INTEGER NOT NULL UNIQUE REFERENCES buch
+    auto_id     INTEGER NOT NULL UNIQUE REFERENCES auto
 );
 
 
@@ -53,6 +53,6 @@ CREATE TABLE IF NOT EXISTS abbildung (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     beschriftung    TEXT NOT NULL,
     content_type    TEXT NOT NULL,
-    buch_id         INTEGER NOT NULL REFERENCES buch
+    auto_id         INTEGER NOT NULL REFERENCES auto
 );
-CREATE INDEX IF NOT EXISTS abbildung_buch_id_idx ON abbildung(buch_id);
+CREATE INDEX IF NOT EXISTS abbildung_auto_id_idx ON abbildung(auto_id);

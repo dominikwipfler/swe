@@ -88,7 +88,7 @@ Webbrowser `http://localhost:8880` oder `https://localhost:8843` aufgerufen hat:
         <Next> anklicken
             Root URL                https://localhost:3000
             Valid redirect URIs     https://localhost:3000
-                                    https://buch:3000
+                                    https://auto:3000
                                     https://oauth.pstmn.io/v1/callback
             Web origins             +
         <Save> anklicken

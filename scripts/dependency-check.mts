@@ -25,7 +25,7 @@ import { platform } from 'node:os';
 import { resolve } from 'node:path';
 
 const nvdApiKey = '47fbc0a4-9240-4fda-9a26-d7d5624c16bf';
-const project = 'buch';
+const project = 'auto';
 
 let baseExecPath;
 let baseScript = 'dependency-check';

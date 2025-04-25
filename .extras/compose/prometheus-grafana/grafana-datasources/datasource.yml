@@ -18,7 +18,7 @@ apiVersion: 1
 datasources:
   - name: Prometheus
     type: prometheus
-    # Anfragen an Prometheus erfolgen vom Webbrowser ueber den Grafana-Server als *Proxy* an den Server "buch"
+    # Anfragen an Prometheus erfolgen vom Webbrowser ueber den Grafana-Server als *Proxy* an den Server "auto"
     access: proxy
     url: http://prometheus:9090
     # Default-Datenquelle fuer Grafana

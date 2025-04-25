@@ -30,7 +30,7 @@
 -- https://dev.mysql.com/blog-archive/mysql-8-0-16-introducing-check-constraint
 -- UNIQUE: impliziter Index als B+ Baum
 
-CREATE TABLE IF NOT EXISTS buch (
+CREATE TABLE IF NOT EXISTS auto (
     id            INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     version       INT NOT NULL DEFAULT 0,
     isbn          CHAR(17) UNIQUE NOT NULL,
@@ -44,32 +44,32 @@ CREATE TABLE IF NOT EXISTS buch (
     schlagwoerter VARCHAR(128),
     erzeugt       DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
     aktualisiert  DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP)
-) TABLESPACE buchspace ROW_FORMAT=COMPACT;
-ALTER TABLE buch AUTO_INCREMENT=1000;
+) TABLESPACE autospace ROW_FORMAT=COMPACT;
+ALTER TABLE auto AUTO_INCREMENT=1000;
 
 CREATE TABLE IF NOT EXISTS titel (
     id          INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     titel       VARCHAR(40) NOT NULL,
     untertitel  VARCHAR(40),
-    buch_id     INT UNIQUE NOT NULL references buch(id)
-) TABLESPACE buchspace ROW_FORMAT=COMPACT;
+    auto_id     INT UNIQUE NOT NULL references auto(id)
+) TABLESPACE autospace ROW_FORMAT=COMPACT;
 ALTER TABLE titel AUTO_INCREMENT=1000;
 
 CREATE TABLE IF NOT EXISTS abbildung (
     id              INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     beschriftung    VARCHAR(32) NOT NULL,
     content_type    VARCHAR(16) NOT NULL,
-    buch_id         INT NOT NULL references buch(id),
+    auto_id         INT NOT NULL references auto(id),
 
-    INDEX abbildung_buch_id_idx(buch_id)
-) TABLESPACE buchspace ROW_FORMAT=COMPACT;
+    INDEX abbildung_auto_id_idx(auto_id)
+) TABLESPACE autospace ROW_FORMAT=COMPACT;
 ALTER TABLE abbildung AUTO_INCREMENT=1000;
 
-CREATE TABLE IF NOT EXISTS buch_file (
+CREATE TABLE IF NOT EXISTS auto_file (
     id              INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     data            LONGBLOB NOT NULL,
     filename        VARCHAR(128) NOT NULL,
     mimetype        VARCHAR(32) NOT NULL,
-    buch_id         INT UNIQUE NOT NULL references buch(id)
-) TABLESPACE buchspace ROW_FORMAT=COMPACT;
-ALTER TABLE buch_file AUTO_INCREMENT=1000;
+    auto_id         INT UNIQUE NOT NULL references auto(id)
+) TABLESPACE autospace ROW_FORMAT=COMPACT;
+ALTER TABLE auto_file AUTO_INCREMENT=1000;

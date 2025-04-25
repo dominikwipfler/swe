@@ -23,7 +23,7 @@ hide circle
 ' evtl. Prbleme mit Kraehenfuessen vermeiden
 skinparam linetype ortho
 
-entity "Buch" {
+entity "Auto" {
   * id: integer <<generated>>
   --
   * version: integer
@@ -53,11 +53,11 @@ entity "Abbildung" {
   --
   * beschriftung: text
     contentType: text
-  * **buch_id**: integer <<FK>>
+  * **auto_id**: integer <<FK>>
 }
 
-Buch ||..|| Titel
-Buch ||..o{ Abbildung
+Auto ||..|| Titel
+Auto ||..o{ Abbildung
 
 footer (c) Jürgen Zimmermann
 

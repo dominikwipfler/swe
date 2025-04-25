@@ -59,7 +59,7 @@ services:
         # .s.PGSQL.5432.lock
         target: /var/run/postgresql
       - type: bind
-        source: C:/Zimmermann/volumes/postgres/csv/buch
+        source: C:/Zimmermann/volumes/postgres/csv/auto
         target: /csv
         read_only: true
       - type: bind

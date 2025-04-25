@@ -25,8 +25,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 # https://docs.locust.io/en/stable/api.html#httpuser-class
-class BuchRequests(HttpUser):
-    """Lasttest für HTTP-Requests fuer Server Buch."""
+class AutoRequests(HttpUser):
+    """Lasttest für HTTP-Requests fuer Server Auto."""
 
     # https://docs.locust.io/en/stable/writing-a-locustfile.html#wait-time-attribute
     # https://docs.locust.io/en/stable/api.html#locust.User.wait_time
@@ -45,14 +45,14 @@ class BuchRequests(HttpUser):
     # https://docs.locust.io/en/stable/api.html#locust.User.weight
     @task(100)
     def get_id(self) -> None:
-        """GET-Requests mit Pfadparameter: Buch-ID."""
+        """GET-Requests mit Pfadparameter: Auto-ID."""
         id_list: Final = [1, 20, 30, 40, 50, 60]
-        for buch_id in id_list:
-            self.client.get(f"/rest/{buch_id}")
+        for auto_id in id_list:
+            self.client.get(f"/rest/{auto_id}")
 
     @task(200)
     def get_titel(self) -> None:
-        """GET-Requests mit Query-Parameter: Teilstring des Buchtitels."""
+        """GET-Requests mit Query-Parameter: Teilstring des Autotitels."""
         titel_list = ["a", "l", "t", "i", "p"]
         for teil in titel_list:
             self.client.get("/rest", params={"titel": teil})
