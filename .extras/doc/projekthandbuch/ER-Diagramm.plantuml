@@ -27,8 +27,8 @@ entity "Auto" {
   * id: integer <<generated>>
   --
   * version: integer
-  * isbn: text
-  * rating: number
+  * fahrgestellnummer: text
+  * ps: number
   * art: text
   * preis: number
   * rabatt: number

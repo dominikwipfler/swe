@@ -43,8 +43,8 @@ package auto.entity {
   class Auto <<entity>> <<@Entity>> {
     @Column() @PrimaryColumn() readonly id: number
     @Column() readonly version: number
-    @Column() readonly isbn: string
-    @Column() readonly rating: number
+    @Column() readonly fahrgestellnummer: string
+    @Column() readonly ps: number
     @Column() readonly art: AutoArt
     @Column() readonly preis: number
     @Column() readonly rabatt: number

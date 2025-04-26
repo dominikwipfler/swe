@@ -40,13 +40,13 @@ type Mutation {
   refresh(refresh_token: String!): TokenResult
 }
 
-"Daten zum Titel eines Autos"
-type Titel {
-  titel: String!
+"Daten zum Modell eines Autos"
+type Modell {
+  modell: String!
   untertitel: String
 }
 
-"Daten zum Titel eines Autos"
+"Daten zum Modell eines Autos"
 type Abbildung {
   beschriftung: String!
   contentType: String
@@ -57,8 +57,8 @@ type Auto {
   # ID ist bei Apollo ein String
   id: Int!
   version: Int!
-  isbn: String!
-  rating: Int
+  fahrgestellnummer: String!
+  ps: Int
   art: Art
   preis: Float!
   lieferbar: Boolean
@@ -66,7 +66,7 @@ type Auto {
   homepage: String
   schlagwoerter: [String]
   # 1:1-Beziehung
-  titel: Titel!
+  modell: Modell!
   # field mit @ResolveField
   rabatt(short: Boolean): String!
 }
@@ -80,16 +80,16 @@ enum Art {
 
 "Suchkriterien für Autos"
 input SuchkriterienInput {
-  titel: String
-  isbn: String
-  rating: Int
+  modell: String
+  fahrgestellnummer: String
+  ps: Int
   art: Art
   lieferbar: Boolean
 }
 
-"Daten zum Titel eines neuen Autos"
+"Daten zum Modell eines neuen Autos"
 input TitelInput {
-  titel: String!
+  modell: String!
   untertitel: String
 }
 
@@ -101,8 +101,8 @@ input AbbildungInput {
 
 "Daten für ein neues Auto"
 input AutoInput {
-  isbn: String
-  rating: Int
+  fahrgestellnummer: String
+  ps: Int
   art: Art
   preis: Float
   rabatt: Float
@@ -110,7 +110,7 @@ input AutoInput {
   datum: String
   homepage: String
   schlagwoerter: [String]
-  titel: TitelInput!
+  modell: TitelInput!
   abbildungen: [AbbildungInput!]
 }
 
@@ -122,8 +122,8 @@ type CreatePayload {
 input AutoUpdateInput {
   id: ID
   version: Int
-  isbn: String
-  rating: Int
+  fahrgestellnummer: String
+  ps: Int
   art: Art
   preis: Float
   rabatt: Float

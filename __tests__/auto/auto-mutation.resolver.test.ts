@@ -65,8 +65,8 @@ describe('GraphQL Mutations', () => {
                 mutation {
                     create(
                         input: {
-                            isbn: "978-1-491-95035-7",
-                            rating: 1,
+                            fahrgestellnummer: "978-1-491-95035-7",
+                            ps: 1,
                             art: EPUB,
                             preis: 99.99,
                             rabatt: 0.0123,
@@ -74,8 +74,8 @@ describe('GraphQL Mutations', () => {
                             datum: "2022-02-28",
                             homepage: "https://create.mutation",
                             schlagwoerter: ["JAVASCRIPT", "TYPESCRIPT"],
-                            titel: {
-                                titel: "Titelcreatemutation",
+                            modell: {
+                                modell: "Titelcreatemutation",
                                 untertitel: "untertitelcreatemutation"
                             },
                             abbildungen: [{
@@ -117,16 +117,16 @@ describe('GraphQL Mutations', () => {
                 mutation {
                     create(
                         input: {
-                            isbn: "falsche-ISBN",
-                            rating: -1,
+                            fahrgestellnummer: "falsche-ISBN",
+                            ps: -1,
                             art: EPUB,
                             preis: -1,
                             rabatt: 2,
                             lieferbar: false,
                             datum: "12345-123-123",
                             homepage: "anyHomepage",
-                            titel: {
-                                titel: "?!"
+                            modell: {
+                                modell: "?!"
                             }
                         }
                     ) {
@@ -136,13 +136,13 @@ describe('GraphQL Mutations', () => {
             `,
         };
         const expectedMsg = [
-            expect.stringMatching(/^isbn /u),
-            expect.stringMatching(/^rating /u),
+            expect.stringMatching(/^fahrgestellnummer /u),
+            expect.stringMatching(/^ps /u),
             expect.stringMatching(/^preis /u),
             expect.stringMatching(/^rabatt /u),
             expect.stringMatching(/^datum /u),
             expect.stringMatching(/^homepage /u),
-            expect.stringMatching(/^titel.titel /u),
+            expect.stringMatching(/^modell.modell /u),
         ];
 
         // when
@@ -182,8 +182,8 @@ describe('GraphQL Mutations', () => {
                         input: {
                             id: "40",
                             version: 0,
-                            isbn: "978-0-007-09732-6",
-                            rating: 5,
+                            fahrgestellnummer: "978-0-007-09732-6",
+                            ps: 5,
                             art: HARDCOVER,
                             preis: 444.44,
                             rabatt: 0.099,
@@ -227,8 +227,8 @@ describe('GraphQL Mutations', () => {
                         input: {
                             id: "${id}",
                             version: 0,
-                            isbn: "falsche-ISBN",
-                            rating: -1,
+                            fahrgestellnummer: "falsche-ISBN",
+                            ps: -1,
                             art: EPUB,
                             preis: -1,
                             rabatt: 2,
@@ -244,8 +244,8 @@ describe('GraphQL Mutations', () => {
             `,
         };
         const expectedMsg = [
-            expect.stringMatching(/^isbn /u),
-            expect.stringMatching(/^rating /u),
+            expect.stringMatching(/^fahrgestellnummer /u),
+            expect.stringMatching(/^ps /u),
             expect.stringMatching(/^preis /u),
             expect.stringMatching(/^rabatt /u),
             expect.stringMatching(/^datum /u),
@@ -287,8 +287,8 @@ describe('GraphQL Mutations', () => {
                         input: {
                             id: "${id}",
                             version: 0,
-                            isbn: "978-0-007-09732-6",
-                            rating: 5,
+                            fahrgestellnummer: "978-0-007-09732-6",
+                            ps: 5,
                             art: EPUB,
                             preis: 99.99,
                             rabatt: 0.099,

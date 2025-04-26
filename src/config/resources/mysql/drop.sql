@@ -16,6 +16,6 @@
 -- https://dev.mysql.com/doc/refman/9.2/en/drop-table.html
 
 DROP TABLE IF EXISTS abbildung;
-DROP TABLE IF EXISTS titel;
+DROP TABLE IF EXISTS modell;
 DROP TABLE IF EXISTS auto_file;
 DROP TABLE IF EXISTS auto;

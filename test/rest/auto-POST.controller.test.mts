@@ -31,8 +31,8 @@ const neuesAuto: Omit<AutoDTO, 'preis' | 'rabatt'> & {
     preis: number;
     rabatt: number;
 } = {
-    isbn: '978-0-007-00644-1',
-    rating: 1,
+    fahrgestellnummer: '978-0-007-00644-1',
+    ps: 1,
     art: 'HARDCOVER',
     preis: 99.99,
     rabatt: 0.0123,
@@ -40,8 +40,8 @@ const neuesAuto: Omit<AutoDTO, 'preis' | 'rabatt'> & {
     datum: '2022-02-28',
     homepage: 'https://post.rest',
     schlagwoerter: ['JAVASCRIPT', 'TYPESCRIPT'],
-    titel: {
-        titel: 'Titelpost',
+    modell: {
+        modell: 'Titelpost',
         untertitel: 'untertitelpos',
     },
     abbildungen: [
@@ -52,32 +52,32 @@ const neuesAuto: Omit<AutoDTO, 'preis' | 'rabatt'> & {
     ],
 };
 const neuesAutoInvalid: Record<string, unknown> = {
-    isbn: 'falsche-ISBN',
-    rating: -1,
+    fahrgestellnummer: 'falsche-ISBN',
+    ps: -1,
     art: 'UNSICHTBAR',
     preis: -1,
     rabatt: 2,
     lieferbar: true,
     datum: '12345-123-123',
     homepage: 'anyHomepage',
-    titel: {
-        titel: '?!',
+    modell: {
+        modell: '?!',
         untertitel: 'Untertitelinvalid',
     },
 };
-const neuesAutoIsbnExistiert: AutoDTO = {
-    isbn: '978-3-897-22583-1',
-    rating: 1,
+const neuesAutoFahrgestellnummerExistiert: AutoDTO = {
+    fahrgestellnummer: '978-3-897-22583-1',
+    ps: 1,
     art: 'EPUB',
     preis: new Decimal(99.99),
     rabatt: new Decimal(0.09),
     lieferbar: true,
     datum: '2022-02-28',
-    homepage: 'https://post.isbn/',
+    homepage: 'https://post.fahrgestellnummer/',
     schlagwoerter: ['JAVASCRIPT', 'TYPESCRIPT'],
-    titel: {
-        titel: 'Titelpostisbn',
-        untertitel: 'Untertitelpostisbn',
+    modell: {
+        modell: 'Titelpostfahrgestellnummer',
+        untertitel: 'Untertitelpostfahrgestellnummer',
     },
     abbildungen: [],
 };
@@ -139,14 +139,14 @@ describe('POST /rest', () => {
         // given
         headers.Authorization = `Bearer ${token}`;
         const expectedMsg = [
-            expect.stringMatching(/^isbn /u),
-            expect.stringMatching(/^rating /u),
+            expect.stringMatching(/^fahrgestellnummer /u),
+            expect.stringMatching(/^ps /u),
             expect.stringMatching(/^art /u),
             expect.stringMatching(/^preis /u),
             expect.stringMatching(/^rabatt /u),
             expect.stringMatching(/^datum /u),
             expect.stringMatching(/^homepage /u),
-            expect.stringMatching(/^titel.titel /u),
+            expect.stringMatching(/^modell.modell /u),
         ];
 
         // when
@@ -175,7 +175,7 @@ describe('POST /rest', () => {
         // when
         const response: AxiosResponse<ErrorResponse> = await client.post(
             '',
-            neuesAutoIsbnExistiert,
+            neuesAutoFahrgestellnummerExistiert,
             { headers },
         );
 

@@ -108,13 +108,13 @@ export class AutoDtoOhneRef {
     // https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s13.html
     @IsISBN(13)
     @ApiProperty({ example: '978-0-007-00644-1', type: String })
-    readonly isbn!: string;
+    readonly fahrgestellnummer!: string;
 
     @IsInt()
     @Min(0)
     @Max(MAX_RATING)
     @ApiProperty({ example: 5, type: Number })
-    readonly rating!: number;
+    readonly ps!: number;
 
     @Matches(/^(EPUB|HARDCOVER|PAPERBACK)$/u)
     @IsOptional()
@@ -169,7 +169,7 @@ export class AutoDTO extends AutoDtoOhneRef {
     @ValidateNested()
     @Type(() => TitelDTO)
     @ApiProperty({ type: TitelDTO })
-    readonly titel!: TitelDTO; // NOSONAR
+    readonly modell!: TitelDTO; // NOSONAR
 
     @IsOptional()
     @IsArray()

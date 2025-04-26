@@ -54,9 +54,9 @@ export class AutoQueryResolver {
 
         if (this.#logger.isLevelEnabled('debug')) {
             this.#logger.debug(
-                'findById: auto=%s, titel=%o',
+                'findById: auto=%s, modell=%o',
                 auto.toString(),
-                auto.titel,
+                auto.modell,
             );
         }
         return auto;

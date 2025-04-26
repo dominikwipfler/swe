@@ -27,7 +27,7 @@ import { type ErrorResponse } from './error-response.mjs';
 // -----------------------------------------------------------------------------
 const titelVorhanden = 'a';
 const titelNichtVorhanden = 'xx';
-const ratingMin = 3;
+const psMin = 3;
 const preisMax = 33.5;
 const schlagwortVorhanden = 'javascript';
 const schlagwortNichtVorhanden = 'csharp';
@@ -69,9 +69,9 @@ describe('GET /rest', () => {
             });
     });
 
-    test.concurrent('Buecher mit einem Teil-Titel suchen', async () => {
+    test.concurrent('Buecher mit einem Teil-Modell suchen', async () => {
         // given
-        const params = { titel: titelVorhanden };
+        const params = { modell: titelVorhanden };
 
         // when
         const { status, headers, data }: AxiosResponse<Page<Auto>> =
@@ -82,21 +82,21 @@ describe('GET /rest', () => {
         expect(headers['content-type']).toMatch(/json/iu);
         expect(data).toBeDefined();
 
-        // Jedes Auto hat einen Titel mit dem Teilstring 'a'
+        // Jedes Auto hat einen Modell mit dem Teilstring 'a'
         data.content
-            .map((auto) => auto.titel)
-            .forEach((titel) =>
-                expect(titel?.titel?.toLowerCase()).toStrictEqual(
+            .map((auto) => auto.modell)
+            .forEach((modell) =>
+                expect(modell?.modell?.toLowerCase()).toStrictEqual(
                     expect.stringContaining(titelVorhanden),
                 ),
             );
     });
 
     test.concurrent(
-        'Buecher zu einem nicht vorhandenen Teil-Titel suchen',
+        'Buecher zu einem nicht vorhandenen Teil-Modell suchen',
         async () => {
             // given
-            const params = { titel: titelNichtVorhanden };
+            const params = { modell: titelNichtVorhanden };
 
             // when
             const { status, data }: AxiosResponse<ErrorResponse> =
@@ -112,9 +112,9 @@ describe('GET /rest', () => {
         },
     );
 
-    test.concurrent('Buecher mit Mindest-"rating" suchen', async () => {
+    test.concurrent('Buecher mit Mindest-"ps" suchen', async () => {
         // given
-        const params = { rating: ratingMin };
+        const params = { ps: psMin };
 
         // when
         const { status, headers, data }: AxiosResponse<Page<Auto>> =
@@ -125,11 +125,11 @@ describe('GET /rest', () => {
         expect(headers['content-type']).toMatch(/json/iu);
         expect(data).toBeDefined();
 
-        // Jedes Auto hat einen Titel mit dem Teilstring 'a'
+        // Jedes Auto hat einen Modell mit dem Teilstring 'a'
         data.content
-            .map((auto) => auto.rating)
-            .forEach((rating) =>
-                expect(rating).toBeGreaterThanOrEqual(ratingMin),
+            .map((auto) => auto.ps)
+            .forEach((ps) =>
+                expect(ps).toBeGreaterThanOrEqual(psMin),
             );
     });
 
@@ -146,7 +146,7 @@ describe('GET /rest', () => {
         expect(headers['content-type']).toMatch(/json/iu);
         expect(data).toBeDefined();
 
-        // Jedes Auto hat einen Titel mit dem Teilstring 'a'
+        // Jedes Auto hat einen Modell mit dem Teilstring 'a'
         data.content
             .map((auto) => Decimal(auto?.preis ?? 0))
             .forEach((preis) =>

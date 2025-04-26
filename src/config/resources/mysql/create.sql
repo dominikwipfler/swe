@@ -33,8 +33,8 @@
 CREATE TABLE IF NOT EXISTS auto (
     id            INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     version       INT NOT NULL DEFAULT 0,
-    isbn          CHAR(17) UNIQUE NOT NULL,
-    rating        INT NOT NULL CHECK (rating >= 0 AND rating <= 5),
+    fahrgestellnummer          CHAR(17) UNIQUE NOT NULL,
+    ps        INT NOT NULL CHECK (ps >= 0 AND ps <= 5),
     art           ENUM('EPUB', 'HARDCOVER', 'PAPERBACK'),
     preis         DECIMAL(8,2) NOT NULL,
     rabatt        DECIMAL(4,3) NOT NULL,
@@ -47,13 +47,13 @@ CREATE TABLE IF NOT EXISTS auto (
 ) TABLESPACE autospace ROW_FORMAT=COMPACT;
 ALTER TABLE auto AUTO_INCREMENT=1000;
 
-CREATE TABLE IF NOT EXISTS titel (
+CREATE TABLE IF NOT EXISTS modell (
     id          INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    titel       VARCHAR(40) NOT NULL,
+    modell       VARCHAR(40) NOT NULL,
     untertitel  VARCHAR(40),
     auto_id     INT UNIQUE NOT NULL references auto(id)
 ) TABLESPACE autospace ROW_FORMAT=COMPACT;
-ALTER TABLE titel AUTO_INCREMENT=1000;
+ALTER TABLE modell AUTO_INCREMENT=1000;
 
 CREATE TABLE IF NOT EXISTS abbildung (
     id              INT NOT NULL PRIMARY KEY AUTO_INCREMENT,

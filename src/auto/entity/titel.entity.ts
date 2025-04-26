@@ -23,25 +23,25 @@ import {
 import { Auto } from './auto.entity.js';
 
 @Entity()
-export class Titel {
+export class Modell {
     // https://typeorm.io/entities#primary-columns
     @PrimaryGeneratedColumn()
     id: number | undefined;
 
     @Column('varchar')
-    readonly titel: string | undefined;
+    readonly modell: string | undefined;
 
     @Column('varchar')
     readonly untertitel: string | undefined;
 
-    @OneToOne(() => Auto, (auto) => auto.titel)
+    @OneToOne(() => Auto, (auto) => auto.modell)
     @JoinColumn({ name: 'auto_id' })
     auto: Auto | undefined;
 
     public toString = (): string =>
         JSON.stringify({
             id: this.id,
-            titel: this.titel,
+            modell: this.modell,
             untertitel: this.untertitel,
         });
 }

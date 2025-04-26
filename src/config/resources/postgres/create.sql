@@ -52,10 +52,10 @@ CREATE TABLE IF NOT EXISTS auto (
     version       integer NOT NULL DEFAULT 0,
                   -- impliziter Index als B-Baum durch UNIQUE
                   -- https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-UNIQUE-CONSTRAINTS
-    isbn          text NOT NULL UNIQUE USING INDEX TABLESPACE autospace,
+    fahrgestellnummer          text NOT NULL UNIQUE USING INDEX TABLESPACE autospace,
                   -- https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-CHECK-CONSTRAINTS
                   -- https://www.postgresql.org/docs/current/functions-matching.html#FUNCTIONS-POSIX-REGEXP
-    rating        integer NOT NULL CHECK (rating >= 0 AND rating <= 5),
+    ps        integer NOT NULL CHECK (ps >= 0 AND ps <= 5),
     art           autoart,
                   -- https://www.postgresql.org/docs/current/datatype-numeric.html#DATATYPE-NUMERIC-DECIMAL
                   -- 10 Stellen, davon 2 Nachkommastellen
@@ -73,9 +73,9 @@ CREATE TABLE IF NOT EXISTS auto (
     aktualisiert  timestamp NOT NULL DEFAULT NOW()
 ) TABLESPACE autospace;
 
-CREATE TABLE IF NOT EXISTS titel (
+CREATE TABLE IF NOT EXISTS modell (
     id          integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE autospace,
-    titel       text NOT NULL,
+    modell       text NOT NULL,
     untertitel  text,
     auto_id     integer NOT NULL UNIQUE USING INDEX TABLESPACE autospace REFERENCES auto
 ) TABLESPACE autospace;

@@ -27,8 +27,8 @@
 CREATE TABLE IF NOT EXISTS auto (
     id             INTEGER PRIMARY KEY AUTOINCREMENT,
     version        INTEGER NOT NULL DEFAULT 0,
-    isbn           TEXT NOT NULL UNIQUE,
-    rating         INTEGER NOT NULL CHECK (rating >= 0 AND rating <= 5),
+    fahrgestellnummer           TEXT NOT NULL UNIQUE,
+    ps         INTEGER NOT NULL CHECK (ps >= 0 AND ps <= 5),
     art            TEXT,
     preis          REAL,
     rabatt         REAL,
@@ -39,11 +39,11 @@ CREATE TABLE IF NOT EXISTS auto (
     erzeugt        TEXT NOT NULL,
     aktualisiert   TEXT NOT NULL
 );
-CREATE INDEX IF NOT EXISTS auto_isbn_idx ON auto(isbn);
+CREATE INDEX IF NOT EXISTS auto_fahrgestellnummer_idx ON auto(fahrgestellnummer);
 
-CREATE TABLE IF NOT EXISTS titel (
+CREATE TABLE IF NOT EXISTS modell (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
-    titel       TEXT NOT NULL,
+    modell       TEXT NOT NULL,
     untertitel  TEXT,
     auto_id     INTEGER NOT NULL UNIQUE REFERENCES auto
 );
