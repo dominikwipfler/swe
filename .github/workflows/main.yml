@@ -23,7 +23,10 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: ESLint code
+    - name: Install ts-node
+      run: npm install ts-node --save-dev
+
+    - name: Lint code
       run: npm run eslint
 
     - name: Run tests
