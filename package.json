@@ -24,7 +24,7 @@
     "asciidoctor": "node scripts/asciidoctor.mts",
     "audit": "npm audit --omit dev",
     "clean": "rimraf dist log/server.log",
-    "copy-resources": "ts-node scripts/copy-resources.mts",
+    "copy-resources": "node scripts/copy-resources.mts",
     "depcheck": "depcheck",
     "eslint": "eslint src test",
     "eslint:inspect-config": "eslint --inspect-config",
