@@ -1,40 +1,37 @@
-name: Node.js CI
+name: CI
 
 on:
   push:
-    branches: [ main, dev ]
+    branches:
+      - main
+      - dev
   schedule:
     - cron: '0 3 * * *'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Install ts-node
-      run: npm install ts-node --save-dev
+      - name: Run TypeScript
+        run: npm run build
 
-    - name: Copy resources
-      env:
-        NODE_OPTIONS: "--loader ts-node/esm"
-      run: npm run copy-resources
+      - name: Run ESLint
+        run: npm run lint
 
-    - name: Lint code
-      run: npm run eslint
+      - name: Run Prettier
+        run: npm run format
 
-    - name: Run tests
-      env:
-        NODE_OPTIONS: "--loader ts-node/esm"
-      run: npm run test
+      - name: Run Tests
+        run: npm test
