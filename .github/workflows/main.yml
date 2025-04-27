@@ -29,14 +29,18 @@ jobs:
           npm install
           npm audit fix --force # Sicherheitsprobleme beheben
 
-      # 4. Linter ausführen (ESLint)
+      # 4. Ressourcen kopieren (copy-resources)
+      - name: Run copy-resources script
+        run: npm run copy-resources
+
+      # 5. Linter ausführen (ESLint)
       - name: Run ESLint
         run: npm run eslint
 
-      # 5. Code formatieren (Prettier)
+      # 6. Code formatieren (Prettier)
       - name: Run Prettier
         run: npm run prettier -- --check
 
-      # 6. Tests ausführen
+      # 7. Tests ausführen
       - name: Run tests
         run: npm test
