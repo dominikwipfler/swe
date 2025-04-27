@@ -26,6 +26,14 @@ jobs:
     - name: Install ts-node
       run: npm install ts-node --save-dev
 
+    - name: Copy resources
+      env:
+        NODE_OPTIONS: "--loader ts-node/esm"
+      run: npm run copy-resources
+
+    - name: Lint code
+      run: npm run eslint
+
     - name: Run tests
       env:
         NODE_OPTIONS: "--loader ts-node/esm"
