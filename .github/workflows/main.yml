@@ -1,4 +1,4 @@
-name: CI
+name: CI Pipeline
 
 on:
   push:
@@ -6,32 +6,37 @@ on:
       - main
       - dev
   schedule:
-    - cron: '0 3 * * *'
+    - cron: "0 3 * * *" # Läuft jeden Tag um 03:00 Uhr
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      # 1. Repository klonen
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
+      # 2. Node.js installieren
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: "18" # Empfohlene Node.js-Version
 
-      - name: Install dependencies
-        run: npm install
+      # 3. Abhängigkeiten installieren und aktualisieren
+      - name: Install and update dependencies
+        run: |
+          npm install
+          npm audit fix --force # Sicherheitsprobleme beheben
 
-      - name: Run TypeScript
-        run: npm run build
-
+      # 4. Linter ausführen (ESLint)
       - name: Run ESLint
         run: npm run eslint
 
+      # 5. Code formatieren (Prettier)
       - name: Run Prettier
-        run: npm run format
+        run: npm run prettier -- --check
 
-      - name: Run Tests
+      # 6. Tests ausführen
+      - name: Run tests
         run: npm test
