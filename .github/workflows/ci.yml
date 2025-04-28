@@ -9,38 +9,31 @@ on:
     - cron: "0 3 * * *" # Läuft jeden Tag um 03:00 Uhr
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Repository klonen
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Node.js installieren
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "18" # Empfohlene Node.js-Version
+          node-version: 23.9.0
+          cache: 'npm'
 
-      # 3. Abhängigkeiten installieren und aktualisieren
-      - name: Install and update dependencies
+      - name: Install dependencies
         run: |
           npm install
-          npm audit fix --force # Sicherheitsprobleme beheben
 
-      # 4. Ressourcen kopieren (copy-resources)
-      - name: Run copy-resources script
-        run: npm run copy-resources
-
-      # 5. Linter ausführen (ESLint)
       - name: Run ESLint
         run: npm run eslint
 
-      # 6. Code formatieren (Prettier)
       - name: Run Prettier
         run: npm run prettier -- --check
 
-      # 7. Tests ausführen
       - name: Run tests
         run: npm test
+
+      - name: Build Project
+        run: npm run build
