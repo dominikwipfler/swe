@@ -1,4 +1,4 @@
-// Copyright (C) 2019 - present Juergen Zimmermann, Hochschule Karlsruhe
+// Copyright (C) 2019 - present Gruppe 4, Hochschule Karlsruhe
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 // Preview durch <Strg><Shift>v
 
 = Projekthandauto
-Jürgen Zimmermann <Juergen.Zimmermann@h-ka.de>
+Gruppe 4 <Gruppe4@h-ka.de>
 :doctype: book
 :toc: left
 :sectanchors:
@@ -32,7 +32,7 @@ Jürgen Zimmermann <Juergen.Zimmermann@h-ka.de>
 // http://de.plantuml.com/component.html
 // https://github.com/odrotbohm/asciidoctor-plantuml
 
-IMPORTANT: Copyright (C) 2020 - present Jürgen Zimmermann, Hochschule Karlsruhe. +
+IMPORTANT: Copyright (C) 2020 - present Gruppe 4, Hochschule Karlsruhe. +
            Free use of this software is granted under the terms of the
            GNU General Public License (GPL) v3. +
            For the full text of the license, see the http://www.gnu.org/licenses/gpl-3.0.html[license] file.

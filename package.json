@@ -92,7 +92,7 @@
     "js-yaml": "4.1.0",
     "keycloak-connect": "26.1.1",
     "multer": "1.4.5-lts.2",
-    "mysql2": "3.14.0",
+    "mysql2": "3.14.1",
     "nest-keycloak-connect": "2.0.0-alpha.1",
     "nodemailer": "6.10.1",
     "pg": "8.15.6",
