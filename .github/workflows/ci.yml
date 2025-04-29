@@ -26,14 +26,6 @@ jobs:
         run: |
           npm install
 
-      - name: Build application
-        run: npm run build
-
-      - name: Start application (background)
-        run: |
-          npm run start &
-          sleep 60
-
       - name: Run ESLint
         run: npm run eslint
 
