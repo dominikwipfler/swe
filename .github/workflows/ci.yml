@@ -6,7 +6,7 @@ on:
       - main
       - dev
   schedule:
-    - cron: "0 3 * * *" # Läuft jeden Tag um 03:00 Uhr
+    - cron: "0 3 * * *"
 
 jobs:
   build:
@@ -25,6 +25,14 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
+
+      - name: Build application
+        run: npm run build
+
+      - name: Start application (background)
+        run: |
+          npm run start &
+          sleep 60
 
       - name: Run ESLint
         run: npm run eslint
