@@ -53,7 +53,7 @@ import { dbType } from '../../config/db.js';
 import { Abbildung } from './abbildung.entity.js';
 import { AutoFile } from './autoFile.entity.js';
 import { DecimalTransformer } from './decimal-transformer.js';
-import { Titel } from './titel.entity.js';
+import { Modell } from './modell.entity.js';
 
 /**
  * Alias-Typ für gültige Strings bei der Art eines Autos.
@@ -80,11 +80,11 @@ export class Auto {
 
     @Column('varchar')
     @ApiProperty({ example: '0-0070-0644-6', type: String })
-    readonly isbn: string | undefined;
+    readonly fahrgestellnummer: string | undefined;
 
     @Column('int')
     @ApiProperty({ example: 5, type: Number })
-    readonly rating: number | undefined;
+    readonly ps: number | undefined;
 
     @Column('varchar')
     @ApiProperty({ example: 'EPUB', type: String })
@@ -128,10 +128,10 @@ export class Auto {
     schlagwoerter: string[] | null | undefined;
 
     // undefined wegen Updates
-    @OneToOne(() => Titel, (titel) => titel.auto, {
+    @OneToOne(() => Modell, (modell) => modell.auto, {
         cascade: ['insert', 'remove'],
     })
-    readonly titel: Titel | undefined;
+    readonly modell: Modell | undefined;
 
     // undefined wegen Updates
     @OneToMany(() => Abbildung, (abbildung) => abbildung.auto, {
@@ -162,8 +162,8 @@ export class Auto {
         JSON.stringify({
             id: this.id,
             version: this.version,
-            isbn: this.isbn,
-            rating: this.rating,
+            fahrgestellnummer: this.fahrgestellnummer,
+            ps: this.ps,
             art: this.art,
             preis: this.preis,
             rabatt: this.rabatt,

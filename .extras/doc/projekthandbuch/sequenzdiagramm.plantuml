@@ -1,4 +1,4 @@
-' Copyright (C) 2023 - present Juergen Zimmermann, Hochschule Karlsruhe
+' Copyright (C) 2023 - present Gruppe 4, Hochschule Karlsruhe
 '
 ' This program is free software: you can redistribute it and/or modify
 ' it under the terms of the GNU General Public License as published by
@@ -27,6 +27,6 @@ Gast -> AutoGetController : GET / getById()
 AutoGetController -> AutoReadService: findById()
 AutoReadService -> auto: [TypeORM]
 
-footer (c) Jürgen Zimmermann
+footer (c) Gruppe 4
 
 @enduml

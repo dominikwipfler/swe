@@ -17,7 +17,7 @@
 
 DROP TABLE IF EXISTS auto_file CASCADE;
 DROP TABLE IF EXISTS abbildung CASCADE;
-DROP TABLE IF EXISTS titel CASCADE;
+DROP TABLE IF EXISTS modell CASCADE;
 DROP TABLE IF EXISTS auto CASCADE;
 
 -- https://www.postgresql.org/docs/current/sql-droptype.html

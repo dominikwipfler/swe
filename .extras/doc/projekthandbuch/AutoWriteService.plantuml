@@ -1,4 +1,4 @@
-' Copyright (C) 2019 - present Juergen Zimmermann, Hochschule Karlsruhe
+' Copyright (C) 2019 - present Gruppe 4, Hochschule Karlsruhe
 '
 ' This program is free software: you can redistribute it and/or modify
 ' it under the terms of the GNU General Public License as published by
@@ -45,13 +45,13 @@ package auto {
   package service #DDDDDD {
     class AutoInvalid
     class TitelExists
-    class IsbnExists
+    class FahrgestellnummerExists
     class VersionInvalid
     class VersionOutdated
 
     class AutoWriteService << control >> <<@Injectable()>> {
-      + async create(auto: Auto): Promise<string|AutoInvalid|TitelExists|IsbnExists>
-      + async update(id: number, auto: Auto, version: string): Promise<number|AutoInvalid|TitelExists|IsbnExists|VersionInvalid|VersionOutdated>
+      + async create(auto: Auto): Promise<string|AutoInvalid|TitelExists|FahrgestellnummerExists>
+      + async update(id: number, auto: Auto, version: string): Promise<number|AutoInvalid|TitelExists|FahrgestellnummerExists|VersionInvalid|VersionOutdated>
       + async delete(id: number): Promise<boolean>
     }
 
@@ -67,7 +67,7 @@ package auto {
     AutoWriteService ..> Auto
     AutoWriteService .up.> AutoInvalid
     AutoWriteService .up.> TitelExists
-    AutoWriteService .up.> IsbnExists
+    AutoWriteService .up.> FahrgestellnummerExists
     AutoWriteService .up.> VersionInvalid
     AutoWriteService .up.> VersionOutdated
 
@@ -83,6 +83,6 @@ package auto {
 
 hide empty members
 
-footer (c) Jürgen Zimmermann
+footer (c) Gruppe 4
 
 @enduml

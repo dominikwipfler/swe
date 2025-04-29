@@ -16,7 +16,7 @@
 import { Abbildung } from './abbildung.entity.js';
 import { Auto } from './auto.entity.js';
 import { AutoFile } from './autoFile.entity.js';
-import { Titel } from './titel.entity.js';
+import { Modell } from './modell.entity.js';
 
 // erforderlich in src/config/db.ts und src/auto/auto.module.ts
-export const entities = [Abbildung, Auto, AutoFile, Titel];
+export const entities = [Abbildung, Auto, AutoFile, Modell];

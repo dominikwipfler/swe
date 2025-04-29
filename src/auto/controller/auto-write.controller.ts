@@ -58,7 +58,7 @@ import { getLogger } from '../../logger/logger.js';
 import { ResponseTimeInterceptor } from '../../logger/response-time.interceptor.js';
 import { type Abbildung } from '../entity/abbildung.entity.js';
 import { type Auto } from '../entity/auto.entity.js';
-import { type Titel } from '../entity/titel.entity.js';
+import { type Modell } from '../entity/modell.entity.js';
 import { AutoWriteService } from '../service/auto-write.service.js';
 import { AutoDTO, AutoDtoOhneRef } from './autoDTO.entity.js';
 import { createBaseUri } from './createBaseUri.js';
@@ -89,7 +89,7 @@ export class AutoWriteController {
      * dass damit das neu angelegte Auto abgerufen werden kann.
      *
      * Falls Constraints verletzt sind, wird der Statuscode `400` (`Bad Request`)
-     * gesetzt und genauso auch wenn der Titel oder die ISBN-Nummer bereits
+     * gesetzt und genauso auch wenn der Modell oder die ISBN-Nummer bereits
      * existieren.
      *
      * @param autoDTO JSON-Daten für ein Auto im Request-Body.
@@ -191,7 +191,7 @@ export class AutoWriteController {
      * required`) gesetzt; und falls sie nicht korrekt ist, der Statuscode `412`
      * (`Precondition failed`). Falls Constraints verletzt sind, wird der
      * Statuscode `400` (`Bad Request`) gesetzt und genauso auch wenn der neue
-     * Titel oder die neue ISBN-Nummer bereits existieren.
+     * Modell oder die neue ISBN-Nummer bereits existieren.
      *
      * @param autoDTO Autodaten im Body des Request-Objekts.
      * @param id Pfad-Paramater für die ID.
@@ -272,10 +272,10 @@ export class AutoWriteController {
     }
 
     #autoDtoToAuto(autoDTO: AutoDTO): Auto {
-        const titelDTO = autoDTO.titel;
-        const titel: Titel = {
+        const titelDTO = autoDTO.modell;
+        const modell: Modell = {
             id: undefined,
-            titel: titelDTO.titel,
+            modell: titelDTO.modell,
             untertitel: titelDTO.untertitel,
             auto: undefined,
         };
@@ -291,8 +291,8 @@ export class AutoWriteController {
         const auto = {
             id: undefined,
             version: undefined,
-            isbn: autoDTO.isbn,
-            rating: autoDTO.rating,
+            fahrgestellnummer: autoDTO.fahrgestellnummer,
+            ps: autoDTO.ps,
             art: autoDTO.art,
             preis: Decimal(autoDTO.preis),
             rabatt: Decimal(autoDTO.rabatt ?? '0'),
@@ -300,7 +300,7 @@ export class AutoWriteController {
             datum: autoDTO.datum,
             homepage: autoDTO.homepage,
             schlagwoerter: autoDTO.schlagwoerter,
-            titel,
+            modell,
             abbildungen,
             file: undefined,
             erzeugt: new Date(),
@@ -308,7 +308,7 @@ export class AutoWriteController {
         };
 
         // Rueckwaertsverweise
-        auto.titel.auto = auto;
+        auto.modell.auto = auto;
         auto.abbildungen?.forEach((abbildung) => {
             abbildung.auto = auto;
         });
@@ -319,8 +319,8 @@ export class AutoWriteController {
         return {
             id: undefined,
             version: undefined,
-            isbn: autoDTO.isbn,
-            rating: autoDTO.rating,
+            fahrgestellnummer: autoDTO.fahrgestellnummer,
+            ps: autoDTO.ps,
             art: autoDTO.art,
             preis: Decimal(autoDTO.preis),
             rabatt: Decimal(autoDTO.rabatt ?? '0'),

@@ -27,7 +27,7 @@ import { Abbildung } from '../entity/abbildung.entity.js';
 import { Auto } from '../entity/auto.entity.js';
 import { DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE } from './pageable.js';
 import { type Pageable } from './pageable.js';
-import { Titel } from '../entity/titel.entity.js';
+import { Modell } from '../entity/modell.entity.js';
 import { type Suchkriterien } from './suchkriterien.js';
 
 /** Typdefinitionen für die Suche mit der Auto-ID. */
@@ -47,9 +47,9 @@ export class QueryBuilder {
         .charAt(0)
         .toLowerCase()}${Auto.name.slice(1)}`;
 
-    readonly #titelAlias = `${Titel.name
+    readonly #titelAlias = `${Modell.name
         .charAt(0)
-        .toLowerCase()}${Titel.name.slice(1)}`;
+        .toLowerCase()}${Modell.name.slice(1)}`;
 
     readonly #abbildungAlias = `${Abbildung.name
         .charAt(0)
@@ -72,9 +72,9 @@ export class QueryBuilder {
         // QueryBuilder "auto" fuer Repository<Auto>
         const queryBuilder = this.#repo.createQueryBuilder(this.#autoAlias);
 
-        // Fetch-Join: aus QueryBuilder "auto" die Property "titel" ->  Tabelle "titel"
+        // Fetch-Join: aus QueryBuilder "auto" die Property "modell" ->  Tabelle "modell"
         queryBuilder.innerJoinAndSelect(
-            `${this.#autoAlias}.titel`,
+            `${this.#autoAlias}.modell`,
             this.#titelAlias,
         );
 
@@ -92,20 +92,20 @@ export class QueryBuilder {
 
     /**
      * Autos asynchron suchen.
-     * @param suchkriterien JSON-Objekt mit Suchkriterien. Bei "titel" wird mit
-     * einem Teilstring gesucht, bei "rating" mit einem Mindestwert, bei "preis"
+     * @param suchkriterien JSON-Objekt mit Suchkriterien. Bei "modell" wird mit
+     * einem Teilstring gesucht, bei "ps" mit einem Mindestwert, bei "preis"
      * mit der Obergrenze.
      * @param pageable Maximale Anzahl an Datensätzen und Seitennummer.
      * @returns QueryBuilder
      */
-    // z.B. { titel: 'a', rating: 5, preis: 22.5, javascript: true }
+    // z.B. { modell: 'a', ps: 5, preis: 22.5, javascript: true }
     // "rest properties" fuer anfaengliche WHERE-Klausel: ab ES 2018 https://github.com/tc39/proposal-object-rest-spread
     // eslint-disable-next-line max-lines-per-function, prettier/prettier, sonarjs/cognitive-complexity
     build(
         {
             // NOSONAR
-            titel,
-            rating,
+            modell,
+            ps,
             preis,
             javascript,
             typescript,
@@ -116,9 +116,9 @@ export class QueryBuilder {
         pageable: Pageable,
     ) {
         this.#logger.debug(
-            'build: titel=%s, rating=%s, preis=%s, javascript=%s, typescript=%s, java=%s, python=%s, restProps=%o, pageable=%o',
-            titel,
-            rating,
+            'build: modell=%s, ps=%s, preis=%s, javascript=%s, typescript=%s, java=%s, python=%s, restProps=%o, pageable=%o',
+            modell,
+            ps,
             preis,
             javascript,
             typescript,
@@ -129,34 +129,34 @@ export class QueryBuilder {
         );
 
         let queryBuilder = this.#repo.createQueryBuilder(this.#autoAlias);
-        queryBuilder.innerJoinAndSelect(`${this.#autoAlias}.titel`, 'titel');
+        queryBuilder.innerJoinAndSelect(`${this.#autoAlias}.modell`, 'modell');
 
-        // z.B. { titel: 'a', rating: 5, javascript: true }
+        // z.B. { modell: 'a', ps: 5, javascript: true }
         // "rest properties" fuer anfaengliche WHERE-Klausel: ab ES 2018 https://github.com/tc39/proposal-object-rest-spread
         // type-coverage:ignore-next-line
-        // const { titel, javascript, typescript, ...otherProps } = suchkriterien;
+        // const { modell, javascript, typescript, ...otherProps } = suchkriterien;
 
         let useWhere = true;
 
-        // Titel in der Query: Teilstring des Titels und "case insensitive"
+        // Modell in der Query: Teilstring des Titels und "case insensitive"
         // CAVEAT: MySQL hat keinen Vergleich mit "case insensitive"
         // type-coverage:ignore-next-line
-        if (titel !== undefined && typeof titel === 'string') {
+        if (modell !== undefined && typeof modell === 'string') {
             const ilike =
                 typeOrmModuleOptions.type === 'postgres' ? 'ilike' : 'like';
             queryBuilder = queryBuilder.where(
-                `${this.#titelAlias}.titel ${ilike} :titel`,
-                { titel: `%${titel}%` },
+                `${this.#titelAlias}.modell ${ilike} :modell`,
+                { modell: `%${modell}%` },
             );
             useWhere = false;
         }
 
-        if (rating !== undefined) {
-            const ratingNumber =
-                typeof rating === 'string' ? parseInt(rating) : rating;
-            if (!isNaN(ratingNumber)) {
+        if (ps !== undefined) {
+            const psNumber =
+                typeof ps === 'string' ? parseInt(ps) : ps;
+            if (!isNaN(psNumber)) {
                 queryBuilder = queryBuilder.where(
-                    `${this.#autoAlias}.rating >= ${ratingNumber}`,
+                    `${this.#autoAlias}.ps >= ${psNumber}`,
                 );
                 useWhere = false;
             }

@@ -27,10 +27,10 @@ import { MailService } from '../../mail/mail.service.js';
 import { Abbildung } from '../entity/abbildung.entity.js';
 import { Auto } from '../entity/auto.entity.js';
 import { AutoFile } from '../entity/autoFile.entity.js';
-import { Titel } from '../entity/titel.entity.js';
+import { Modell } from '../entity/modell.entity.js';
 import { AutoReadService } from './auto-read.service.js';
 import {
-    IsbnExistsException,
+    FahrgestellnummerExistsException,
     VersionInvalidException,
     VersionOutdatedException,
 } from './exceptions.js';
@@ -86,7 +86,7 @@ export class AutoWriteService {
      * Ein neues Auto soll angelegt werden.
      * @param auto Das neu abzulegende Auto
      * @returns Die ID des neu angelegten Autos
-     * @throws IsbnExists falls die ISBN-Nummer bereits existiert
+     * @throws FahrgestellnummerExists falls die ISBN-Nummer bereits existiert
      */
     async create(auto: Auto) {
         this.#logger.debug('create: auto=%o', auto);
@@ -199,12 +199,12 @@ export class AutoWriteService {
 
         let deleteResult: DeleteResult | undefined;
         await this.#repo.manager.transaction(async (transactionalMgr) => {
-            // Das Auto zur gegebenen ID mit Titel und Abb. asynchron loeschen
+            // Das Auto zur gegebenen ID mit Modell und Abb. asynchron loeschen
 
             // TODO "cascade" funktioniert nicht beim Loeschen
-            const titelId = auto.titel?.id;
+            const titelId = auto.modell?.id;
             if (titelId !== undefined) {
-                await transactionalMgr.delete(Titel, titelId);
+                await transactionalMgr.delete(Modell, titelId);
             }
             // "Nullish Coalescing" ab ES2020
             const abbildungen = auto.abbildungen ?? [];
@@ -223,17 +223,17 @@ export class AutoWriteService {
         );
     }
 
-    async #validateCreate({ isbn }: Auto): Promise<undefined> {
-        this.#logger.debug('#validateCreate: isbn=%s', isbn);
-        if (await this.#repo.existsBy({ isbn })) {
-            throw new IsbnExistsException(isbn);
+    async #validateCreate({ fahrgestellnummer }: Auto): Promise<undefined> {
+        this.#logger.debug('#validateCreate: fahrgestellnummer=%s', fahrgestellnummer);
+        if (await this.#repo.existsBy({ fahrgestellnummer })) {
+            throw new FahrgestellnummerExistsException(fahrgestellnummer);
         }
     }
 
     async #sendmail(auto: Auto) {
         const subject = `Neues Auto ${auto.id}`;
-        const titel = auto.titel?.titel ?? 'N/A';
-        const body = `Das Auto mit dem Titel <strong>${titel}</strong> ist angelegt`;
+        const modell = auto.modell?.modell ?? 'N/A';
+        const body = `Das Auto mit dem Modell <strong>${modell}</strong> ist angelegt`;
         await this.#mailService.sendmail({ subject, body });
     }
 

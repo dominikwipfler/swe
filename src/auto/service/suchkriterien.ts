@@ -24,8 +24,8 @@ import { type AutoArt } from '../entity/auto.entity.js';
  * Typdefinition für `find` in `auto-read.service` und `QueryBuilder.build()`.
  */
 export interface Suchkriterien {
-    readonly isbn?: string;
-    readonly rating?: number | string;
+    readonly fahrgestellnummer?: string;
+    readonly ps?: number | string;
     readonly art?: AutoArt;
     readonly preis?: number;
     readonly rabatt?: number;
@@ -36,5 +36,5 @@ export interface Suchkriterien {
     readonly typescript?: string;
     readonly java?: string;
     readonly python?: string;
-    readonly titel?: string;
+    readonly modell?: string;
 }

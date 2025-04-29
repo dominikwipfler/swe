@@ -36,8 +36,8 @@ const geaendertesAuto: Omit<AutoDtoOhneRef, 'preis' | 'rabatt'> & {
     preis: number;
     rabatt: number;
 } = {
-    isbn: '978-0-201-63361-0',
-    rating: 5,
+    fahrgestellnummer: '978-0-201-63361-0',
+    ps: 5,
     art: 'HARDCOVER',
     preis: 3333,
     rabatt: 0.033,
@@ -55,8 +55,8 @@ const geaendertesAutoIdNichtVorhanden: Omit<
     preis: number;
     rabatt: number;
 } = {
-    isbn: '978-0-007-09732-6',
-    rating: 4,
+    fahrgestellnummer: '978-0-007-09732-6',
+    ps: 4,
     art: 'EPUB',
     preis: 44.4,
     rabatt: 0.044,
@@ -68,20 +68,20 @@ const geaendertesAutoIdNichtVorhanden: Omit<
 const idNichtVorhanden = '999999';
 
 const geaendertesAutoInvalid: Record<string, unknown> = {
-    isbn: 'falsche-ISBN',
-    rating: -1,
+    fahrgestellnummer: 'falsche-ISBN',
+    ps: -1,
     art: 'UNSICHTBAR',
     preis: -1,
     rabatt: 2,
     lieferbar: true,
     datum: '12345-123-123',
-    titel: '?!',
+    modell: '?!',
     homepage: 'anyHomepage',
 };
 
 const veraltesAuto: AutoDtoOhneRef = {
-    isbn: '978-0-007-09732-6',
-    rating: 1,
+    fahrgestellnummer: '978-0-007-09732-6',
+    ps: 1,
     art: 'EPUB',
     preis: new Decimal(44.4),
     rabatt: new Decimal(0.04),
@@ -162,8 +162,8 @@ describe('PUT /rest/:id', () => {
         headers.Authorization = `Bearer ${token}`;
         headers['If-Match'] = '"0"';
         const expectedMsg = [
-            expect.stringMatching(/^isbn /u),
-            expect.stringMatching(/^rating /u),
+            expect.stringMatching(/^fahrgestellnummer /u),
+            expect.stringMatching(/^ps /u),
             expect.stringMatching(/^art /u),
             expect.stringMatching(/^preis /u),
             expect.stringMatching(/^rabatt /u),

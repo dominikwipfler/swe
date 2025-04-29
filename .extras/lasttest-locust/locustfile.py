@@ -58,9 +58,9 @@ class AutoRequests(HttpUser):
             self.client.get("/rest", params={"titel": teil})
 
     @task(150)
-    def get_isbn(self) -> None:
+    def get_fahrgestellnummer(self) -> None:
         """GET-Requests mit Query-Parameter: ISBN-Nummer."""
-        isbn_list: Final = [
+        fahrgestellnummer_list: Final = [
             "978-3-897-22583-1",
             "978-3-827-31552-6",
             "978-0-201-63361-0",
@@ -68,5 +68,5 @@ class AutoRequests(HttpUser):
             "978-3-824-40481-0",
             "978-3-540-43081-0",
         ]
-        for isbn in isbn_list:
-            self.client.get("/rest", params={"isbn": isbn})
+        for fahrgestellnummer in fahrgestellnummer_list:
+            self.client.get("/rest", params={"fahrgestellnummer": fahrgestellnummer})

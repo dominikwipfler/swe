@@ -24,7 +24,7 @@ import { ResponseTimeInterceptor } from '../../logger/response-time.interceptor.
 import { AutoDTO } from '../controller/autoDTO.entity.js';
 import { type Abbildung } from '../entity/abbildung.entity.js';
 import { type Auto } from '../entity/auto.entity.js';
-import { type Titel } from '../entity/titel.entity.js';
+import { type Modell } from '../entity/modell.entity.js';
 import { AutoWriteService } from '../service/auto-write.service.js';
 import { type IdInput } from './auto-query.resolver.js';
 import { HttpExceptionFilter } from './http-exception.filter.js';
@@ -111,10 +111,10 @@ export class AutoMutationResolver {
     }
 
     #autoDtoToAuto(autoDTO: AutoDTO): Auto {
-        const titelDTO = autoDTO.titel;
-        const titel: Titel = {
+        const titelDTO = autoDTO.modell;
+        const modell: Modell = {
             id: undefined,
-            titel: titelDTO.titel,
+            modell: titelDTO.modell,
             untertitel: titelDTO.untertitel,
             auto: undefined,
         };
@@ -131,8 +131,8 @@ export class AutoMutationResolver {
         const auto: Auto = {
             id: undefined,
             version: undefined,
-            isbn: autoDTO.isbn,
-            rating: autoDTO.rating,
+            fahrgestellnummer: autoDTO.fahrgestellnummer,
+            ps: autoDTO.ps,
             art: autoDTO.art,
             preis: Decimal(autoDTO.preis),
             rabatt: Decimal(autoDTO.rabatt ?? ''),
@@ -140,7 +140,7 @@ export class AutoMutationResolver {
             datum: autoDTO.datum,
             homepage: autoDTO.homepage,
             schlagwoerter: autoDTO.schlagwoerter,
-            titel,
+            modell,
             abbildungen,
             file: undefined,
             erzeugt: new Date(),
@@ -148,7 +148,7 @@ export class AutoMutationResolver {
         };
 
         // Rueckwaertsverweis
-        auto.titel!.auto = auto;
+        auto.modell!.auto = auto;
         return auto;
     }
 
@@ -156,8 +156,8 @@ export class AutoMutationResolver {
         return {
             id: undefined,
             version: undefined,
-            isbn: autoDTO.isbn,
-            rating: autoDTO.rating,
+            fahrgestellnummer: autoDTO.fahrgestellnummer,
+            ps: autoDTO.ps,
             art: autoDTO.art,
             preis: Decimal(autoDTO.preis),
             rabatt: Decimal(autoDTO.rabatt ?? ''),
@@ -165,7 +165,7 @@ export class AutoMutationResolver {
             datum: autoDTO.datum,
             homepage: autoDTO.homepage,
             schlagwoerter: autoDTO.schlagwoerter,
-            titel: undefined,
+            modell: undefined,
             abbildungen: undefined,
             file: undefined,
             erzeugt: undefined,
@@ -175,8 +175,8 @@ export class AutoMutationResolver {
 
     // #errorMsgCreateAuto(err: CreateError) {
     //     switch (err.type) {
-    //         case 'IsbnExists': {
-    //             return `Die ISBN ${err.isbn} existiert bereits`;
+    //         case 'FahrgestellnummerExists': {
+    //             return `Die ISBN ${err.fahrgestellnummer} existiert bereits`;
     //         }
     //         default: {
     //             return 'Unbekannter Fehler';

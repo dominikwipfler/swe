@@ -67,10 +67,10 @@ import { paths } from '../../config/paths.js';
  */
 export class AutoQuery implements Suchkriterien {
     @ApiProperty({ required: false })
-    declare readonly isbn?: string;
+    declare readonly fahrgestellnummer?: string;
 
     @ApiProperty({ required: false })
-    declare readonly rating?: number;
+    declare readonly ps?: number;
 
     @ApiProperty({ required: false })
     declare readonly art?: AutoArt;
@@ -97,7 +97,7 @@ export class AutoQuery implements Suchkriterien {
     declare readonly typescript?: string;
 
     @ApiProperty({ required: false })
-    declare readonly titel?: string;
+    declare readonly modell?: string;
 
     @ApiProperty({ required: false })
     declare size?: string;
@@ -190,7 +190,7 @@ export class AutoGetController {
         const auto = await this.#service.findById({ id });
         if (this.#logger.isLevelEnabled('debug')) {
             this.#logger.debug('getById(): auto=%s', auto.toString());
-            this.#logger.debug('getById(): titel=%o', auto.titel);
+            this.#logger.debug('getById(): modell=%o', auto.modell);
         }
 
         // ETags

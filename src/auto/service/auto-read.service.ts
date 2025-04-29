@@ -105,9 +105,9 @@ export class AutoReadService {
 
         if (this.#logger.isLevelEnabled('debug')) {
             this.#logger.debug(
-                'findById: auto=%s, titel=%o',
+                'findById: auto=%s, modell=%o',
                 auto.toString(),
-                auto.titel,
+                auto.modell,
             );
             if (mitAbbildungen) {
                 this.#logger.debug(
