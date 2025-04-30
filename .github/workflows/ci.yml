@@ -1,47 +1,51 @@
+# .github/workflows/ci.yml
 name: CI Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   ci:
+    # Agent: Docker-Container wie im Jenkinsfile
     runs-on: ubuntu-latest
-
-    # Läuft in exakt dem gleichen Node-Docker-Image wie Jenkins
     container:
       image: node:23.9.0-bookworm
-      ports:
-        - 3000:3000
-        - 5000:5000
+      # Ports freigeben und als root laufen
       options: >-
+        --publish 3000:3000
+        --publish 5000:5000
         --user root:root
 
-    # Max. Laufzeit 60 Minuten (wie Jenkins timeout)
-    timeout-minutes: 60
-
-    env:
-      # Beispiel für Umgebungsvariablen:
+    #env:
+      # Hier könntest Du Umgebungsvariablen setzen wie in Jenkins environment {}
       # DB_HOST: unknown.amazonaws.com
       # DB_USER: nobody
       # DB_PASS: ChangeMe
       # DB_POPULATE: 'true'
 
+    defaults:
+      run:
+        shell: bash
+
+    timeout-minutes: 60
+
     steps:
-      # ======== Init ========
+      # Stage: Init
       - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Init – Workspace aufräumen
         run: |
-          echo "GitHub Actions Job ${{ github.job }} #${{ github.run_number }} mit Workspace ${{ github.workspace }}"
-          rm -rf src __tests__ node_modules dist \
-                 .extras/doc/api .extras/doc/folien/folien.html .extras/doc/projekthandauto/html
+          echo "GitHub Actions Job ${{ github.job }} (#${{ github.run_number }})"
+          rm -rf src __tests__ node_modules dist .extras/doc/api .extras/doc/folien/folien.html .extras/doc/projekthandauto/html
 
-      # ======== Install ========
-      - name: Install – Systeminfos
+      # Stage: Install
+      - name: Install – Systeminfos ausgeben
         run: |
           id
           cat /etc/passwd
@@ -52,7 +56,7 @@ jobs:
           cat /etc/debian_version
           apt-cache policy nodejs
 
-      - name: Install – System aktualisieren & Node/NPM prüfen
+      - name: Install – System aktualisieren und Node/NPM prüfen
         run: |
           apt-get update --yes
           apt-get upgrade --yes
@@ -64,53 +68,50 @@ jobs:
       - name: Install – Abhängigkeiten installieren
         run: |
           if [ ! -f package.json ]; then
-            echo "package.json ist *NICHT* vorhanden" >&2
+            echo "package.json ist NICHT vorhanden" >&2
             exit 1
           fi
           cat package.json
           npm ci --no-fund --no-audit
 
-      # ======== Compile ========
+      # Stage: Compile
       - name: Compile – TypeScript kompilieren
         run: |
           npx tsc --version
           ./node_modules/.bin/tsc
 
-      # ======== Test, Codeanalyse, Security, Dok. ========
-      - name: Test – TODO DB konfigurieren
+      # Stage: Test, Codeanalyse, Security, Dok.
+      - name: Test, Codeanalyse & Dokumentation
+        run: echo "Parallel Steps werden einzeln als Schritte ausgeführt"
+      - name: Test
         run: |
-          echo "TODO: Rechnername/IP-Adresse des DB-Servers für Tests konfigurieren"
+          echo "TODO: DB-Server konfigurieren für Tests"
           # npm run test:coverage
-
       - name: ESLint
         run: |
           npx eslint --version
           npm run eslint
-
       - name: Security Audit
         run: |
           echo "TODO: npm audit überspringen wegen bekannter Issues"
           # npm audit --omit=dev
-
       - name: AsciiDoctor
         run: |
           npx asciidoctor --version
           npm run asciidoctor
-
       - name: reveal.js
         run: |
           npx asciidoctor-revealjs --version
           npm run revealjs
-
       - name: TypeDoc
         run: |
           npx typedoc --version
           npm run typedoc
 
-      # ======== Reports veröffentlichen ========
+      # Post-Build: Reports veröffentlichen (HTML)
       - name: Publish HTML Reports
-        if: always()
         uses: peaceiris/actions-gh-pages@v5
+        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: |
@@ -123,7 +124,7 @@ jobs:
         run: |
           [ -f auto.zip ] && rm auto.zip || true
           zip -r auto.zip dist
-
+        # Upload des Artefakts
       - name: Upload auto.zip
         if: success()
         uses: actions/upload-artifact@v3
@@ -131,7 +132,7 @@ jobs:
           name: auto.zip
           path: auto.zip
 
-      # ======== Docker Image bauen ========
+      # Stage: Docker Image bauen
       - name: Docker Image bauen
         run: |
           echo "TODO: Docker-Image bauen"
@@ -139,7 +140,7 @@ jobs:
           # docker push juergenzimmermann/auto:${{ github.run_number }}
           # docker push juergenzimmermann/auto:latest
 
-      # ======== Deployment für Kubernetes ========
+      # Stage: Deployment für Kubernetes
       - name: Deployment für Kubernetes
         run: |
           echo "TODO: Deployment für Kubernetes mit Ansible/Terraform/etc."
