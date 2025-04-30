@@ -30,7 +30,7 @@ Jürgen Zimmermann <Juergen.Zimmermann@h-ka.de>
 * Nest und GraphQL
 * TypeORM
 * Security
-* Jest, Axios und Istanbul
+* Jest und Axios
 * OpenAPI durch Swagger
 
 == Werkzeuge
@@ -115,11 +115,10 @@ Jürgen Zimmermann <Juergen.Zimmermann@h-ka.de>
   - @Roles()
   - @Public()
 
-== Jest, Axios und Istanbul
+== Vitest und Axios
 
-* Jest als Test-Framework zzgl. ts-jest
+* Vitest als Test-Framework
 * Axios für HTTP-Requests bei Integrationstests
-* Testabdeckung durch Istanbul
 
 == OpenAPI durch Swagger
 
