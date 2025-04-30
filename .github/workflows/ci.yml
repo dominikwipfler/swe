@@ -1,4 +1,3 @@
-# .github/workflows/ci.yml
 name: CI Pipeline
 
 on:
@@ -21,17 +20,11 @@ jobs:
         --publish 5000:5000
         --user root:root
 
-    #env:
-      # Hier könntest Du Umgebungsvariablen setzen wie in Jenkins environment {}
-      # DB_HOST: unknown.amazonaws.com
-      # DB_USER: nobody
-      # DB_PASS: ChangeMe
-      # DB_POPULATE: 'true'
-
     defaults:
       run:
         shell: bash
 
+    # Timeout für den gesamten Job
     timeout-minutes: 60
 
     steps:
@@ -42,7 +35,8 @@ jobs:
       - name: Init – Workspace aufräumen
         run: |
           echo "GitHub Actions Job ${{ github.job }} (#${{ github.run_number }})"
-          rm -rf src __tests__ node_modules dist .extras/doc/api .extras/doc/folien/folien.html .extras/doc/projekthandauto/html
+          # Unterverzeichnisse src und test im WORKSPACE löschen: vom letzten Build
+          rm -rf src __tests__ node_modules dist .extras/doc/api .extras/doc/folien/folien.html .extras/doc/projekthandauto/html || true
 
       # Stage: Install
       - name: Install – Systeminfos ausgeben
@@ -83,26 +77,32 @@ jobs:
       # Stage: Test, Codeanalyse, Security, Dok.
       - name: Test, Codeanalyse & Dokumentation
         run: echo "Parallel Steps werden einzeln als Schritte ausgeführt"
+
       - name: Test
         run: |
           echo "TODO: DB-Server konfigurieren für Tests"
           # npm run test:coverage
+
       - name: ESLint
         run: |
           npx eslint --version
           npm run eslint
+
       - name: Security Audit
         run: |
           echo "TODO: npm audit überspringen wegen bekannter Issues"
           # npm audit --omit=dev
+
       - name: AsciiDoctor
         run: |
           npx asciidoctor --version
           npm run asciidoctor
+
       - name: reveal.js
         run: |
           npx asciidoctor-revealjs --version
           npm run revealjs
+
       - name: TypeDoc
         run: |
           npx typedoc --version
@@ -123,8 +123,8 @@ jobs:
         if: success()
         run: |
           [ -f auto.zip ] && rm auto.zip || true
-          zip -r auto.zip dist
-        # Upload des Artefakts
+          [ -d dist ] && zip -r auto.zip dist || echo "Dist-Verzeichnis nicht vorhanden"
+
       - name: Upload auto.zip
         if: success()
         uses: actions/upload-artifact@v3
@@ -143,4 +143,4 @@ jobs:
       # Stage: Deployment für Kubernetes
       - name: Deployment für Kubernetes
         run: |
-          echo "TODO: Deployment für Kubernetes mit Ansible/Terraform/etc."
+          echo "TODO: Deployment für Kubernetes mit z.B. Ansible, Terraform"
