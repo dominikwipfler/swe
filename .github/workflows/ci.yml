@@ -1,39 +1,174 @@
-name: CI Pipeline
+# .github/workflows/ci.yml
+name: CI-Pipeline
 
 on:
   push:
-    branches:
-      - main
-      - dev
-  schedule:
-    - cron: "0 3 * * *"
+    branches: [main]
+  pull_request:
+    branches: [main]
 
+## Job 1: Init
 jobs:
-  build:
+  init:
+    name: Init
     runs-on: ubuntu-latest
-
+    timeout-minutes: 60
+    container:
+      image: node:23.9.0-bookworm
+      options: --user root:root
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4
         with:
-          node-version: 23.9.0
-          cache: 'npm'
+          fetch-depth: 0
+          # branch main wie in Jenkins:
+          ref: main
 
-      - name: Install dependencies
+      - name: Init: Workspace säubern
         run: |
-          npm install
+          echo "Jenkins-Stage Init simuliert"
+          rm -rf src __tests__ node_modules dist
+          rm -rf .extras/doc/api
+          rm -rf .extras/doc/folien/folien.html
+          rm -rf .extras/doc/projekthandauto/html
 
-      - name: Run ESLint
-        run: npm run eslint
+  install:
+    name: Install
+    needs: init
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    container:
+      image: node:23.9.0-bookworm
+      options: --user root:root
+    steps:
+      - name: Systeminformationen anzeigen
+        run: |
+          echo "Jenkins-Stage Install: System check"
+          id
+          cat /etc/passwd
+          echo $PATH
+          pwd
+          uname -a
+          cat /etc/os-release
+          cat /etc/debian_version
+          apt-get update --yes
+          apt-get upgrade --yes
+          python3 --version
 
-      - name: Run Prettier
-        run: npm run prettier -- --check
+      - name: Node.js & NPM prüfen
+        run: |
+          node --version
+          npm install -g npm
+          npm --version
 
-      - name: Run tests
-        run: npm test
+      - name: Prüfe package.json
+        run: |
+          if [ ! -f "package.json" ]; then
+            echo "❌ package.json ist *NICHT* vorhanden"
+            exit 1
+          fi
+          cat package.json
 
-      - name: Build Project
-        run: npm run build
+      - name: Dependencies installieren
+        run: npm ci --no-fund --no-audit
+
+  compile:
+    name: Compile
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    container:
+      image: node:23.9.0-bookworm
+      options: --user root:root
+    steps:
+      - name: TypeScript kompilieren
+        run: |
+          npx tsc --version
+          ./node_modules/.bin/tsc
+
+  test-codeanalyse-security-dok:
+    name: Test, Codeanalyse, Security, Dok.
+    needs: compile
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    container:
+      image: node:23.9.0-bookworm
+      options: --user root:root
+    steps:
+      - name: Test
+        run: echo "TODO: DB-Server konfigurieren und npm run test:coverage ausführen"
+
+      - name: ESLint
+        run: |
+          npx eslint --version
+          npm run eslint
+
+      - name: Security Audit
+        run: echo "TODO: npm audit überspringen wg. ws-Abhängigkeit"
+
+      - name: AsciiDoctor
+        run: |
+          npx asciidoctor --version
+          npm run asciidoctor
+
+      - name: reveal.js Slides
+        run: |
+          npx asciidoctor-revealjs --version
+          npm run revealjs
+
+      - name: TypeDoc
+        run: |
+          npx typedoc --version
+          npm run typedoc
+
+      # Jenkins post { always { publishHTML ... } }
+      - name: Publish Projekthandauto (immer)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: projekthandauto
+          path: .extras/doc/projekthandauto/html
+
+      - name: Publish Folien (reveal.js) (immer)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: folien
+          path: .extras/doc/folien/folien.html
+
+      - name: Publish TypeDoc (immer)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: typedoc
+          path: .extras/doc/api
+
+      # Jenkins post { success { zip & archiveArtifacts } }
+      - name: ZIP erzeugen (bei Erfolg)
+        if: success()
+        run: |
+          if [ -f "auto.zip" ]; then rm auto.zip; fi
+          zip -r auto.zip dist
+
+      - name: ZIP hochladen (bei Erfolg)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auto.zip
+          path: auto.zip
+
+  docker-image-bauen:
+    name: Docker Image bauen
+    needs: test-codeanalyse-security-dok
+    runs-on: ubuntu-latest
+    steps:
+      - name: Platzhalter Docker Build
+        run: echo "TODO: docker.build & docker.push hier einfügen"
+
+  deployment-fuer-kubernetes:
+    name: Deployment für Kubernetes
+    needs: docker-image-bauen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Platzhalter Deployment
+        run: echo "TODO: Deployment mit Ansible/Terraform integrieren"
