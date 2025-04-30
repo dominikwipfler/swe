@@ -10,11 +10,9 @@ on:
 
 jobs:
   ci:
-    # Agent: Docker-Container wie im Jenkinsfile
     runs-on: ubuntu-latest
     container:
       image: node:23.9.0-bookworm
-      # Ports freigeben und als root laufen
       options: >-
         --publish 3000:3000
         --publish 5000:5000
@@ -24,21 +22,17 @@ jobs:
       run:
         shell: bash
 
-    # Timeout für den gesamten Job
     timeout-minutes: 60
 
     steps:
-      # Stage: Init
       - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Init – Workspace aufräumen
         run: |
           echo "GitHub Actions Job ${{ github.job }} (#${{ github.run_number }})"
-          # Unterverzeichnisse src und test im WORKSPACE löschen: vom letzten Build
           rm -rf src __tests__ node_modules dist .extras/doc/api .extras/doc/folien/folien.html .extras/doc/projekthandauto/html || true
 
-      # Stage: Install
       - name: Install – Systeminfos ausgeben
         run: |
           id
@@ -68,13 +62,11 @@ jobs:
           cat package.json
           npm ci --no-fund --no-audit
 
-      # Stage: Compile
       - name: Compile – TypeScript kompilieren
         run: |
           npx tsc --version
           ./node_modules/.bin/tsc
 
-      # Stage: Test, Codeanalyse, Security, Dok.
       - name: Test, Codeanalyse & Dokumentation
         run: echo "Parallel Steps werden einzeln als Schritte ausgeführt"
 
@@ -108,7 +100,6 @@ jobs:
           npx typedoc --version
           npm run typedoc
 
-      # Post-Build: Reports veröffentlichen (HTML)
       - name: Publish HTML Reports
         uses: peaceiris/actions-gh-pages@v3
         if: always()
@@ -127,12 +118,11 @@ jobs:
 
       - name: Upload auto.zip
         if: success()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@main
         with:
           name: auto.zip
           path: auto.zip
 
-      # Stage: Docker Image bauen
       - name: Docker Image bauen
         run: |
           echo "TODO: Docker-Image bauen"
@@ -140,7 +130,6 @@ jobs:
           # docker push juergenzimmermann/auto:${{ github.run_number }}
           # docker push juergenzimmermann/auto:latest
 
-      # Stage: Deployment für Kubernetes
       - name: Deployment für Kubernetes
         run: |
           echo "TODO: Deployment für Kubernetes mit z.B. Ansible, Terraform"
