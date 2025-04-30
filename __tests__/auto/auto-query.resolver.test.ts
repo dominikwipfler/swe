@@ -224,7 +224,7 @@ describe('GraphQL Queries', () => {
         buecher
             .map((auto) => auto.modell)
             .forEach((modell) =>
-                expect(modell?.modell.toLowerCase()).toEqual(
+                expect(modell?.modell?.toLowerCase()).toEqual(
                     expect.stringContaining(teilTitelVorhanden),
                 ),
             );
@@ -346,7 +346,7 @@ describe('GraphQL Queries', () => {
             const { ps, modell } = auto;
 
             expect(ps).toBeGreaterThanOrEqual(psMin);
-            expect(modell?.modell.toLowerCase()).toEqual(
+            expect(modell?.modell?.toLowerCase()).toEqual(
                 expect.stringContaining(teilTitelVorhanden),
             );
         });

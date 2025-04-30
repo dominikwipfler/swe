@@ -328,7 +328,7 @@ export class AutoWriteController {
             datum: autoDTO.datum,
             homepage: autoDTO.homepage,
             schlagwoerter: autoDTO.schlagwoerter,
-            titel: undefined,
+            modell: undefined,
             abbildungen: undefined,
             file: undefined,
             erzeugt: undefined,
