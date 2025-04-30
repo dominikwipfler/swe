@@ -110,7 +110,7 @@ jobs:
 
       # Post-Build: Reports veröffentlichen (HTML)
       - name: Publish HTML Reports
-        uses: peaceiris/actions-gh-pages@v5
+        uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
