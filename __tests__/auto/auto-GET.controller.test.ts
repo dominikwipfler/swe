@@ -97,7 +97,7 @@ describe('GET /rest', () => {
         data.content
             .map((auto) => auto.modell)
             .forEach((modell) =>
-                expect(modell?.modell.toLowerCase()).toEqual(
+                expect(modell?.modell?.toLowerCase()).toEqual(
                     expect.stringContaining(titelVorhanden),
                 ),
             );
@@ -158,9 +158,9 @@ describe('GET /rest', () => {
 
         // Jedes Auto hat einen Modell mit dem Teilstring 'a'
         data.content
-            .map((auto) => Decimal(auto.preis))
+            .map((auto) => (auto.preis !== undefined ? Decimal(auto.preis) : undefined))
             .forEach((preis) =>
-                expect(preis.lessThanOrEqualTo(Decimal(preisMax))).toBeTruthy(),
+                expect(preis?.lessThanOrEqualTo(Decimal(preisMax))).toBeTruthy(),
             );
     });
 

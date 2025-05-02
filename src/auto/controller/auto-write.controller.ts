@@ -52,6 +52,7 @@ import {
 } from '@nestjs/swagger';
 import Decimal from 'decimal.js'; // eslint-disable-line @typescript-eslint/naming-convention
 import { Express, Request, Response } from 'express';
+//import * as multer from 'multer';
 import { AuthGuard, Public, Roles } from 'nest-keycloak-connect';
 import { paths } from '../../config/paths.js';
 import { getLogger } from '../../logger/logger.js';
@@ -150,6 +151,7 @@ export class AutoWriteController {
         )
         id: number,
         @UploadedFile() file: Express.Multer.File,
+         
         @Req() req: Request,
         @Res() res: Response,
     ): Promise<Response> {
@@ -328,7 +330,7 @@ export class AutoWriteController {
             datum: autoDTO.datum,
             homepage: autoDTO.homepage,
             schlagwoerter: autoDTO.schlagwoerter,
-            titel: undefined,
+            modell: undefined,
             abbildungen: undefined,
             file: undefined,
             erzeugt: undefined,

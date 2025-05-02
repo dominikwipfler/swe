@@ -128,9 +128,7 @@ describe('GET /rest', () => {
         // Jedes Auto hat einen Modell mit dem Teilstring 'a'
         data.content
             .map((auto) => auto.ps)
-            .forEach((ps) =>
-                expect(ps).toBeGreaterThanOrEqual(psMin),
-            );
+            .forEach((ps) => expect(ps).toBeGreaterThanOrEqual(psMin));
     });
 
     test.concurrent('Buecher mit max. Preis suchen', async () => {
