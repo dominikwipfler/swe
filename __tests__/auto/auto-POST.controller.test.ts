@@ -39,7 +39,7 @@ const neuesAuto: Omit<AutoDTO, 'preis' | 'rabatt'> & {
 } = {
     fahrgestellnummer: '978-0-007-00644-1',
     ps: 1,
-    art: 'HARDCOVER',
+    art: 'SUV',
     preis: 99.99,
     rabatt: 0.0123,
     lieferbar: true,
@@ -74,7 +74,7 @@ const neuesAutoInvalid: Record<string, unknown> = {
 const neuesAutoFahrgestellnummerExistiert: AutoDTO = {
     fahrgestellnummer: '978-3-897-22583-1',
     ps: 1,
-    art: 'EPUB',
+    art: 'SUV',
     preis: new Decimal(99.99),
     rabatt: new Decimal(0.09),
     lieferbar: true,
