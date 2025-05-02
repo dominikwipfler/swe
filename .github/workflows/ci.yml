@@ -31,7 +31,7 @@ jobs:
       - name: Init – Workspace aufräumen
         run: |
           echo "GitHub Actions Job ${{ github.job }} (#${{ github.run_number }})"
-          rm -rf src __tests__ node_modules dist .extras/doc/api .extras/doc/folien/folien.html .extras/doc/projekthandauto/html || true
+          # rm -rf src __tests__ node_modules dist .extras/doc/api .extras/doc/folien/folien.html .extras/doc/projekthandauto/html || true
 
       - name: Install – Systeminfos ausgeben
         run: |
