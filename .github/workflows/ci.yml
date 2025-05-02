@@ -65,6 +65,7 @@ jobs:
       - name: Compile – TypeScript kompilieren
         run: |
           npx tsc --version
+          ./node_modules/.bin/tsc
 
       - name: Test, Codeanalyse & Dokumentation
         run: echo "Parallel Steps werden einzeln als Schritte ausgeführt"
