@@ -53,6 +53,8 @@
     "preserveWatchOutput": true,
     "strict": true, // alle "strict"-Optionen aktivieren
     "erasableSyntaxOnly": true, // NICHT: enum, parameter properties in constructor(), namespace, import aliases
+    "types": ["Multer"]
+
 
     // "noImplicitAny": true, // Fehler bei implizitem Typ "any", default bei strict
     // "noImplicitThis": true, // Fehler bei this mit implizitem "any", default bei strict

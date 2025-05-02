@@ -35,57 +35,37 @@ CREATE SCHEMA IF NOT EXISTS AUTHORIZATION auto;
 
 ALTER ROLE auto SET search_path = 'auto';
 
--- https://www.postgresql.org/docs/current/sql-createtype.html
--- https://www.postgresql.org/docs/current/datatype-enum.html
-CREATE TYPE autoart AS ENUM ('EPUB', 'HARDCOVER', 'PAPERBACK');
+-- Enum korrekt definieren
+CREATE TYPE autoart AS ENUM ('LIMOUSINE', 'CABRIO', 'SUV', 'KLEINWAGEN', 'SPORTWAGEN');
 
--- https://www.postgresql.org/docs/current/sql-createtable.html
--- https://www.postgresql.org/docs/current/datatype.html
 CREATE TABLE IF NOT EXISTS auto (
-                  -- https://www.postgresql.org/docs/current/datatype-numeric.html#DATATYPE-INT
-                  -- https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-PRIMARY-KEYS
-                  -- impliziter Index fuer Primary Key
-                  -- "GENERATED ALWAYS AS IDENTITY" gemaess SQL-Standard
-                  -- entspricht SERIAL mit generierter Sequenz auto_id_seq
-    id            integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE autospace,
-                  -- https://www.postgresql.org/docs/current/ddl-constraints.html#id-1.5.4.6.6
-    version       integer NOT NULL DEFAULT 0,
-                  -- impliziter Index als B-Baum durch UNIQUE
-                  -- https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-UNIQUE-CONSTRAINTS
-    fahrgestellnummer          text NOT NULL UNIQUE USING INDEX TABLESPACE autospace,
-                  -- https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-CHECK-CONSTRAINTS
-                  -- https://www.postgresql.org/docs/current/functions-matching.html#FUNCTIONS-POSIX-REGEXP
-    ps        integer NOT NULL CHECK (ps >= 0 AND ps <= 5),
-    art           autoart,
-                  -- https://www.postgresql.org/docs/current/datatype-numeric.html#DATATYPE-NUMERIC-DECIMAL
-                  -- 10 Stellen, davon 2 Nachkommastellen
-    preis         decimal(8,2) NOT NULL,
-    rabatt        decimal(4,3) NOT NULL,
-                  -- https://www.postgresql.org/docs/current/datatype-boolean.html
-    lieferbar     boolean NOT NULL DEFAULT FALSE,
-                  -- https://www.postgresql.org/docs/current/datatype-datetime.html
-    datum         date,
-    homepage      text,
-    -- schlagwoerter json,
-    schlagwoerter text,
-                  -- https://www.postgresql.org/docs/current/datatype-datetime.html
-    erzeugt       timestamp NOT NULL DEFAULT NOW(),
-    aktualisiert  timestamp NOT NULL DEFAULT NOW()
+    id                  integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE autospace,
+    version             integer NOT NULL DEFAULT 0,
+    fahrgestellnummer   text NOT NULL UNIQUE USING INDEX TABLESPACE autospace,
+    ps                 integer NOT NULL CHECK (ps > 0),
+    art                autoart NOT NULL,
+    preis              decimal(8,2) NOT NULL,
+    rabatt             decimal(4,3) NOT NULL CHECK (rabbat >= 0 AND rabatt <= 1),
+    lieferbar          boolean NOT NULL DEFAULT FALSE,
+    datum             date,
+    homepage          text,
+    schlagwoerter     text, -- bei Bedarf in text[] oder json ändern
+    erzeugt           timestamp NOT NULL DEFAULT NOW(),
+    aktualisiert      timestamp NOT NULL DEFAULT NOW()
 ) TABLESPACE autospace;
 
 CREATE TABLE IF NOT EXISTS modell (
     id          integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE autospace,
-    modell       text NOT NULL,
+    modell      text NOT NULL,
     untertitel  text,
-    auto_id     integer NOT NULL UNIQUE USING INDEX TABLESPACE autospace REFERENCES auto
+    auto_id     integer NOT NULL UNIQUE USING INDEX TABLESPACE autospace REFERENCES auto(id) ON DELETE CASCADE
 ) TABLESPACE autospace;
-
 
 CREATE TABLE IF NOT EXISTS abbildung (
     id              integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE autospace,
     beschriftung    text NOT NULL,
     content_type    text NOT NULL,
-    auto_id         integer NOT NULL REFERENCES auto
+    auto_id         integer NOT NULL REFERENCES auto(id) ON DELETE CASCADE
 ) TABLESPACE autospace;
 CREATE INDEX IF NOT EXISTS abbildung_auto_id_idx ON abbildung(auto_id) TABLESPACE autospace;
 
@@ -94,6 +74,6 @@ CREATE TABLE IF NOT EXISTS auto_file (
     data            bytea NOT NULL,
     filename        text NOT NULL,
     mimetype        text,
-    auto_id         integer NOT NULL REFERENCES auto
+    auto_id         integer NOT NULL REFERENCES auto(id) ON DELETE CASCADE
 ) TABLESPACE autospace;
 CREATE INDEX IF NOT EXISTS auto_file_auto_id_idx ON auto_file(auto_id) TABLESPACE autospace;
