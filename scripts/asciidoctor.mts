@@ -35,12 +35,12 @@ kroki.register(adoc.Extensions);
 const options = {
     safe: 'safe',
     attributes: { linkcss: true },
-    base_dir: '.extras/doc/projekthandauto',
+    base_dir: '.extras/doc/projekthandbuch',
     to_dir: 'html',
     mkdirs: true,
 };
 adoc.convertFile(
-    join('.extras', 'doc', 'projekthandauto', 'projekthandauto.adoc'),
+    join('.extras', 'doc', 'projekthandbuch', 'projekthandbuch.adoc'),
     options,
 );
 
@@ -51,15 +51,15 @@ console.log(
         '..',
         '.extras',
         'doc',
-        'projekthandauto',
+        'projekthandbuch',
         'html',
-        'projekthandauto.html',
+        'projekthandbuch.html',
     )}`,
 );
 
 // https://asciidoctor.github.io/asciidoctor.js/master
 // const htmlString = asciidoctor.convert(
-//     fs.readFileSync(join('extras', 'doc', 'projekthandauto.adoc')),
+//     fs.readFileSync(join('extras', 'doc', 'projekthandbuch.adoc')),
 //     { safe: 'safe', attributes: { linkcss: true }, base_dir: 'doc' },
 // );
 // const htmlFile = join('extras', 'doc', 'projekthandauto.html');
