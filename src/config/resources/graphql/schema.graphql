@@ -22,7 +22,7 @@ schema {
 
 "Funktionen, um Bücherdaten zu lesen"
 type Query {
-  buecher(suchkriterien: SuchkriterienInput): [Auto!]
+  autos(suchkriterien: SuchkriterienInput): [Auto!]
 
   auto(id: ID!): Auto
 }
@@ -73,9 +73,11 @@ type Auto {
 
 "Enum-Typ für die Art eines Autos"
 enum Art {
-  EPUB
-  HARDCOVER
-  PAPERBACK
+  Limousine
+  Cabrio
+  SUV
+  Kleinwagen
+  Sportwagen
 }
 
 "Suchkriterien für Autos"
