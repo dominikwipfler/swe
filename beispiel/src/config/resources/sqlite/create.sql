@@ -14,7 +14,7 @@
 -- along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 -- https://docs.python.org/dev/library/sqlite3.html#sqlite3-cli
--- sqlite3 auto.sqlite
+-- sqlite3 buch.sqlite
 
 -- https://sqlite.org/lang_createtable.html
 -- https://sqlite.org/stricttables.html ab 3.37.0
@@ -24,11 +24,11 @@
 -- https://sqlite.org/lang_createindex.html
 -- https://stackoverflow.com/questions/37619526/how-can-i-change-the-default-sqlite-timezone
 
-CREATE TABLE IF NOT EXISTS auto (
+CREATE TABLE IF NOT EXISTS buch (
     id             INTEGER PRIMARY KEY AUTOINCREMENT,
     version        INTEGER NOT NULL DEFAULT 0,
-    fahrgestellnummer           TEXT NOT NULL UNIQUE,
-    ps         INTEGER NOT NULL CHECK (ps >= 0),
+    isbn           TEXT NOT NULL UNIQUE,
+    rating         INTEGER NOT NULL CHECK (rating >= 0 AND rating <= 5),
     art            TEXT,
     preis          REAL,
     rabatt         REAL,
@@ -39,13 +39,13 @@ CREATE TABLE IF NOT EXISTS auto (
     erzeugt        TEXT NOT NULL,
     aktualisiert   TEXT NOT NULL
 );
-CREATE INDEX IF NOT EXISTS auto_fahrgestellnummer_idx ON auto(fahrgestellnummer);
+CREATE INDEX IF NOT EXISTS buch_isbn_idx ON buch(isbn);
 
-CREATE TABLE IF NOT EXISTS modell (
+CREATE TABLE IF NOT EXISTS titel (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
-    modell       TEXT NOT NULL,
+    titel       TEXT NOT NULL,
     untertitel  TEXT,
-    auto_id     INTEGER NOT NULL UNIQUE REFERENCES auto
+    buch_id     INTEGER NOT NULL UNIQUE REFERENCES buch
 );
 
 
@@ -53,6 +53,6 @@ CREATE TABLE IF NOT EXISTS abbildung (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     beschriftung    TEXT NOT NULL,
     content_type    TEXT NOT NULL,
-    auto_id         INTEGER NOT NULL REFERENCES auto
+    buch_id         INTEGER NOT NULL REFERENCES buch
 );
-CREATE INDEX IF NOT EXISTS abbildung_auto_id_idx ON abbildung(auto_id);
+CREATE INDEX IF NOT EXISTS abbildung_buch_id_idx ON abbildung(buch_id);
