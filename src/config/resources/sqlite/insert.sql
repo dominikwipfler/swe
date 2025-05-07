@@ -20,12 +20,13 @@
 -- "Maschinelle Lernverfahren zur Behandlung von Bonitätsrisiken im Mobilfunkgeschäft"
 -- "Software Pioneers"
 INSERT INTO auto(id, version, fahrgestellnummer, ps, art, preis, rabatt, lieferbar, datum, homepage, schlagwoerter, erzeugt, aktualisiert) VALUES
-    (1, 0, '978-3-897-22583-1', 4, 'LIMOUSINE', 11.1, 0.011, 1, '2022-02-01', 'https://acme.at', 'JAVASCRIPT', '2022-02-01 00:00:00', '2022-02-01 00:00:00'),
-    (20, 0, '978-3-827-31552-6', 2, 'CABRIO', 22.2, 0.022, 1, '2022-02-02', 'https://acme.biz', 'TYPESCRIPT', '2022-02-02 00:00:00', '2022-02-02 00:00:00'),
-    (30, 0, '978-0-201-63361-0', 3, 'SUV', 33.3, 0.033, 1, '2022-02-03', 'https://acme.com', 'JAVASCRIPT,TYPESCRIPT', '2022-02-03 00:00:00', '2022-02-03 00:00:00'),
-    (40, 0, '978-0-007-09732-6', 4, 'KLEINWAGEN', 44.4, 0.044, 1, '2022-02-04', 'https://acme.de', NULL, '2022-02-04 00:00:00', '2022-02-04 00:00:00'),
-    (50, 0, '978-3-824-40481-0', 2, 'SPORTWAGEN', 55.5, 0.055, 1, '2022-02-05', 'https://acme.es', 'JAVA', '2022-02-05 00:00:00', '2022-02-05 00:00:00'),
-    (60, 0, '978-3-540-43081-0', 1, 'LIMOUSINE', 66.6, 0.066, 1, '2022-02-06', 'https://acme.fi', 'PYTHON', '2022-02-06 00:00:00', '2022-02-06 00:00:00');
+    (1, 0, '978-3-897-22583-1', 4, 'Limousine', 11.1, 0.011, TRUE, '2022-02-01', 'https://acme.at', 'JAVASCRIPT', '2022-02-01 00:00:00', '2022-02-01 00:00:00'),
+    (20, 0, '978-3-827-31552-6', 2, 'Cabrio', 22.2, 0.022, TRUE, '2022-02-02', 'https://acme.biz', 'TYPESCRIPT', '2022-02-02 00:00:00', '2022-02-02 00:00:00'),
+    (30, 0, '978-0-201-63361-0', 3, 'SUV', 33.3, 0.033, TRUE, '2022-02-03', 'https://acme.com', 'JAVASCRIPT,TYPESCRIPT', '2022-02-03 00:00:00', '2022-02-03 00:00:00'),
+    (40, 0, '978-0-007-09732-6', 4, 'Kleinwagen', 44.4, 0.044, TRUE, '2022-02-04', 'https://acme.de', NULL, '2022-02-04 00:00:00', '2022-02-04 00:00:00'),
+    (50, 0, '978-3-824-40481-0', 2, 'Sportwagen', 55.5, 0.055, TRUE, '2022-02-05', 'https://acme.es', 'JAVA', '2022-02-05 00:00:00', '2022-02-05 00:00:00'),
+    (60, 0, '978-3-540-43081-0', 1, 'Limousine', 66.6, 0.066, TRUE, '2022-02-06', 'https://acme.fi', 'PYTHON', '2022-02-06 00:00:00', '2022-02-06 00:00:00');
+
 
 INSERT INTO modell(id, modell, untertitel, auto_id) VALUES
     (1, 'Alpha', 'alpha', 1),
