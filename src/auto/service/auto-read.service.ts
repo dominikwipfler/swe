@@ -242,8 +242,8 @@ export class AutoReadService {
         return (
             art === undefined ||
             art === 'SUV' ||
-            art === 'LIMOUSINE' ||
-            art === 'CABRIO'
+            art === 'Limousine' ||
+            art === 'Cabrio'
         );
     }
 }
