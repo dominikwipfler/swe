@@ -86,7 +86,7 @@ export class AutoWriteService {
      * Ein neues Auto soll angelegt werden.
      * @param auto Das neu abzulegende Auto
      * @returns Die ID des neu angelegten Autos
-     * @throws FahrgestellnummerExists falls die ISBN-Nummer bereits existiert
+     * @throws FahrgestellnummerExists falls die FAHRGESTELLNUMMER-Nummer bereits existiert
      */
     async create(auto: Auto) {
         this.#logger.debug('create: auto=%o', auto);

@@ -68,7 +68,7 @@ const geaendertesAutoIdNichtVorhanden: Omit<
 const idNichtVorhanden = '999999';
 
 const geaendertesAutoInvalid: Record<string, unknown> = {
-    fahrgestellnummer: 'falsche-ISBN',
+    fahrgestellnummer: 'falsche-FAHRGESTELLNUMMER',
     ps: -1,
     art: 'UNSICHTBAR',
     preis: -1,

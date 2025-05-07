@@ -270,7 +270,7 @@ describe('GraphQL Queries', () => {
         expect(extensions!.code).toBe('BAD_USER_INPUT');
     });
 
-    test('Auto zu vorhandener ISBN-Nummer', async () => {
+    test('Auto zu vorhandener FAHRGESTELLNUMMER-Nummer', async () => {
         // given
         const body: GraphQLRequest = {
             query: `

@@ -176,7 +176,7 @@ export class AutoMutationResolver {
     // #errorMsgCreateAuto(err: CreateError) {
     //     switch (err.type) {
     //         case 'FahrgestellnummerExists': {
-    //             return `Die ISBN ${err.fahrgestellnummer} existiert bereits`;
+    //             return `Die FAHRGESTELLNUMMER ${err.fahrgestellnummer} existiert bereits`;
     //         }
     //         default: {
     //             return 'Unbekannter Fehler';
