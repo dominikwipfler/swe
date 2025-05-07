@@ -270,7 +270,7 @@ describe('GraphQL Queries', () => {
         expect(extensions!.code).toBe('BAD_USER_INPUT');
     });
 
-    test('Auto zu vorhandener ISBN-Nummer', async () => {
+    test('Auto zu vorhandener FAHRGESTELLNUMMER-Nummer', async () => {
         // given
         const body: GraphQLRequest = {
             query: `
@@ -391,9 +391,9 @@ describe('GraphQL Queries', () => {
         expect(extensions!.code).toBe('BAD_USER_INPUT');
     });
 
-    test('Buecher zur Art "EPUB"', async () => {
+    test('Buecher zur Art "SUV"', async () => {
         // given
-        const autoArt: AutoArt = 'EPUB';
+        const autoArt: AutoArt = 'SUV';
         const body: GraphQLRequest = {
             query: `
                 {

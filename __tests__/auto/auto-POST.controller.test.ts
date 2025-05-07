@@ -39,7 +39,7 @@ const neuesAuto: Omit<AutoDTO, 'preis' | 'rabatt'> & {
 } = {
     fahrgestellnummer: '978-0-007-00644-1',
     ps: 1,
-    art: 'HARDCOVER',
+    art: 'SUV',
     preis: 99.99,
     rabatt: 0.0123,
     lieferbar: true,
@@ -58,7 +58,7 @@ const neuesAuto: Omit<AutoDTO, 'preis' | 'rabatt'> & {
     ],
 };
 const neuesAutoInvalid: Record<string, unknown> = {
-    fahrgestellnummer: 'falsche-ISBN',
+    fahrgestellnummer: 'falsche-FAHRGESTELLNUMMER',
     ps: -1,
     art: 'UNSICHTBAR',
     preis: -1,
@@ -74,7 +74,7 @@ const neuesAutoInvalid: Record<string, unknown> = {
 const neuesAutoFahrgestellnummerExistiert: AutoDTO = {
     fahrgestellnummer: '978-3-897-22583-1',
     ps: 1,
-    art: 'EPUB',
+    art: 'SUV',
     preis: new Decimal(99.99),
     rabatt: new Decimal(0.09),
     lieferbar: true,
@@ -182,7 +182,7 @@ describe('POST /rest', () => {
         expect(messages).toEqual(expect.arrayContaining(expectedMsg));
     });
 
-    test('Neues Auto, aber die ISBN existiert bereits', async () => {
+    test('Neues Auto, aber die FAHRGESTELLNUMMER existiert bereits', async () => {
         // given
         const token = await tokenRest(client);
         headers.Authorization = `Bearer ${token}`;
@@ -199,7 +199,7 @@ describe('POST /rest', () => {
 
         const { message, statusCode } = data;
 
-        expect(message).toEqual(expect.stringContaining('ISBN'));
+        expect(message).toEqual(expect.stringContaining('FAHRGESTELLNUMMER'));
         expect(statusCode).toBe(HttpStatus.UNPROCESSABLE_ENTITY);
     });
 

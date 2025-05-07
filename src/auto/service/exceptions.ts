@@ -24,14 +24,14 @@ import { HttpException, HttpStatus } from '@nestjs/common';
  */
 
 /**
- * Exception-Klasse für eine bereits existierende ISBN-Nummer.
+ * Exception-Klasse für eine bereits existierende FAHRGESTELLNUMMER-Nummer.
  */
 export class FahrgestellnummerExistsException extends HttpException {
     readonly fahrgestellnummer: string | undefined;
 
     constructor(fahrgestellnummer: string | undefined) {
         super(
-            `Die ISBN-Nummer ${fahrgestellnummer} existiert bereits.`,
+            `Die FAHRGESTELLNUMMER-Nummer ${fahrgestellnummer} existiert bereits.`,
             HttpStatus.UNPROCESSABLE_ENTITY,
         );
         this.fahrgestellnummer = fahrgestellnummer;

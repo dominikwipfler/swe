@@ -258,7 +258,7 @@ describe('GraphQL Queries', () => {
         expect(extensions!.code).toBe('BAD_USER_INPUT');
     });
 
-    test.concurrent('Auto zu vorhandener ISBN-Nummer', async () => {
+    test.concurrent('Auto zu vorhandener FAHRGESTELLNUMMER-Nummer', async () => {
         // given
         const body: GraphQLRequest = {
             query: `

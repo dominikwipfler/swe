@@ -38,7 +38,7 @@ const geaendertesAuto: Omit<AutoDtoOhneRef, 'preis' | 'rabatt'> & {
 } = {
     fahrgestellnummer: '978-0-201-63361-0',
     ps: 5,
-    art: 'HARDCOVER',
+    art: 'SUV',
     preis: 3333,
     rabatt: 0.033,
     lieferbar: true,
@@ -57,7 +57,7 @@ const geaendertesAutoIdNichtVorhanden: Omit<
 } = {
     fahrgestellnummer: '978-0-007-09732-6',
     ps: 4,
-    art: 'EPUB',
+    art: 'SUV',
     preis: 44.4,
     rabatt: 0.044,
     lieferbar: true,
@@ -68,7 +68,7 @@ const geaendertesAutoIdNichtVorhanden: Omit<
 const idNichtVorhanden = '999999';
 
 const geaendertesAutoInvalid: Record<string, unknown> = {
-    fahrgestellnummer: 'falsche-ISBN',
+    fahrgestellnummer: 'falsche-FAHRGESTELLNUMMER',
     ps: -1,
     art: 'UNSICHTBAR',
     preis: -1,
@@ -82,7 +82,7 @@ const geaendertesAutoInvalid: Record<string, unknown> = {
 const veraltesAuto: AutoDtoOhneRef = {
     fahrgestellnummer: '978-0-007-09732-6',
     ps: 1,
-    art: 'EPUB',
+    art: 'SUV',
     preis: new Decimal(44.4),
     rabatt: new Decimal(0.04),
     lieferbar: true,

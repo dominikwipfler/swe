@@ -103,7 +103,7 @@ describe('GraphQL Mutations', () => {
                 mutation {
                     create(
                         input: {
-                            fahrgestellnummer: "falsche-ISBN",
+                            fahrgestellnummer: "falsche-FAHRGESTELLNUMMER",
                             ps: -1,
                             art: EPUB,
                             preis: -1,
@@ -211,7 +211,7 @@ describe('GraphQL Mutations', () => {
                         input: {
                             id: "${id}",
                             version: 0,
-                            fahrgestellnummer: "falsche-ISBN",
+                            fahrgestellnummer: "falsche-FAHRGESTELLNUMMER",
                             ps: -1,
                             art: EPUB,
                             preis: -1,

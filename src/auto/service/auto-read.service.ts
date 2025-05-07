@@ -241,9 +241,9 @@ export class AutoReadService {
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         return (
             art === undefined ||
-            art === 'EPUB' ||
-            art === 'HARDCOVER' ||
-            art === 'PAPERBACK'
+            art === 'SUV' ||
+            art === 'LIMOUSINE' ||
+            art === 'CABRIO'
         );
     }
 }
