@@ -176,36 +176,36 @@ export class AutoReadService {
         // Das Resultat ist eine leere Liste, falls nichts gefunden
         // Lesen: Keine Transaktion erforderlich
         const queryBuilder = this.#queryBuilder.build(suchkriterien, pageable);
-        const buecher = await queryBuilder.getMany();
-        if (buecher.length === 0) {
-            this.#logger.debug('find: Keine Buecher gefunden');
+        const autos = await queryBuilder.getMany();
+        if (autos.length === 0) {
+            this.#logger.debug('find: Keine Autos gefunden');
             throw new NotFoundException(
-                `Keine Buecher gefunden: ${JSON.stringify(suchkriterien)}, Seite ${pageable.number}}`,
+                `Keine Autos gefunden: ${JSON.stringify(suchkriterien)}, Seite ${pageable.number}}`,
             );
         }
         const totalElements = await queryBuilder.getCount();
-        return this.#createSlice(buecher, totalElements);
+        return this.#createSlice(autos, totalElements);
     }
 
     async #findAll(pageable: Pageable) {
         const queryBuilder = this.#queryBuilder.build({}, pageable);
-        const buecher = await queryBuilder.getMany();
-        if (buecher.length === 0) {
+        const autos = await queryBuilder.getMany();
+        if (autos.length === 0) {
             throw new NotFoundException(`Ungueltige Seite "${pageable.number}"`);
         }
         const totalElements = await queryBuilder.getCount();
-        return this.#createSlice(buecher, totalElements);
+        return this.#createSlice(autos, totalElements);
 
     }
 
-    #createSlice(buecher: Auto[], totalElements: number) {
-        buecher.forEach((auto) => {
+    #createSlice(autos: Auto[], totalElements: number) {
+        autos.forEach((auto) => {
             if (auto.schlagwoerter === null) {
                 auto.schlagwoerter = [];
             }
         });
         const autoSlice: Slice<Auto> = {
-            content: buecher,
+            content: autos,
             totalElements,
         };
         this.#logger.debug('createSlice: autoSlice=%o', autoSlice);
@@ -242,8 +242,8 @@ export class AutoReadService {
         return (
             art === undefined ||
             art === 'SUV' ||
-            art === 'LIMOUSINE' ||
-            art === 'CABRIO'
+            art === 'Limousine' ||
+            art === 'Cabrio'
         );
     }
 }

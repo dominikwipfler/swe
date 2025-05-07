@@ -116,9 +116,9 @@ export class AutoDtoOhneRef {
     @ApiProperty({ example: 5, type: Number })
     readonly ps!: number;
 
-    @Matches(/^(EPUB|HARDCOVER|PAPERBACK)$/u)
+    @Matches(/^(Sportwagen|SUV|Kleinwagen)$/u)
     @IsOptional()
-    @ApiProperty({ example: 'EPUB', type: String })
+    @ApiProperty({ example: 'Sportwagen', type: String })
     readonly art: AutoArt | undefined;
 
     // https://github.com/typestack/class-transformer?tab=readme-ov-file#basic-usage

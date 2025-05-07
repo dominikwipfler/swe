@@ -58,7 +58,7 @@ import { Modell } from './modell.entity.js';
 /**
  * Alias-Typ für gültige Strings bei der Art eines Autos.
  */
-export type AutoArt = 'LIMOUSINE' | 'CABRIO' | 'SUV' | 'KLEINWAGEN'| 'SPORTWAGEN';
+export type AutoArt = 'Limousine' | 'Cabrio' | 'SUV' | 'Kleinwagen'| 'Sportwagen';
 
 /**
  * Entity-Klasse zu einer relationalen Tabelle.
@@ -87,7 +87,7 @@ export class Auto {
     readonly ps: number | undefined;
 
     @Column('varchar')
-    @ApiProperty({ example: 'LIMOUSINE', type: String })
+    @ApiProperty({ example: 'Limousine', type: String })
     readonly art: AutoArt | undefined;
 
     // TypeORM liest Gleitkommazahlen als String: Rundungsfehler vermeiden

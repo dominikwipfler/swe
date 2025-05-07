@@ -36,7 +36,7 @@ CREATE SCHEMA IF NOT EXISTS AUTHORIZATION auto;
 ALTER ROLE auto SET search_path = 'auto';
 
 -- Enum korrekt definieren
-CREATE TYPE autoart AS ENUM ('LIMOUSINE', 'CABRIO', 'SUV', 'KLEINWAGEN', 'SPORTWAGEN');
+CREATE TYPE autoart AS ENUM ('Limousine', 'Cabrio', 'SUV', 'Kleinwagen', 'Sportwagen');
 
 CREATE TABLE IF NOT EXISTS auto (
     id                  integer GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY USING INDEX TABLESPACE autospace,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS auto (
     ps                 integer NOT NULL CHECK (ps > 0),
     art                autoart NOT NULL,
     preis              decimal(8,2) NOT NULL,
-    rabatt             decimal(4,3) NOT NULL CHECK (rabbat >= 0 AND rabatt <= 1),
+    rabatt             decimal(4,3) NOT NULL CHECK (rabatt >= 0 AND rabatt <= 1),
     lieferbar          boolean NOT NULL DEFAULT FALSE,
     datum             date,
     homepage          text,

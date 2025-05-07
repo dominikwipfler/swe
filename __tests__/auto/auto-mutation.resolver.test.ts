@@ -67,7 +67,7 @@ describe('GraphQL Mutations', () => {
                         input: {
                             fahrgestellnummer: "978-1-491-95035-7",
                             ps: 1,
-                            art: EPUB,
+                            art: Sportwagen,
                             preis: 99.99,
                             rabatt: 0.0123,
                             lieferbar: true,
@@ -117,9 +117,9 @@ describe('GraphQL Mutations', () => {
                 mutation {
                     create(
                         input: {
-                            fahrgestellnummer: "falsche-ISBN",
+                            fahrgestellnummer: "falsche-FAHRGESTELLNUMMER",
                             ps: -1,
-                            art: EPUB,
+                            art: Sportwagen,
                             preis: -1,
                             rabatt: 2,
                             lieferbar: false,
@@ -184,7 +184,7 @@ describe('GraphQL Mutations', () => {
                             version: 0,
                             fahrgestellnummer: "978-0-007-09732-6",
                             ps: 5,
-                            art: HARDCOVER,
+                            art: SUV,
                             preis: 444.44,
                             rabatt: 0.099,
                             lieferbar: false,
@@ -227,9 +227,9 @@ describe('GraphQL Mutations', () => {
                         input: {
                             id: "${id}",
                             version: 0,
-                            fahrgestellnummer: "falsche-ISBN",
+                            fahrgestellnummer: "falsche-FAHRGESTELLNUMMER",
                             ps: -1,
-                            art: EPUB,
+                            art: Sportwagen,
                             preis: -1,
                             rabatt: 2,
                             lieferbar: false,
@@ -289,7 +289,7 @@ describe('GraphQL Mutations', () => {
                             version: 0,
                             fahrgestellnummer: "978-0-007-09732-6",
                             ps: 5,
-                            art: EPUB,
+                            art: Sportwagen,
                             preis: 99.99,
                             rabatt: 0.099,
                             lieferbar: false,

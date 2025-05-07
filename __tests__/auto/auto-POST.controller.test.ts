@@ -58,7 +58,7 @@ const neuesAuto: Omit<AutoDTO, 'preis' | 'rabatt'> & {
     ],
 };
 const neuesAutoInvalid: Record<string, unknown> = {
-    fahrgestellnummer: 'falsche-ISBN',
+    fahrgestellnummer: 'falsche-FAHRGESTELLNUMMER',
     ps: -1,
     art: 'UNSICHTBAR',
     preis: -1,
@@ -182,7 +182,7 @@ describe('POST /rest', () => {
         expect(messages).toEqual(expect.arrayContaining(expectedMsg));
     });
 
-    test('Neues Auto, aber die ISBN existiert bereits', async () => {
+    test('Neues Auto, aber die FAHRGESTELLNUMMER existiert bereits', async () => {
         // given
         const token = await tokenRest(client);
         headers.Authorization = `Bearer ${token}`;
@@ -199,7 +199,7 @@ describe('POST /rest', () => {
 
         const { message, statusCode } = data;
 
-        expect(message).toEqual(expect.stringContaining('ISBN'));
+        expect(message).toEqual(expect.stringContaining('FAHRGESTELLNUMMER'));
         expect(statusCode).toBe(HttpStatus.UNPROCESSABLE_ENTITY);
     });
 

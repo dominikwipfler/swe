@@ -62,7 +62,7 @@ export class AutoQueryResolver {
         return auto;
     }
 
-    @Query('buecher')
+    @Query('autos')
     @Public()
     async find(@Args() input: SuchkriterienInput | undefined) {
         this.#logger.debug('find: input=%o', input);

@@ -50,7 +50,7 @@ describe('GET /rest', () => {
         });
     });
 
-    test.concurrent('Alle Buecher', async () => {
+    test.concurrent('Alle Autos', async () => {
         // given
 
         // when
@@ -69,7 +69,7 @@ describe('GET /rest', () => {
             });
     });
 
-    test.concurrent('Buecher mit einem Teil-Modell suchen', async () => {
+    test.concurrent('Autos mit einem Teil-Modell suchen', async () => {
         // given
         const params = { modell: titelVorhanden };
 
@@ -93,7 +93,7 @@ describe('GET /rest', () => {
     });
 
     test.concurrent(
-        'Buecher zu einem nicht vorhandenen Teil-Modell suchen',
+        'Autos zu einem nicht vorhandenen Teil-Modell suchen',
         async () => {
             // given
             const params = { modell: titelNichtVorhanden };
@@ -112,7 +112,7 @@ describe('GET /rest', () => {
         },
     );
 
-    test.concurrent('Buecher mit Mindest-"ps" suchen', async () => {
+    test.concurrent('Autos mit Mindest-"ps" suchen', async () => {
         // given
         const params = { ps: psMin };
 
@@ -131,7 +131,7 @@ describe('GET /rest', () => {
             .forEach((ps) => expect(ps).toBeGreaterThanOrEqual(psMin));
     });
 
-    test.concurrent('Buecher mit max. Preis suchen', async () => {
+    test.concurrent('Autos mit max. Preis suchen', async () => {
         // given
         const params = { preis: preisMax };
 
@@ -177,7 +177,7 @@ describe('GET /rest', () => {
     });
 
     test.concurrent(
-        'Keine Buecher zu einem nicht vorhandenen Schlagwort',
+        'Keine Autos zu einem nicht vorhandenen Schlagwort',
         async () => {
             // given
             const params = { [schlagwortNichtVorhanden]: 'true' };
@@ -197,7 +197,7 @@ describe('GET /rest', () => {
     );
 
     test.concurrent(
-        'Keine Buecher zu einer nicht-vorhandenen Property',
+        'Keine Autos zu einer nicht-vorhandenen Property',
         async () => {
             // given
             const params = { foo: 'bar' };

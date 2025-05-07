@@ -147,7 +147,7 @@ describe('GraphQL Queries', () => {
         const body: GraphQLRequest = {
             query: `
                 {
-                    buecher(suchkriterien: {
+                    autos(suchkriterien: {
                         modell: "${titelVorhanden}"
                     }) {
                         art
@@ -169,12 +169,12 @@ describe('GraphQL Queries', () => {
         expect(data.errors).toBeUndefined();
         expect(data.data).toBeDefined();
 
-        const { buecher } = data.data! as { buecher: AutoDTO[] };
+        const { autos } = data.data! as { autos: AutoDTO[] };
 
-        expect(buecher).not.toHaveLength(0);
-        expect(buecher).toHaveLength(1);
+        expect(autos).not.toHaveLength(0);
+        expect(autos).toHaveLength(1);
 
-        const [auto] = buecher;
+        const [auto] = autos;
 
         expect(auto!.modell?.modell).toBe(titelVorhanden);
     });
@@ -184,7 +184,7 @@ describe('GraphQL Queries', () => {
         const body: GraphQLRequest = {
             query: `
                 {
-                    buecher(suchkriterien: {
+                    autos(suchkriterien: {
                         modell: "${teilTitelVorhanden}"
                     }) {
                         modell {
@@ -205,11 +205,11 @@ describe('GraphQL Queries', () => {
         expect(data.errors).toBeUndefined();
         expect(data.data).toBeDefined();
 
-        const { buecher } = data.data! as { buecher: AutoDTO[] };
+        const { autos } = data.data! as { autos: AutoDTO[] };
 
-        expect(buecher).not.toHaveLength(0);
+        expect(autos).not.toHaveLength(0);
 
-        buecher
+        autos
             .map((auto) => auto.modell)
             .forEach((modell) =>
                 expect(modell?.modell?.toLowerCase()).toStrictEqual(
@@ -223,7 +223,7 @@ describe('GraphQL Queries', () => {
         const body: GraphQLRequest = {
             query: `
                 {
-                    buecher(suchkriterien: {
+                    autos(suchkriterien: {
                         modell: "${teilTitelNichtVorhanden}"
                     }) {
                         art
@@ -242,7 +242,7 @@ describe('GraphQL Queries', () => {
         // then
         expect(status).toBe(HttpStatus.OK);
         expect(headers['content-type']).toMatch(/json/iu);
-        expect(data.data!.buecher).toBeNull();
+        expect(data.data!.autos).toBeNull();
 
         const { errors } = data;
 
@@ -251,19 +251,19 @@ describe('GraphQL Queries', () => {
         const [error] = errors!;
         const { message, path, extensions } = error;
 
-        expect(message).toMatch(/^Keine Buecher gefunden:/u);
+        expect(message).toMatch(/^Keine Autos gefunden:/u);
         expect(path).toBeDefined();
-        expect(path![0]).toBe('buecher');
+        expect(path![0]).toBe('autos');
         expect(extensions).toBeDefined();
         expect(extensions!.code).toBe('BAD_USER_INPUT');
     });
 
-    test.concurrent('Auto zu vorhandener ISBN-Nummer', async () => {
+    test.concurrent('Auto zu vorhandener FAHRGESTELLNUMMER-Nummer', async () => {
         // given
         const body: GraphQLRequest = {
             query: `
                 {
-                    buecher(suchkriterien: {
+                    autos(suchkriterien: {
                         fahrgestellnummer: "${fahrgestellnummerVorhanden}"
                     }) {
                         fahrgestellnummer
@@ -285,24 +285,24 @@ describe('GraphQL Queries', () => {
         expect(data.errors).toBeUndefined();
         expect(data.data).toBeDefined();
 
-        const { buecher } = data.data! as { buecher: AutoDTO[] };
+        const { autos } = data.data! as { autos: AutoDTO[] };
 
-        expect(buecher).not.toHaveLength(0);
-        expect(buecher).toHaveLength(1);
+        expect(autos).not.toHaveLength(0);
+        expect(autos).toHaveLength(1);
 
-        const [auto] = buecher;
+        const [auto] = autos;
         const { fahrgestellnummer, modell } = auto!;
 
         expect(fahrgestellnummer).toBe(fahrgestellnummerVorhanden);
         expect(modell?.modell).toBeDefined();
     });
 
-    test.concurrent('Buecher mit Mindest-"ps"', async () => {
+    test.concurrent('Autos mit Mindest-"ps"', async () => {
         // given
         const body: GraphQLRequest = {
             query: `
                 {
-                    buecher(suchkriterien: {
+                    autos(suchkriterien: {
                         ps: ${psMin},
                         modell: "${teilTitelVorhanden}"
                     }) {
@@ -326,11 +326,11 @@ describe('GraphQL Queries', () => {
 
         expect(data.data).toBeDefined();
 
-        const { buecher } = data.data! as { buecher: AutoDTO[] };
+        const { autos } = data.data! as { autos: AutoDTO[] };
 
-        expect(buecher).not.toHaveLength(0);
+        expect(autos).not.toHaveLength(0);
 
-        buecher.forEach((auto) => {
+        autos.forEach((auto) => {
             const { ps, modell } = auto;
 
             expect(ps).toBeGreaterThanOrEqual(psMin);
@@ -345,7 +345,7 @@ describe('GraphQL Queries', () => {
         const body: GraphQLRequest = {
             query: `
                 {
-                    buecher(suchkriterien: {
+                    autos(suchkriterien: {
                         ps: ${psNichtVorhanden}
                     }) {
                         modell {
@@ -363,7 +363,7 @@ describe('GraphQL Queries', () => {
         // then
         expect(status).toBe(HttpStatus.OK);
         expect(headers['content-type']).toMatch(/json/iu);
-        expect(data.data!.buecher).toBeNull();
+        expect(data.data!.autos).toBeNull();
 
         const { errors } = data;
 
@@ -372,20 +372,20 @@ describe('GraphQL Queries', () => {
         const [error] = errors!;
         const { message, path, extensions } = error;
 
-        expect(message).toMatch(/^Keine Buecher gefunden:/u);
+        expect(message).toMatch(/^Keine Autos gefunden:/u);
         expect(path).toBeDefined();
-        expect(path![0]).toBe('buecher');
+        expect(path![0]).toBe('autos');
         expect(extensions).toBeDefined();
         expect(extensions!.code).toBe('BAD_USER_INPUT');
     });
 
-    test.concurrent('Buecher zur Art "EPUB"', async () => {
+    test.concurrent('Autos zur Art "Sportwagen"', async () => {
         // given
-        const autoArt: AutoArt = 'EPUB';
+        const autoArt: AutoArt = 'Sportwagen';
         const body: GraphQLRequest = {
             query: `
                 {
-                    buecher(suchkriterien: {
+                    autos(suchkriterien: {
                         art: ${autoArt}
                     }) {
                         art
@@ -407,11 +407,11 @@ describe('GraphQL Queries', () => {
         expect(data.errors).toBeUndefined();
         expect(data.data).toBeDefined();
 
-        const { buecher } = data.data! as { buecher: AutoDTO[] };
+        const { autos } = data.data! as { autos: AutoDTO[] };
 
-        expect(buecher).not.toHaveLength(0);
+        expect(autos).not.toHaveLength(0);
 
-        buecher.forEach((auto) => {
+        autos.forEach((auto) => {
             const { art, modell } = auto;
 
             expect(art).toBe(autoArt);
@@ -419,13 +419,13 @@ describe('GraphQL Queries', () => {
         });
     });
 
-    test.concurrent('Buecher zur einer ungueltigen Art', async () => {
+    test.concurrent('Autos zur einer ungueltigen Art', async () => {
         // given
         const autoArt = 'UNGUELTIG';
         const body: GraphQLRequest = {
             query: `
                 {
-                    buecher(suchkriterien: {
+                    autos(suchkriterien: {
                         art: ${autoArt}
                     }) {
                         modell {
@@ -456,12 +456,12 @@ describe('GraphQL Queries', () => {
         expect(extensions!.code).toBe('GRAPHQL_VALIDATION_FAILED');
     });
 
-    test.concurrent('Buecher mit lieferbar=true', async () => {
+    test.concurrent('Autos mit lieferbar=true', async () => {
         // given
         const body: GraphQLRequest = {
             query: `
                 {
-                    buecher(suchkriterien: {
+                    autos(suchkriterien: {
                         lieferbar: true
                     }) {
                         lieferbar
@@ -483,11 +483,11 @@ describe('GraphQL Queries', () => {
         expect(data.errors).toBeUndefined();
         expect(data.data).toBeDefined();
 
-        const { buecher } = data.data! as { buecher: AutoDTO[] };
+        const { autos } = data.data! as { autos: AutoDTO[] };
 
-        expect(buecher).not.toHaveLength(0);
+        expect(autos).not.toHaveLength(0);
 
-        buecher.forEach((auto) => {
+        autos.forEach((auto) => {
             const { lieferbar, modell } = auto;
 
             expect(lieferbar).toBe(true);

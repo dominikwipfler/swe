@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS auto (
     id             INTEGER PRIMARY KEY AUTOINCREMENT,
     version        INTEGER NOT NULL DEFAULT 0,
     fahrgestellnummer           TEXT NOT NULL UNIQUE,
-    ps         INTEGER NOT NULL CHECK (ps >= 0 AND ps <= 5),
+    ps         INTEGER NOT NULL CHECK (ps >= 0),
     art            TEXT,
     preis          REAL,
     rabatt         REAL,
