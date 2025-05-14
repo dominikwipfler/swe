@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS auto (
     version       INT NOT NULL DEFAULT 0,
     fahrgestellnummer          CHAR(17) UNIQUE NOT NULL,
     ps        INT NOT NULL CHECK (ps >= 0 AND ps <= 5),
-    art           ENUM('EPUB', 'HARDCOVER', 'PAPERBACK'),
+    art           ENUM('Sportwagen', 'SUV', 'Kleinwagen'),
     preis         DECIMAL(8,2) NOT NULL,
     rabatt        DECIMAL(4,3) NOT NULL,
     lieferbar     BOOLEAN NOT NULL DEFAULT FALSE,

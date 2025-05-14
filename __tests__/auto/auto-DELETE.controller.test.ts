@@ -35,7 +35,7 @@ const id = '50';
 // -----------------------------------------------------------------------------
 // Test-Suite
 // eslint-disable-next-line max-lines-per-function
-describe('DELETE /rest/buecher', () => {
+describe('DELETE /rest/autos', () => {
     let client: AxiosInstance;
 
     // Testserver starten und dabei mit der DB verbinden
