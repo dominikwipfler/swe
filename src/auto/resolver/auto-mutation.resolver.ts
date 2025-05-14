@@ -111,11 +111,11 @@ export class AutoMutationResolver {
     }
 
     #autoDtoToAuto(autoDTO: AutoDTO): Auto {
-        const titelDTO = autoDTO.modell;
+        const modellDTO = autoDTO.modell;
         const modell: Modell = {
             id: undefined,
-            modell: titelDTO.modell,
-            untertitel: titelDTO.untertitel,
+            modell: modellDTO.modell,
+            untertitel: modellDTO.untertitel,
             auto: undefined,
         };
         // "Optional Chaining" ab ES2020

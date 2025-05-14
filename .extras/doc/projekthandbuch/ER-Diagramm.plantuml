@@ -41,10 +41,10 @@ entity "Auto" {
   * aktualisiert: timestamp
 }
 
-entity "Titel" {
+entity "Modell" {
   * id: integer <<generated>>
   --
-  * titel: text
+  * modell: text
     untertitel: text
 }
 
@@ -56,7 +56,7 @@ entity "Abbildung" {
   * **auto_id**: integer <<FK>>
 }
 
-Auto ||..|| Titel
+Auto ||..|| Modell
 Auto ||..o{ Abbildung
 
 footer (c) Gruppe 4

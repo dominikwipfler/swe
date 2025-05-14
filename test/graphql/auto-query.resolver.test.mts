@@ -218,7 +218,7 @@ describe('GraphQL Queries', () => {
             );
     });
 
-    test.concurrent('Auto zu nicht vorhandenem Titel', async () => {
+    test.concurrent('Auto zu nicht vorhandenem Modell', async () => {
         // given
         const body: GraphQLRequest = {
             query: `
@@ -258,10 +258,12 @@ describe('GraphQL Queries', () => {
         expect(extensions!.code).toBe('BAD_USER_INPUT');
     });
 
-    test.concurrent('Auto zu vorhandener FAHRGESTELLNUMMER-Nummer', async () => {
-        // given
-        const body: GraphQLRequest = {
-            query: `
+    test.concurrent(
+        'Auto zu vorhandener FAHRGESTELLNUMMER-Nummer',
+        async () => {
+            // given
+            const body: GraphQLRequest = {
+                query: `
                 {
                     autos(suchkriterien: {
                         fahrgestellnummer: "${fahrgestellnummerVorhanden}"
@@ -273,29 +275,36 @@ describe('GraphQL Queries', () => {
                     }
                 }
             `,
-        };
+            };
 
-        // when
-        const { status, headers, data }: AxiosResponse<GraphQLResponseBody> =
-            await client.post(graphqlPath, body);
+            // when
+            const {
+                status,
+                headers,
+                data,
+            }: AxiosResponse<GraphQLResponseBody> = await client.post(
+                graphqlPath,
+                body,
+            );
 
-        // then
-        expect(status).toBe(HttpStatus.OK);
-        expect(headers['content-type']).toMatch(/json/iu);
-        expect(data.errors).toBeUndefined();
-        expect(data.data).toBeDefined();
+            // then
+            expect(status).toBe(HttpStatus.OK);
+            expect(headers['content-type']).toMatch(/json/iu);
+            expect(data.errors).toBeUndefined();
+            expect(data.data).toBeDefined();
 
-        const { autos } = data.data! as { autos: AutoDTO[] };
+            const { autos } = data.data! as { autos: AutoDTO[] };
 
-        expect(autos).not.toHaveLength(0);
-        expect(autos).toHaveLength(1);
+            expect(autos).not.toHaveLength(0);
+            expect(autos).toHaveLength(1);
 
-        const [auto] = autos;
-        const { fahrgestellnummer, modell } = auto!;
+            const [auto] = autos;
+            const { fahrgestellnummer, modell } = auto!;
 
-        expect(fahrgestellnummer).toBe(fahrgestellnummerVorhanden);
-        expect(modell?.modell).toBeDefined();
-    });
+            expect(fahrgestellnummer).toBe(fahrgestellnummerVorhanden);
+            expect(modell?.modell).toBeDefined();
+        },
+    );
 
     test.concurrent('Autos mit Mindest-"ps"', async () => {
         // given

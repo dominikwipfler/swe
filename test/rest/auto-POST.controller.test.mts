@@ -168,25 +168,30 @@ describe('POST /rest', () => {
         expect(messages).toStrictEqual(expect.arrayContaining(expectedMsg));
     });
 
-    test.concurrent('Neues Auto, aber die FAHRGESTELLNUMMER existiert bereits', async () => {
-        // given
-        headers.Authorization = `Bearer ${token}`;
+    test.concurrent(
+        'Neues Auto, aber die FAHRGESTELLNUMMER existiert bereits',
+        async () => {
+            // given
+            headers.Authorization = `Bearer ${token}`;
 
-        // when
-        const response: AxiosResponse<ErrorResponse> = await client.post(
-            '',
-            neuesAutoFahrgestellnummerExistiert,
-            { headers },
-        );
+            // when
+            const response: AxiosResponse<ErrorResponse> = await client.post(
+                '',
+                neuesAutoFahrgestellnummerExistiert,
+                { headers },
+            );
 
-        // then
-        const { data } = response;
+            // then
+            const { data } = response;
 
-        const { message, statusCode } = data;
+            const { message, statusCode } = data;
 
-        expect(message).toStrictEqual(expect.stringContaining('FAHRGESTELLNUMMER'));
-        expect(statusCode).toBe(HttpStatus.UNPROCESSABLE_ENTITY);
-    });
+            expect(message).toStrictEqual(
+                expect.stringContaining('FAHRGESTELLNUMMER'),
+            );
+            expect(statusCode).toBe(HttpStatus.UNPROCESSABLE_ENTITY);
+        },
+    );
 
     test.concurrent('Neues Auto, aber ohne Token', async () => {
         // when

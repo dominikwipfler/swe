@@ -50,7 +50,7 @@ cloud {
 
 database "DB auto" {
     [Tabelle auto]
-    [Tabelle titel]
+    [Tabelle modell]
     [Tabelle abbildung]
 }
 
@@ -74,7 +74,7 @@ GraphQLClient ~~> [RequestLoggerMiddleware]
 
 [Repository<Auto>] ~~> [TypeORM]
 [TypeORM] ~~> [Tabelle auto]
-[TypeORM] ~~> [Tabelle titel]
+[TypeORM] ~~> [Tabelle modell]
 [TypeORM] ~~> [Tabelle abbildung]
 
 [AutoController] ..> [nest-keycloak-connect]
