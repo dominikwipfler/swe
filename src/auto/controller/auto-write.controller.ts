@@ -151,7 +151,7 @@ export class AutoWriteController {
         )
         id: number,
         @UploadedFile() file: Express.Multer.File,
-         
+
         @Req() req: Request,
         @Res() res: Response,
     ): Promise<Response> {
@@ -274,11 +274,11 @@ export class AutoWriteController {
     }
 
     #autoDtoToAuto(autoDTO: AutoDTO): Auto {
-        const titelDTO = autoDTO.modell;
+        const modellDTO = autoDTO.modell;
         const modell: Modell = {
             id: undefined,
-            modell: titelDTO.modell,
-            untertitel: titelDTO.untertitel,
+            modell: modellDTO.modell,
+            untertitel: modellDTO.untertitel,
             auto: undefined,
         };
         const abbildungen = autoDTO.abbildungen?.map((abbildungDTO) => {

@@ -138,9 +138,7 @@ describe('GET /rest', () => {
         // Jedes Auto hat einen Modell mit dem Teilstring 'a'
         data.content
             .map((auto) => auto.ps)
-            .forEach((ps) =>
-                expect(ps).toBeGreaterThanOrEqual(psMin),
-            );
+            .forEach((ps) => expect(ps).toBeGreaterThanOrEqual(psMin));
     });
 
     test('Autos mit max. Preis suchen', async () => {
@@ -158,9 +156,13 @@ describe('GET /rest', () => {
 
         // Jedes Auto hat einen Modell mit dem Teilstring 'a'
         data.content
-            .map((auto) => (auto.preis !== undefined ? Decimal(auto.preis) : undefined))
+            .map((auto) =>
+                auto.preis !== undefined ? Decimal(auto.preis) : undefined,
+            )
             .forEach((preis) =>
-                expect(preis?.lessThanOrEqualTo(Decimal(preisMax))).toBeTruthy(),
+                expect(
+                    preis?.lessThanOrEqualTo(Decimal(preisMax)),
+                ).toBeTruthy(),
             );
     });
 

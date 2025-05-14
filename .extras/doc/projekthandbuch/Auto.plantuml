@@ -56,9 +56,9 @@ package auto.entity {
     @UpdateDateColumn() readonly aktualisiert: Date
   }
 
-  class Titel <<entity>> <<@Entity>> {
+  class Modell <<entity>> <<@Entity>> {
     @Column() @PrimaryColumn() readonly id: number
-    @Column() readonly titel: string
+    @Column() readonly modell: string
     @Column() readonly untertitel?: string
   }
 
@@ -68,7 +68,7 @@ package auto.entity {
     @Column() readonly contentType?: string
   }
 
-  Auto *--> "1" Titel : @OneToOne() \ntitel
+  Auto *--> "1" Modell : @OneToOne() \ntitel
   Auto *--> "*" Abbildung : @OneToMany() \nabbildungen
 
   Auto .right.> Entity

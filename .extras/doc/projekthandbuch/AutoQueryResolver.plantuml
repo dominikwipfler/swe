@@ -54,7 +54,7 @@ package auto {
 
     class AutoQueryResolver << control >> << @Resolver() >> << @UseInterceptors() >> {
       + @Query() async auto(@Args() id: IdInput): Promise<AutoDTO>
-      + @Query() async autos(@Args() titel: string | undefined): Promise<AutoDTO[]>
+      + @Query() async autos(@Args() modell: string | undefined): Promise<AutoDTO[]>
     }
 
     AutoQueryResolver o-up-> "1" AutoReadService : service

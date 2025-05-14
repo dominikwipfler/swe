@@ -55,7 +55,7 @@ class AutoRequests(HttpUser):
         """GET-Requests mit Query-Parameter: Teilstring des Autotitels."""
         titel_list = ["a", "l", "t", "i", "p"]
         for teil in titel_list:
-            self.client.get("/rest", params={"titel": teil})
+            self.client.get("/rest", params={"modell": teil})
 
     @task(150)
     def get_fahrgestellnummer(self) -> None:

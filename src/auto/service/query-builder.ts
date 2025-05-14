@@ -152,8 +152,7 @@ export class QueryBuilder {
         }
 
         if (ps !== undefined) {
-            const psNumber =
-                typeof ps === 'string' ? parseInt(ps) : ps;
+            const psNumber = typeof ps === 'string' ? parseInt(ps) : ps;
             if (!isNaN(psNumber)) {
                 queryBuilder = queryBuilder.where(
                     `${this.#autoAlias}.ps >= ${psNumber}`,

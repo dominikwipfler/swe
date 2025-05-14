@@ -224,7 +224,10 @@ export class AutoWriteService {
     }
 
     async #validateCreate({ fahrgestellnummer }: Auto): Promise<undefined> {
-        this.#logger.debug('#validateCreate: fahrgestellnummer=%s', fahrgestellnummer);
+        this.#logger.debug(
+            '#validateCreate: fahrgestellnummer=%s',
+            fahrgestellnummer,
+        );
         if (await this.#repo.existsBy({ fahrgestellnummer })) {
             throw new FahrgestellnummerExistsException(fahrgestellnummer);
         }
