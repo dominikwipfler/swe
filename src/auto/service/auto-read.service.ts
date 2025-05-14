@@ -191,11 +191,12 @@ export class AutoReadService {
         const queryBuilder = this.#queryBuilder.build({}, pageable);
         const autos = await queryBuilder.getMany();
         if (autos.length === 0) {
-            throw new NotFoundException(`Ungueltige Seite "${pageable.number}"`);
+            throw new NotFoundException(
+                `Ungueltige Seite "${pageable.number}"`,
+            );
         }
         const totalElements = await queryBuilder.getCount();
         return this.#createSlice(autos, totalElements);
-
     }
 
     #createSlice(autos: Auto[], totalElements: number) {

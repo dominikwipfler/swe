@@ -58,7 +58,12 @@ import { Modell } from './modell.entity.js';
 /**
  * Alias-Typ für gültige Strings bei der Art eines Autos.
  */
-export type AutoArt = 'Limousine' | 'Cabrio' | 'SUV' | 'Kleinwagen'| 'Sportwagen';
+export type AutoArt =
+    | 'Limousine'
+    | 'Cabrio'
+    | 'SUV'
+    | 'Kleinwagen'
+    | 'Sportwagen';
 
 /**
  * Entity-Klasse zu einer relationalen Tabelle.

@@ -43,7 +43,7 @@ import {
 import Decimal from 'decimal.js'; // eslint-disable-line @typescript-eslint/naming-convention
 import { type AutoArt } from '../entity/auto.entity.js';
 import { AbbildungDTO } from './abbildungDTO.entity.js';
-import { TitelDTO } from './titelDTO.entity.js';
+import { TitelDTO } from './modellDTO.entity.js';
 
 export const MAX_ps = 5;
 
