@@ -19,22 +19,29 @@
 -- "Freiburger Chorauto"
 -- "Maschinelle Lernverfahren zur Behandlung von Bonitätsrisiken im Mobilfunkgeschäft"
 -- "Software Pioneers"
-INSERT INTO auto(id, version, fahrgestellnummer, ps, art, preis, rabatt, lieferbar, datum, homepage, schlagwoerter, erzeugt, aktualisiert) VALUES
-    (1, 0, '978-3-897-22583-1', 4, 'Limousine', 11.1, 0.011, TRUE, '2022-02-01', 'https://acme.at', 'JAVASCRIPT', '2022-02-01 00:00:00', '2022-02-01 00:00:00'),
-    (20, 0, '978-3-827-31552-6', 2, 'Cabrio', 22.2, 0.022, TRUE, '2022-02-02', 'https://acme.biz', 'TYPESCRIPT', '2022-02-02 00:00:00', '2022-02-02 00:00:00'),
-    (30, 0, '978-0-201-63361-0', 3, 'SUV', 33.3, 0.033, TRUE, '2022-02-03', 'https://acme.com', 'JAVASCRIPT,TYPESCRIPT', '2022-02-03 00:00:00', '2022-02-03 00:00:00'),
-    (40, 0, '978-0-007-09732-6', 4, 'Kleinwagen', 44.4, 0.044, TRUE, '2022-02-04', 'https://acme.de', NULL, '2022-02-04 00:00:00', '2022-02-04 00:00:00'),
-    (50, 0, '978-3-824-40481-0', 2, 'Sportwagen', 55.5, 0.055, TRUE, '2022-02-05', 'https://acme.es', 'JAVA', '2022-02-05 00:00:00', '2022-02-05 00:00:00'),
-    (60, 0, '978-3-540-43081-0', 1, 'Limousine', 66.6, 0.066, TRUE, '2022-02-06', 'https://acme.fi', 'PYTHON', '2022-02-06 00:00:00', '2022-02-06 00:00:00');
+INSERT INTO auto (id, fahrgestellnummer, ps, art, preis, rabatt, lieferbar, datum, homepage, schlagwoerter)
+VALUES
+(1, 'WVWZZZ1JZXW000001', 150, 'Limousine', 25999.99, 0.050, true, '2024-05-10', 'https://limousine1.example.com', 'komfort'),
+(20, 'WVWZZZ1JZXW000002', 120, 'Kleinwagen', 17999.99, 0.100, false, '2024-04-22', 'https://kleinwagen1.example.com', 'sparsam'),
+(30, 'WVWZZZ1JZXW000003', 310, 'SUV', 49999.99, 0.080, true, '2023-11-15', 'https://suv1.example.com', 'familienfreundlich'),
+(40, 'WVWZZZ1JZXW000004', 220, 'Cabrio', 38999.00, 0.075, false, '2024-03-01', 'https://cabrio1.example.com', 'luxus'),
+(50, 'WVWZZZ1JZXW000005', 400, 'Sportwagen', 79999.99, 0.120, true, '2024-01-20', 'https://sportwagen1.example.com', 'design'),
+(60, 'WVWZZZ1JZXW000006', 180, 'Limousine', 26999.00, 0.060, true, '2024-02-10', 'https://limousine2.example.com', 'business'),
+(70, 'WVWZZZ1JZXW000007', 95, 'Kleinwagen', 15999.00, 0.150, false, '2024-03-20', 'https://kleinwagen2.example.com', 'kompakt'),
+(80, 'WVWZZZ1JZXW000008', 260, 'SUV', 42999.99, 0.090, true, '2024-05-05', 'https://suv2.example.com', 'komfort');
 
 
-INSERT INTO modell(id, modell, untertitel, auto_id) VALUES
-    (1, 'Alpha', 'alpha', 1),
-    (20, 'Beta', NULL, 20),
-    (30, 'Gamma', 'gamma', 30),
-    (40, 'Delta', 'delta', 40),
-    (50, 'Epsilon', 'epsilon', 50),
-    (60, 'Phi', 'phi', 60);
+INSERT INTO modell (id, modell, untertitel, auto_id)
+VALUES
+(1, 'Elegance LX', 'Die komfortable Limousine', 1),
+(20, 'CityGo', 'Klein, aber oho', 20),
+(30, 'Adventure X', 'Bereit für jedes Terrain', 30),
+(40, 'SkyRide', 'Offen für Freiheit', 40),
+(50, 'Speedster Pro', 'Maximale Performance', 50),
+(60, 'Executive Plus', 'Für Geschäftsreisen ideal', 60),
+(70, 'MiniFlex', 'Perfekt für die Stadt', 70),
+(80, 'FamilyDrive', 'Für die ganze Familie', 80);
+
 
 INSERT INTO abbildung(id, beschriftung, content_type, auto_id) VALUES
     (1, 'Abb. 1', 'img/png', 1),
