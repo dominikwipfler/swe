@@ -35,7 +35,6 @@ CREATE SCHEMA IF NOT EXISTS AUTHORIZATION auto;
 
 ALTER ROLE auto SET search_path = 'auto';
 
----ÄNDERUNG SEHBAR
 -- Enum korrekt definieren
 --CREATE TYPE autoart AS ENUM ('Limousine', 'Cabrio', 'SUV', 'Kleinwagen', 'Sportwagen');
 

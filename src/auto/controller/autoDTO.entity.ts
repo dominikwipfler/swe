@@ -26,7 +26,6 @@ import {
     ArrayUnique,
     IsArray,
     IsBoolean,
-    Isfahrgestellnummer,
     IsISO8601,
     IsInt,
     IsOptional,
@@ -106,7 +105,6 @@ class DecimalMax implements ValidatorConstraintInterface {
  */
 export class AutoDtoOhneRef {
     // https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s13.html
-    @Isfahrgestellnummer(13)
     @ApiProperty({ example: '978-0-007-00644-1', type: String })
     readonly fahrgestellnummer!: string;
 
