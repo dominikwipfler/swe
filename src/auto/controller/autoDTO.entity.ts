@@ -44,7 +44,7 @@ import { type AutoArt } from '../entity/auto.entity.js';
 import { AbbildungDTO } from './abbildungDTO.entity.js';
 import { TitelDTO } from './modellDTO.entity.js';
 
-export const MAX_ps = 5;
+export const MAX_ps = 5000;
 
 // https://github.com/typestack/class-transformer?tab=readme-ov-file#basic-usage
 const number2Decimal = ({ value }: { value: Decimal.Value | undefined }) => {

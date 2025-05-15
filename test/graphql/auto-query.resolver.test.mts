@@ -388,7 +388,7 @@ describe('GraphQL Queries', () => {
         expect(extensions!.code).toBe('BAD_USER_INPUT');
     });
 
-    test.skip.concurrent('Autos zur Art "Sportwagen"', async () => {
+    test.todo.concurrent('Autos zur Art "Sportwagen"', async () => {
         // given
         const autoArt: AutoArt = 'Sportwagen';
         const body: GraphQLRequest = {
