@@ -72,7 +72,7 @@ pipeline {
                 sh 'rm -rf dist'
                 sh 'rm -rf .extras/doc/api'
                 sh 'rm -rf .extras/doc/folien/folien.html'
-                sh 'rm -rf .extras/doc/projekthandbuch/html'
+                sh 'rm -rf .extras/doc/projekthandauto/html'
 
                 // https://www.jenkins.io/doc/pipeline/steps/git
                 // "named arguments" statt Funktionsaufruf mit Klammern
@@ -189,8 +189,8 @@ pipeline {
                     //]
 
                     publishHTML (target : [
-                        reportDir: '.extras/doc/projekthandbuch/html',
-                        reportFiles: 'projekthandbuch.html',
+                        reportDir: '.extras/doc/projekthandauto/html',
+                        reportFiles: 'projekthandauto.html',
                         reportName: 'Projekthandauto',
                         reportTitles: 'Projekthandauto'
                     ])

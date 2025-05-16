@@ -59,7 +59,7 @@ class AutoRequests(HttpUser):
 
     @task(150)
     def get_fahrgestellnummer(self) -> None:
-        """GET-Requests mit Query-Parameter: ISBN-Nummer."""
+        """GET-Requests mit Query-Parameter: fahrgestellnummer-Nummer."""
         fahrgestellnummer_list: Final = [
             "978-3-897-22583-1",
             "978-3-827-31552-6",

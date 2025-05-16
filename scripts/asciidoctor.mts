@@ -40,7 +40,7 @@ const options = {
     mkdirs: true,
 };
 adoc.convertFile(
-    join('.extras', 'doc', 'projekthandbuch', 'projekthandbuch.adoc'),
+    join('.extras', 'doc', 'projekthandbuch', 'projekthandbuch.adoc'), 
     options,
 );
 
@@ -51,15 +51,15 @@ console.log(
         '..',
         '.extras',
         'doc',
-        'projekthandbuch',
+        'projekthandauto',
         'html',
-        'projekthandbuch.html',
+        'projekthandauto.html',
     )}`,
 );
 
 // https://asciidoctor.github.io/asciidoctor.js/master
 // const htmlString = asciidoctor.convert(
-//     fs.readFileSync(join('extras', 'doc', 'projekthandbuch.adoc')),
+//     fs.readFileSync(join('extras', 'doc', 'projekthandauto.adoc')),
 //     { safe: 'safe', attributes: { linkcss: true }, base_dir: 'doc' },
 // );
 // const htmlFile = join('extras', 'doc', 'projekthandauto.html');

@@ -26,7 +26,6 @@ import {
     ArrayUnique,
     IsArray,
     IsBoolean,
-    IsISBN,
     IsISO8601,
     IsInt,
     IsOptional,
@@ -45,7 +44,7 @@ import { type AutoArt } from '../entity/auto.entity.js';
 import { AbbildungDTO } from './abbildungDTO.entity.js';
 import { TitelDTO } from './modellDTO.entity.js';
 
-export const MAX_RATING = 5;
+export const MAX_ps = 5000;
 
 // https://github.com/typestack/class-transformer?tab=readme-ov-file#basic-usage
 const number2Decimal = ({ value }: { value: Decimal.Value | undefined }) => {
@@ -106,13 +105,12 @@ class DecimalMax implements ValidatorConstraintInterface {
  */
 export class AutoDtoOhneRef {
     // https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s13.html
-    @IsISBN(13)
     @ApiProperty({ example: '978-0-007-00644-1', type: String })
     readonly fahrgestellnummer!: string;
 
     @IsInt()
     @Min(0)
-    @Max(MAX_RATING)
+    @Max(MAX_ps)
     @ApiProperty({ example: 5, type: Number })
     readonly ps!: number;
 

@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS auto (
     version             integer NOT NULL DEFAULT 0,
     fahrgestellnummer   text NOT NULL UNIQUE USING INDEX TABLESPACE autospace,
     ps                 integer NOT NULL CHECK (ps > 0),
-    art                autoart NOT NULL,
+    art                autoart,
     preis              decimal(8,2) NOT NULL,
     rabatt             decimal(4,3) NOT NULL CHECK (rabatt >= 0 AND rabatt <= 1),
     lieferbar          boolean NOT NULL DEFAULT FALSE,
