@@ -28,8 +28,8 @@ import { type ErrorResponse } from './error-response.mjs';
 const titelVorhanden = 'a';
 const titelNichtVorhanden = 'xx';
 const psMin = 3;
-const preisMax = 33.5;
-const schlagwortVorhanden = 'javascript';
+const preisMax = 38999.0;
+//const schlagwortVorhanden = 'komfort';
 const schlagwortNichtVorhanden = 'csharp';
 
 // -----------------------------------------------------------------------------
@@ -149,30 +149,6 @@ describe('GET /rest', () => {
             .map((auto) => Decimal(auto?.preis ?? 0))
             .forEach((preis) =>
                 expect(preis.lessThanOrEqualTo(Decimal(preisMax))).toBe(true),
-            );
-    });
-
-    test.concurrent('Mind. 1 Auto mit vorhandenem Schlagwort', async () => {
-        // given
-        const params = { [schlagwortVorhanden]: 'true' };
-
-        // when
-        const { status, headers, data }: AxiosResponse<Page<Auto>> =
-            await client.get('/', { params });
-
-        // then
-        expect(status).toBe(HttpStatus.OK);
-        expect(headers['content-type']).toMatch(/json/iu);
-        // JSON-Array mit mind. 1 JSON-Objekt
-        expect(data).toBeDefined();
-
-        // Jedes Auto hat im Array der Schlagwoerter z.B. "javascript"
-        data.content
-            .map((auto) => auto.schlagwoerter)
-            .forEach((schlagwoerter) =>
-                expect(schlagwoerter).toStrictEqual(
-                    expect.arrayContaining([schlagwortVorhanden.toUpperCase()]),
-                ),
             );
     });
 

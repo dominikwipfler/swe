@@ -156,7 +156,7 @@ export class AutoDtoOhneRef {
 
     @IsOptional()
     @ArrayUnique()
-    @ApiProperty({ example: ['JAVASCRIPT', 'TYPESCRIPT', 'JAVA', 'PYTHON'] })
+    @ApiProperty({ example: ['komfort', 'luxus'] })
     readonly schlagwoerter: string[] | undefined;
 }
 

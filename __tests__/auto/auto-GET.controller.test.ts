@@ -34,8 +34,8 @@ import { type ErrorResponse } from './error-response.js';
 const titelVorhanden = 'a';
 const titelNichtVorhanden = 'xx';
 const psMin = 3;
-const preisMax = 33.5;
-const schlagwortVorhanden = 'javascript';
+const preisMax = 3333.0;
+const schlagwortVorhanden = 'komfort';
 const schlagwortNichtVorhanden = 'csharp';
 
 // -----------------------------------------------------------------------------
