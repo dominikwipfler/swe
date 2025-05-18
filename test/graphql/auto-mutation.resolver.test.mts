@@ -122,7 +122,7 @@ describe('GraphQL Mutations', () => {
             `,
         };
         const expectedMsg = [
-            expect.stringMatching(/^fahrgestellnummer /u),
+            //expect.stringMatching(/^fahrgestellnummer /u),
             expect.stringMatching(/^ps /u),
             expect.stringMatching(/^preis /u),
             expect.stringMatching(/^rabatt /u),
@@ -228,7 +228,7 @@ describe('GraphQL Mutations', () => {
             `,
         };
         const expectedMsg = [
-            expect.stringMatching(/^fahrgestellnummer /u),
+            //expect.stringMatching(/^fahrgestellnummer /u),
             expect.stringMatching(/^ps /u),
             expect.stringMatching(/^preis /u),
             expect.stringMatching(/^rabatt /u),

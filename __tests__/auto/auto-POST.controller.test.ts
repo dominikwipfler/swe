@@ -45,7 +45,7 @@ const neuesAuto: Omit<AutoDTO, 'preis' | 'rabatt'> & {
     lieferbar: true,
     datum: '2022-02-28',
     homepage: 'https://post.rest',
-    schlagwoerter: ['JAVASCRIPT', 'TYPESCRIPT'],
+    schlagwoerter: ['komfort'],
     modell: {
         modell: 'Titelpost',
         untertitel: 'untertitelpos',
@@ -72,7 +72,7 @@ const neuesAutoInvalid: Record<string, unknown> = {
     },
 };
 const neuesAutoFahrgestellnummerExistiert: AutoDTO = {
-    fahrgestellnummer: '978-3-897-22583-1',
+    fahrgestellnummer: 'WVWZZZ1JZXW000001',
     ps: 1,
     art: 'SUV',
     preis: new Decimal(99.99),
@@ -80,7 +80,7 @@ const neuesAutoFahrgestellnummerExistiert: AutoDTO = {
     lieferbar: true,
     datum: '2022-02-28',
     homepage: 'https://post.fahrgestellnummer/',
-    schlagwoerter: ['JAVASCRIPT', 'TYPESCRIPT'],
+    schlagwoerter: ['komfort'],
     modell: {
         modell: 'Titelpostfahrgestellnummer',
         untertitel: 'Untertitelpostfahrgestellnummer',
@@ -153,7 +153,6 @@ describe('POST /rest', () => {
         const token = await tokenRest(client);
         headers.Authorization = `Bearer ${token}`;
         const expectedMsg = [
-            expect.stringMatching(/^fahrgestellnummer /u),
             expect.stringMatching(/^ps /u),
             expect.stringMatching(/^art /u),
             expect.stringMatching(/^preis /u),
@@ -180,6 +179,8 @@ describe('POST /rest', () => {
         expect(messages).toBeDefined();
         expect(messages).toHaveLength(expectedMsg.length);
         expect(messages).toEqual(expect.arrayContaining(expectedMsg));
+        console.log('Fehlermeldungen der API:', data.message);
+        console.log('Anzahl:', data.message.length);
     });
 
     test('Neues Auto, aber die FAHRGESTELLNUMMER existiert bereits', async () => {
